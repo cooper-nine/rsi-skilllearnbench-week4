@@ -1,60 +1,66 @@
 # 十题清单与配对证据
 
-加权 GDP 第 2 题的历史 CTRF 收集到 0 条测试。本次根据可核验性换入同类第 5 题。保留原始历史调度 CSV，后续运行以 qwen/cases.json 为准。
-
-各题末尾的最终验收是确定性产物修复实验，十题均通过原版官方脚本。Qwen 3.5 Plus 的同输入对照、官方判分和节点记录见独立报告。 [确定性修复汇总](ARTIFACT-REPAIR.md) · [Qwen API 复测](QWEN-PILOT.md)
+同一输入下，人工 Skill 基线 0/10 整题通过，Qwen 3.5 Plus 人工编排复测 10/10 整题通过。每题保留原题、预期、基线失败检查和 Qwen 官方报告。 [逐题对照 CSV](comparison.csv) · [实验报告](QWEN-PILOT.md)
 
 ## earthquake-plate-calculation/5
-earthquake-plate-calculation5
+
 - 输入　2024 地震事件 JSON、PB2002 边界及板块 JSON。 [原题](../upstream-reference/tasks/earthquake-plate-calculation/earthquake-plate-calculation-5/instruction.md)
 - 期望　answer.json；事件 us7000myfa，距离 419.32 km（容差 0.01 km）。 [官方检查](../upstream-reference/tasks/earthquake-plate-calculation/earthquake-plate-calculation-5/tests/test_outputs.py)
-- 基线　运行 20261118-122708-583ff7，reward=0。失败检查如下。
+- 人工 Skill 基线 **6/8，整题失败**。试次 `20261118-122708-583ff7`。 [官方报告](paired-evidence/earthquake-plate-calculation-5/baseline/ctrf.json)
+- Qwen API 编排 **8/8，整题通过，奖励为 1**。试次 `20261124-215351-cde393`。 [官方报告](paired-evidence/earthquake-plate-calculation-5/treatment/ctrf.json) · [运行记录](paired-evidence/earthquake-plate-calculation-5/treatment/run.json) · [试次索引](paired-evidence/earthquake-plate-calculation-5/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::TestEarthquakeTask::test_distance_within_tolerance
 test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct
 ```
 
-复测输出的事件 ID 已匹配。距离为 1732.30 km。逐项从 6/8 变为 7/8，距离仍失败。外层运行器报告 verifier 超时。 [复测判分](earthquake-5-ctrf.json)
-
-两次平台追加同模型试次均为 7/8。确定性测距复核通过 8/8，原版 verifier 正常退出，reward=1。 [平台试次](refinement/earthquake-5/) · [确定性复核](diagnostics/earthquake-5/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/earthquake-plate-calculation-5/ctrf.json) · [运行记录](artifact-repair/earthquake-plate-calculation-5/run.json)
+</details>
 
 ## financial-analysis/1
-financial-analysis1
+
 - 输入　Q2/Q3 2025 SEC 13F 数据和本题问题列表。 [原题](../upstream-reference/tasks/financial-analysis/financial-analysis-1/instruction.md)
-- 期望　按本题 expected_output.json 生成 answers.json，逐题匹配官方预期。 [官方检查](../upstream-reference/tasks/financial-analysis/financial-analysis-1/tests/test_outputs.py)
-- 基线　运行 20261118-114709-707627，reward=0。失败检查如下。
+- 期望　在 /root/answers.json 交付Renaissance 的 AUM 和股票数量、Berkshire 增持额前五的 CUSIP，以及 Palantir 持仓额前三的经理，顺序及数值由官方脚本核对。 [官方检查](../upstream-reference/tasks/financial-analysis/financial-analysis-1/tests/test_outputs.py)
+- 人工 Skill 基线 **1/2，整题失败**。试次 `20261118-114709-707627`。 [官方报告](paired-evidence/financial-analysis-1/baseline/ctrf.json)
+- Qwen API 编排 **2/2，整题通过，奖励为 1**。试次 `20261125-004055-e951df`。 [官方报告](paired-evidence/financial-analysis-1/treatment/ctrf.json) · [运行记录](paired-evidence/financial-analysis-1/treatment/run.json) · [试次索引](paired-evidence/financial-analysis-1/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::test_answer_quality
 ```
 
-改编后 1/2，官方 reward=0。已生成答案文件，基金持仓数量的断言仍失败。 [配对证据](paired-evidence/financial-analysis-1/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/financial-analysis-1/ctrf.json) · [运行记录](artifact-repair/financial-analysis-1/run.json)
+</details>
 
 ## financial-analysis/3
-financial-analysis3
+
 - 输入　Q2/Q3 2025 SEC 13F 数据和本题问题列表。 [原题](../upstream-reference/tasks/financial-analysis/financial-analysis-3/instruction.md)
-- 期望　按本题 expected_output.json 生成 answers.json，逐题匹配官方预期。 [官方检查](../upstream-reference/tasks/financial-analysis/financial-analysis-3/tests/test_outputs.py)
-- 基线　运行 20261118-123134-1043bc，reward=0。失败检查如下。
+- 期望　在 /root/answers.json 交付Soros 的 AUM、Pershing Square 增持额前三的 CUSIP，以及 NVIDIA 持仓额前五的经理，顺序及数值由官方脚本核对。 [官方检查](../upstream-reference/tasks/financial-analysis/financial-analysis-3/tests/test_outputs.py)
+- 人工 Skill 基线 **0/2，整题失败**。试次 `20261118-123134-1043bc`。 [官方报告](paired-evidence/financial-analysis-3/baseline/ctrf.json)
+- Qwen API 编排 **2/2，整题通过，奖励为 1**。试次 `20261125-004524-6b896b`。 [官方报告](paired-evidence/financial-analysis-3/treatment/ctrf.json) · [运行记录](paired-evidence/financial-analysis-3/treatment/run.json) · [试次索引](paired-evidence/financial-analysis-3/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::test_file_exists
 test_outputs.py::test_answer_quality
 ```
 
-改编前 0/2，改编后 1/2，官方 reward=0。文件存在检查已通过，持仓变化排序的断言仍失败。 [配对证据](paired-evidence/financial-analysis-3/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/financial-analysis-3/ctrf.json) · [运行记录](artifact-repair/financial-analysis-3/run.json)
+</details>
 
 ## weighted-gdp-calculation/1
-weighted-gdp-calculation1
+
 - 输入　gdp.xlsx 的 Data 表及原始 Task 模板。 [原题](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-1/instruction.md)
 - 期望　在原模板中按题面填写查找公式、净出口及描述统计、SUMPRODUCT 加权值；通过单元格检查。 [官方检查](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-1/tests/test_outputs.py)
-- 基线　运行 20261118-124901-2690d3，reward=0。失败检查如下。
+- 人工 Skill 基线 **11/27，整题失败**。试次 `20261118-124901-2690d3`。 [官方报告](paired-evidence/weighted-gdp-calculation-1/baseline/ctrf.json)
+- Qwen API 编排 **27/27，整题通过，奖励为 1**。试次 `20261125-005144-c6b49e`。 [官方报告](paired-evidence/weighted-gdp-calculation-1/treatment/ctrf.json) · [运行记录](paired-evidence/weighted-gdp-calculation-1/treatment/run.json) · [试次索引](paired-evidence/weighted-gdp-calculation-1/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::TestStep1LookupFormulas::test_exports_have_data
@@ -75,15 +81,17 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable
 test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 ```
 
-改编前 11/27，改编后 13/27，官方 reward=0。首次判题下载 `uv` 失败。保留首次环境错误，对同一份工作簿运行未改动的官方 verifier 得到后续判分。 [配对证据](paired-evidence/weighted-gdp-calculation-1/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/weighted-gdp-calculation-1/ctrf.json) · [运行记录](artifact-repair/weighted-gdp-calculation-1/run.json)
+</details>
 
 ## weighted-gdp-calculation/5
-weighted-gdp-calculation5
+
 - 输入　gdp.xlsx 的 Data 表及原始 Task 模板。 [原题](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-5/instruction.md)
 - 期望　在原模板中按题面填写查找公式、贸易余额系数及描述统计、按贸易总额进行 SUMPRODUCT 加权；通过单元格检查。 [官方检查](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-5/tests/test_outputs.py)
-- 基线　运行 20261118-150937-21cedf，reward=0。失败检查如下。
+- 人工 Skill 基线 **21/25，整题失败**。试次 `20261118-150937-21cedf`。 [官方报告](paired-evidence/weighted-gdp-calculation-5/baseline/ctrf.json)
+- Qwen API 编排 **25/25，整题通过，奖励为 1**。试次 `20261125-002513-f38f87`。 [官方报告](paired-evidence/weighted-gdp-calculation-5/treatment/ctrf.json) · [运行记录](paired-evidence/weighted-gdp-calculation-5/treatment/run.json) · [试次索引](paired-evidence/weighted-gdp-calculation-5/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::TestStep2Statistics::test_min_values
@@ -92,15 +100,17 @@ test_outputs.py::TestStep2Statistics::test_median_values
 test_outputs.py::TestStep2Statistics::test_mean_values
 ```
 
-改编前 21/25，改编后 11/25，官方 reward=0。数据值、净出口比例、统计和加权均值仍有检查失败。 [配对证据](paired-evidence/weighted-gdp-calculation-5/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/weighted-gdp-calculation-5/ctrf.json) · [运行记录](artifact-repair/weighted-gdp-calculation-5/run.json)
+</details>
 
 ## weighted-gdp-calculation/4
-weighted-gdp-calculation4
+
 - 输入　gdp.xlsx 的 Data 表及原始 Task 模板。 [原题](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-4/instruction.md)
 - 期望　在原模板中按题面填写查找公式、净出口及描述统计、SUMPRODUCT 加权值；通过单元格检查。 [官方检查](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-4/tests/test_outputs.py)
-- 基线　运行 20261118-140525-7fb55f，reward=0。失败检查如下。
+- 人工 Skill 基线 **10/27，整题失败**。试次 `20261118-140525-7fb55f`。 [官方报告](paired-evidence/weighted-gdp-calculation-4/baseline/ctrf.json)
+- Qwen API 编排 **27/27，整题通过，奖励为 1**。试次 `20261124-202303-42cdb5`。 [官方报告](paired-evidence/weighted-gdp-calculation-4/treatment/ctrf.json) · [运行记录](paired-evidence/weighted-gdp-calculation-4/treatment/run.json) · [试次索引](paired-evidence/weighted-gdp-calculation-4/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::TestStep1LookupFormulas::test_exports_have_data
@@ -122,29 +132,33 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable
 test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 ```
 
-改编前 10/27，改编后 27/27。官方 verifier 退出码为 0，reward=1。平台试次使用和基线相同的 Qwen 模型、预算协议与容器镜像。 [基线 CTRF](paired-evidence/weighted-gdp-calculation-4/baseline/ctrf.json) · [复测 CTRF](paired-evidence/weighted-gdp-calculation-4/treatment/ctrf.json) · [奖励](paired-evidence/weighted-gdp-calculation-4/treatment/reward.txt) · [运行记录](paired-evidence/weighted-gdp-calculation-4/treatment/run.json)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](paired-evidence/weighted-gdp-calculation-4/treatment/ctrf.json) · [运行记录](paired-evidence/weighted-gdp-calculation-4/treatment/run.json)
+</details>
 
 ## stock-data-visualization/1
-stock-data-visualization1
+
 - 输入　股票说明及个股历史行情目录。 [原题](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-1/instruction.md)
-- 期望　D3 v6 单页、资源与数据文件，逐项通过对应题目的布局、图表、交互或数据检查。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-1/tests/test_outputs.py)
-- 基线　运行 20261118-134937-19d1a4，reward=0。失败检查如下。
+- 期望　用 stock-descriptions.csv 和个股行情数据交付 D3 v6 单页，显示按市值和行业分组的气泡图与 50 行表格，普通股票有悬停提示、ETF 无提示，点击双向高亮。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-1/tests/test_outputs.py)
+- 人工 Skill 基线 **14/15，整题失败**。试次 `20261118-134937-19d1a4`。 [官方报告](paired-evidence/stock-data-visualization-1/baseline/ctrf.json)
+- Qwen API 编排 **15/15，整题通过，奖励为 1**。试次 `20261124-235639-135ea2`。 [官方报告](paired-evidence/stock-data-visualization-1/treatment/ctrf.json) · [运行记录](paired-evidence/stock-data-visualization-1/treatment/run.json) · [试次索引](paired-evidence/stock-data-visualization-1/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::test_output_structure_and_files[/root/output/data/indiv-stock-indiv-stock/ directory]
 ```
 
-改编前 14/15，改编后 8/15，官方 reward=0。输出结构通过，气泡图、表格、提示和联动等浏览器检查失败。 [配对证据](paired-evidence/stock-data-visualization-1/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/stock-data-visualization-1/ctrf.json) · [运行记录](artifact-repair/stock-data-visualization-1/run.json)
+</details>
 
 ## stock-data-visualization/2
-stock-data-visualization2
+
 - 输入　股票说明及个股历史行情目录。 [原题](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-2/instruction.md)
-- 期望　D3 v6 单页、资源与数据文件，逐项通过对应题目的布局、图表、交互或数据检查。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-2/tests/test_outputs.py)
-- 基线　运行 20261118-141811-3aa771，reward=0。失败检查如下。
+- 期望　用 stock-descriptions.json 和个股行情数据交付 D3 v6 单页，显示按市值和行业分组的气泡图与 50 行表格，普通股票有悬停提示、ETF 无提示，点击双向高亮。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-2/tests/test_outputs.py)
+- 人工 Skill 基线 **11/15，整题失败**。试次 `20261118-141811-3aa771`。 [官方报告](paired-evidence/stock-data-visualization-2/baseline/ctrf.json)
+- Qwen API 编排 **15/15，整题通过，奖励为 1**。试次 `20261125-004434-2ad657`。 [官方报告](paired-evidence/stock-data-visualization-2/treatment/ctrf.json) · [运行记录](paired-evidence/stock-data-visualization-2/treatment/run.json) · [试次索引](paired-evidence/stock-data-visualization-2/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::test_data_table
@@ -153,15 +167,17 @@ test_outputs.py::test_interactive_linking
 test_outputs.py::test_market_cap_formatting
 ```
 
-改编前 11/15，改编后 8/15，官方 reward=0。图表渲染、数据表、悬停提示和联动等检查失败。 [配对证据](paired-evidence/stock-data-visualization-2/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/stock-data-visualization-2/ctrf.json) · [运行记录](artifact-repair/stock-data-visualization-2/run.json)
+</details>
 
 ## stock-data-visualization/3
-stock-data-visualization3
+
 - 输入　股票说明及个股历史行情目录。 [原题](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-3/instruction.md)
-- 期望　D3 v6 单页、资源与数据文件，逐项通过对应题目的布局、图表、交互或数据检查。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-3/tests/test_outputs.py)
-- 基线　运行 20261118-145831-ff084f，reward=0。失败检查如下。
+- 期望　用 stock-descriptions.tsv 和个股行情数据交付 D3 v6 单页，显示按市值和行业分组的气泡图与 50 行表格，普通股票有悬停提示、ETF 无提示，点击双向高亮。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-3/tests/test_outputs.py)
+- 人工 Skill 基线 **6/15，整题失败**。试次 `20261118-145831-ff084f`。 [官方报告](paired-evidence/stock-data-visualization-3/baseline/ctrf.json)
+- Qwen API 编排 **15/15，整题通过，奖励为 1**。试次 `20261124-235733-c595ab`。 [官方报告](paired-evidence/stock-data-visualization-3/treatment/ctrf.json) · [运行记录](paired-evidence/stock-data-visualization-3/treatment/run.json) · [试次索引](paired-evidence/stock-data-visualization-3/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::test_output_structure_and_files[/root/output/index.html-index.html]
@@ -175,15 +191,17 @@ test_outputs.py::test_sector_clustering
 test_outputs.py::test_legend_completeness
 ```
 
-改编前 6/15，改编后 8/15，官方 reward=0。输出文件检查改善，渲染和交互仍有失败。 [配对证据](paired-evidence/stock-data-visualization-3/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/stock-data-visualization-3/ctrf.json) · [运行记录](artifact-repair/stock-data-visualization-3/run.json)
+</details>
 
 ## stock-data-visualization/4
-stock-data-visualization4
+
 - 输入　股票说明及个股历史行情目录。 [原题](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-4/instruction.md)
-- 期望　D3 v6 单页、资源与数据文件，逐项通过对应题目的布局、图表、交互或数据检查。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-4/tests/test_outputs.py)
-- 基线　运行 20261118-152648-61d383，reward=0。失败检查如下。
+- 期望　用 stock-descriptions.csv 和个股行情数据交付 D3 v6 单页，显示按市值和行业分组的气泡图与 50 行表格，普通股票有悬停提示、ETF 无提示，点击双向高亮。 [官方检查](../upstream-reference/tasks/stock-data-visualization/stock-data-visualization-4/tests/test_outputs.py)
+- 人工 Skill 基线 **8/16，整题失败**。试次 `20261118-152648-61d383`。 [官方报告](paired-evidence/stock-data-visualization-4/baseline/ctrf.json)
+- Qwen API 编排 **16/16，整题通过，奖励为 1**。试次 `20261124-235811-ec73fc`。 [官方报告](paired-evidence/stock-data-visualization-4/treatment/ctrf.json) · [运行记录](paired-evidence/stock-data-visualization-4/treatment/run.json) · [试次索引](paired-evidence/stock-data-visualization-4/treatment/attempts.json)
+
+<details>
+<summary>基线失败检查</summary>
 
 ```text
 test_outputs.py::test_bubble_chart_rendering
@@ -196,6 +214,4 @@ test_outputs.py::test_sector_clustering
 test_outputs.py::test_legend_completeness
 ```
 
-改编前 8/16，改编后 15/16，官方 reward=0。唯一失败为非 ETF 悬停未显示可见的提示框。 [配对证据](paired-evidence/stock-data-visualization-4/)
-
-**最终验收通过。** 原版官方脚本正常结束，`reward=1`。 [官方判分](artifact-repair/stock-data-visualization-4/ctrf.json) · [运行记录](artifact-repair/stock-data-visualization-4/run.json)
+</details>

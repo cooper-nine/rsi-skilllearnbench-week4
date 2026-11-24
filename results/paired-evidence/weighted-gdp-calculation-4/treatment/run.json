@@ -1,105 +1,17 @@
 {
-  "task": "weighted-gdp-calculation/weighted-gdp-calculation-4",
-  "run": "20261124-202303-42cdb5",
-  "official_pass": true,
-  "official_status": "valid",
-  "verifier_exit": 0,
-  "agent_exit": 0,
-  "agent_timed_out": false,
-  "agent_completed": true,
-  "model_steps": 98,
-  "error": null,
-  "reward": "1",
-  "checks": 27,
-  "checks_passed": 27,
-  "checks_failed": [],
-  "protocol": "budget-v3",
-  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "run_id": "20261124-202303-42cdb5",
   "model": "qwen3.5-plus",
+  "official_pass": true,
+  "verifier_exit": 0,
+  "reward": "1",
+  "passed_checks": 27,
+  "checks": 27,
+  "api_tokens": 661558,
+  "delivered_checkpoints": [],
   "flow_sha256": "5f9798778ed507bcd25709de6ed1fe545685aa62b960a8e2f077660996384c71",
-  "model_parameters": {
-    "temperature": 0,
-    "max_steps": 100,
-    "max_tokens": 2048,
-    "enable_thinking": false,
-    "tool_stdout_chars": 2000,
-    "tool_stderr_chars": 1000
-  },
-  "baseline_image": "evaluation_weighted-gdp-calculation-weighted-gdp-calculation-4_none:qwen-20261118-135958-70d71e",
-  "platform_run_id": "fe6251b9-5511-47b8-baa5-8573bfbf2f91",
-  "verifier_replay_of": null,
-  "flow_events": [
-    {
-      "event": "enter",
-      "node": "requirements",
-      "retries": 0
-    },
-    {
-      "event": "retry",
-      "node": "requirements",
-      "retries": 1
-    },
-    {
-      "event": "premature_final",
-      "node": "requirements",
-      "retries": 1
-    },
-    {
-      "event": "complete",
-      "node": "requirements",
-      "retries": 1
-    },
-    {
-      "event": "enter",
-      "node": "read",
-      "retries": 0
-    },
-    {
-      "event": "premature_final",
-      "node": "read",
-      "retries": 0
-    },
-    {
-      "event": "complete",
-      "node": "read",
-      "retries": 0
-    },
-    {
-      "event": "enter",
-      "node": "calculate",
-      "retries": 0
-    },
-    {
-      "event": "premature_final",
-      "node": "calculate",
-      "retries": 0
-    },
-    {
-      "event": "complete",
-      "node": "calculate",
-      "retries": 0
-    },
-    {
-      "event": "enter",
-      "node": "verify",
-      "retries": 0
-    },
-    {
-      "event": "premature_final",
-      "node": "verify",
-      "retries": 0
-    },
-    {
-      "event": "complete",
-      "node": "verify",
-      "retries": 0
-    }
-  ],
-  "official_report_sha256": "c358328650a4897ac58ce38ff77ae3fdf2ec1a7ec441243749589fe5b9a74949",
-  "retained_outputs": [
-    {
-      "path": "artifacts/gdp.xlsx",
-      "sha256": "13c9e4d9b476fe5f270f1348dbd0d85d75390b850cd4e476219ca837ce9373ab"
-    }
-  ]
+  "protocol": "budget-v3",
+  "qwen_seed_run": null,
+  "error": null,
+  "finished": true,
+  "failed_checks": []
 }

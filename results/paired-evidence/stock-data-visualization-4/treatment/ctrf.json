@@ -1,8 +1,8 @@
 {
     "reportFormat": "CTRF",
     "specVersion": "1.0.0",
-    "reportId": "ac7da8ff-91a0-4492-b5b6-5c4b597801a6",
-    "timestamp": "2026-11-24T12:49:12.611593+00:00",
+    "reportId": "7f6e1fa5-ffd6-460d-adfa-c20234afc8cd",
+    "timestamp": "2026-11-24T15:58:51.491366+00:00",
     "generatedBy": "pytest",
     "results": {
         "tool": {
@@ -11,16 +11,16 @@
         },
         "summary": {
             "tests": 16,
-            "passed": 15,
-            "failed": 1,
+            "passed": 16,
+            "failed": 0,
             "skipped": 0,
             "pending": 0,
             "other": 0,
             "flaky": 0,
             "suites": 1,
-            "start": 1795524539698,
-            "stop": 1795524552608,
-            "duration": 12910
+            "start": 1795535918155,
+            "stop": 1795535931484,
+            "duration": 13329
         },
         "environment": {
             "osPlatform": "linux",
@@ -31,9 +31,9 @@
             {
                 "name": "test_outputs.py::test_0_diagnostic_info",
                 "status": "passed",
-                "duration": 461,
-                "start": 1795524539787,
-                "stop": 1795524540248,
+                "duration": 423,
+                "start": 1795535918228,
+                "stop": 1795535918652,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -44,8 +44,8 @@
                 "name": "test_outputs.py::test_output_structure_and_files[/root/output/index.html-index.html]",
                 "status": "passed",
                 "duration": 0,
-                "start": 1795524540248,
-                "stop": 1795524540249,
+                "start": 1795535918652,
+                "stop": 1795535918653,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -60,8 +60,8 @@
                 "name": "test_outputs.py::test_output_structure_and_files[/root/output/js/d3.v6.min.js-D3.js v6 library]",
                 "status": "passed",
                 "duration": 0,
-                "start": 1795524540249,
-                "stop": 1795524540249,
+                "start": 1795535918653,
+                "stop": 1795535918653,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -76,8 +76,8 @@
                 "name": "test_outputs.py::test_output_structure_and_files[/root/output/js/visualization.js-custom visualization.js]",
                 "status": "passed",
                 "duration": 0,
-                "start": 1795524540249,
-                "stop": 1795524540250,
+                "start": 1795535918654,
+                "stop": 1795535918654,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -91,9 +91,9 @@
             {
                 "name": "test_outputs.py::test_output_structure_and_files[/root/output/css/style.css-style.css]",
                 "status": "passed",
-                "duration": 0,
-                "start": 1795524540250,
-                "stop": 1795524540250,
+                "duration": 1,
+                "start": 1795535918654,
+                "stop": 1795535918655,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -108,8 +108,8 @@
                 "name": "test_outputs.py::test_output_structure_and_files[/root/output/data/stock-descriptions.csv-stock-descriptions.csv]",
                 "status": "passed",
                 "duration": 0,
-                "start": 1795524540251,
-                "stop": 1795524540251,
+                "start": 1795535918655,
+                "stop": 1795535918655,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -124,8 +124,8 @@
                 "name": "test_outputs.py::test_output_structure_and_files[/root/output/data/indiv-stock-indiv-stock/ directory]",
                 "status": "passed",
                 "duration": 0,
-                "start": 1795524540251,
-                "stop": 1795524540252,
+                "start": 1795535918656,
+                "stop": 1795535918656,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -139,9 +139,9 @@
             {
                 "name": "test_outputs.py::test_bubble_chart_rendering",
                 "status": "passed",
-                "duration": 5870,
-                "start": 1795524540252,
-                "stop": 1795524546122,
+                "duration": 5754,
+                "start": 1795535918656,
+                "stop": 1795535924411,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -151,9 +151,9 @@
             {
                 "name": "test_outputs.py::test_data_table",
                 "status": "passed",
-                "duration": 24,
-                "start": 1795524546123,
-                "stop": 1795524546147,
+                "duration": 18,
+                "start": 1795535924411,
+                "stop": 1795535924429,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -163,9 +163,9 @@
             {
                 "name": "test_outputs.py::test_visualization_uses_only_target_tickers",
                 "status": "passed",
-                "duration": 166,
-                "start": 1795524546147,
-                "stop": 1795524546313,
+                "duration": 146,
+                "start": 1795535924430,
+                "stop": 1795535924576,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -174,25 +174,22 @@
             },
             {
                 "name": "test_outputs.py::test_tooltips_non_etf_and_etf",
-                "status": "failed",
-                "rawStatus": "call_failed",
-                "duration": 2185,
-                "start": 1795524546313,
-                "stop": 1795524548512,
+                "status": "passed",
+                "duration": 2544,
+                "start": 1795535924576,
+                "stop": 1795535927120,
                 "suite": [
                     "test_outputs.py"
                 ],
                 "retries": 0,
-                "filePath": "test_outputs.py",
-                "trace": "browser_page = <Page url='http://localhost:8765/index.html'>\n\n    def test_tooltips_non_etf_and_etf(browser_page):\n        \"\"\"Non-ETF bubbles should show tooltips; ETF bubbles should not.\"\"\"\n        page = browser_page\n    \n        # Tooltip uses .visible class to show (opacity: 1), not display property\n        # Check for the .visible class specifically, not :visible pseudo-selector\n        tooltip_locator = '.tooltip.visible, #tooltip.visible, [role=\"tooltip\"][class*=\"visible\"]'\n        etf_tickers = ['SPY', 'VOO', 'QQQ', 'GLD', 'XLF', 'VWO', 'XLU', 'XLV', 'VEA', 'VTV']\n        svg_texts = page.locator('svg text')\n    \n        def hover_label_text(text_to_hover):\n            for i in range(svg_texts.count()):\n                text_elem = svg_texts.nth(i)\n                text_content = text_elem.text_content().strip()\n                if text_content == text_to_hover:\n                    box = text_elem.bounding_box()\n                    if box:\n                        page.mouse.move(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)\n                        page.wait_for_timeout(400)\n                        return True\n            return False\n    \n        def find_first_non_etf_label():\n            import re\n            ticker_pattern = re.compile(r'^[A-Z]{1,4}$')\n            for i in range(svg_texts.count()):\n                text_elem = svg_texts.nth(i)\n                text_content = text_elem.text_content().strip()\n                if ticker_pattern.match(text_content) and text_content not in etf_tickers:\n                    return text_content\n            return None\n    \n        # Test 1: ETF bubbles should NOT show tooltips\n        # Test this first in cleanest page state before any other interactions\n        # Move mouse to origin to ensure no hover state from page load\n        page.mouse.move(0, 0)\n        page.wait_for_timeout(500)\n    \n        etf_label = None\n        for candidate in etf_tickers:\n            if hover_label_text(candidate):\n                etf_label = candidate\n                break\n    \n        if etf_label is None:\n            print(\"\u26a0 Could not locate ETF bubble by ticker label for screenshot\")\n        else:\n            # Wait for any tooltip to appear (if incorrectly configured)\n            page.wait_for_timeout(200)\n    \n            # Save screenshot showing ETF hover (should show no tooltip)\n            try:\n                page.screenshot(path=\"/logs/verifier/tooltip_etf_hover_no_tooltip.png\", full_page=True)\n                print(f\"\u2713 ETF hover screenshot saved for {etf_label} (should show no tooltip)\")\n            except Exception as e:\n                print(f\"\u26a0 Failed to save ETF hover screenshot: {e}\")\n    \n            # After hovering ETF, ensure tooltip is not visible\n            etf_tooltip = page.locator(tooltip_locator)\n            assert etf_tooltip.count() == 0, \\\n                \"ETF bubble should not show a tooltip (instruction.md requirement)\"\n    \n        # Test 2: Non-ETF bubbles should show tooltips with ticker, name, and sector\n        # Move mouse away to clear hover state before testing non-ETF\n        page.mouse.move(0, 0)\n        page.wait_for_timeout(500)\n    \n        non_etf_label = find_first_non_etf_label()\n        assert non_etf_label is not None, \"Could not find a non-ETF ticker label to hover\"\n    \n        assert hover_label_text(non_etf_label), f\"Could not hover non-ETF label {non_etf_label}\"\n    \n        tooltip = page.locator(tooltip_locator)\n>       assert tooltip.count() > 0, \"Tooltip did not appear on non-ETF hover\"\nE       AssertionError: Tooltip did not appear on non-ETF hover\nE       assert 0 > 0\nE        +  where 0 = count()\nE        +    where count = <Locator frame=<Frame name= url='http://localhost:8765/index.html'> selector='.tooltip.visible, #tooltip.visible, [role=\"tooltip\"][class*=\"visible\"]'>.count\n\n/tests/test_outputs.py:610: AssertionError",
-                "message": "AssertionError: Tooltip did not appear on non-ETF hover\nassert 0 > 0\n +  where 0 = count()\n +    where count = <Locator frame=<Frame name= url='http://localhost:8765/index.html'> selector='.tooltip.visible, #tooltip.visible, [role=\"tooltip\"][class*=\"visible\"]'>.count"
+                "filePath": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_interactive_linking",
                 "status": "passed",
-                "duration": 616,
-                "start": 1795524548512,
-                "stop": 1795524549129,
+                "duration": 605,
+                "start": 1795535927121,
+                "stop": 1795535927726,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -202,9 +199,9 @@
             {
                 "name": "test_outputs.py::test_market_cap_formatting",
                 "status": "passed",
-                "duration": 62,
-                "start": 1795524549129,
-                "stop": 1795524549191,
+                "duration": 55,
+                "start": 1795535927726,
+                "stop": 1795535927782,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -214,9 +211,9 @@
             {
                 "name": "test_outputs.py::test_sector_clustering",
                 "status": "passed",
-                "duration": 3373,
-                "start": 1795524549192,
-                "stop": 1795524552565,
+                "duration": 3333,
+                "start": 1795535927782,
+                "stop": 1795535931115,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -226,9 +223,9 @@
             {
                 "name": "test_outputs.py::test_legend_completeness",
                 "status": "passed",
-                "duration": 6,
-                "start": 1795524552565,
-                "stop": 1795524552571,
+                "duration": 4,
+                "start": 1795535931115,
+                "stop": 1795535931120,
                 "suite": [
                     "test_outputs.py"
                 ],
@@ -238,9 +235,9 @@
             {
                 "name": "test_outputs.py::test_data_integrity",
                 "status": "passed",
-                "duration": 36,
-                "start": 1795524552571,
-                "stop": 1795524552607,
+                "duration": 363,
+                "start": 1795535931121,
+                "stop": 1795535931484,
                 "suite": [
                     "test_outputs.py"
                 ],

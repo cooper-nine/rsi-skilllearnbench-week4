@@ -1,20 +1,7 @@
-# RSI 平台运行证据
+# RSI 平台与浏览器画布证据
 
-2026-11-24 已确认四类节点顺序和回退规则。用户选择沿用四类草案。命令执行失败时，流程在当前节点记录一次恢复提示，后续由模型根据命令反馈修复或说明跳过原因。
+用户确认四类流程的节点顺序、产物校验和定向回退规则。浏览器中的临时 RSI Flow Visual 前端呈现了四类流程的节点和连线。 [浏览器截图](qwen-canvas/)
 
-| 任务族 | 已确认的节点 | 同一流程的实例 |
-| --- | --- | --- |
-| 地震板块 | 准备 → 筛选 → 测距 → 检查 | 5 |
-| 金融分析 | 辨认基金 → 计算 → 检查 | 1、3 |
-| 加权 GDP | 确认要求 → 读取 → 计算 → 检查 | 1、4、5 |
-| 股票可视化 | 准备 → 渲染 → 交互 → 检查 | 1、2、3、4 |
+加权 GDP 第 4 题的 Qwen 试点由 RSI Spring Boot FlowEngine 发起。后端启动请求返回运行 ID `fe6251b9-5511-47b8-baa5-8573bfbf2f91`。容器记录了四个节点推进，原版 verifier 通过 27/27，奖励为 1。 [后端响应](platform/launch-response.json) · [该题配对证据](paired-evidence/weighted-gdp-calculation-4/) · [平台运行日志](paired-evidence/weighted-gdp-calculation-4/treatment/platform-run.json)
 
-Spring Boot `AppTestStarter` 在本机端口 39911 启动。请求 `POST /api/engine/flow` 路由到 `RSI_WEEK4_RESUME` 和 `launch-week4-campaign`。错误令牌在节点内被拒绝，授权请求启动复测。重复调用返回同一运行 ID `fe6251b9-5511-47b8-baa5-8573bfbf2f91`。各测试运行的 `run.json` 保存其真实来源和容器内的阶段日志。 [后端事件](platform/backend-events.log) · [HTTP 响应](platform/launch-response.json) · [复现步骤](../platform/README.md)
-
-FlowEngine 循环节点的集成测试与条件、嵌套、多节点回归共运行 5 项，5 项通过。集成测试的循环体使用测试回调。四类研究任务由上述 Spring Boot 流程负责启动，容器内的具体阶段由 Qwen 适配器执行。 [循环节点测试记录](platform/engine-tests.json)
-
-主批次中其余九题均由平台发起。GDP 第 1 题的工作簿首次判题因依赖下载中断，随后以同一产物补判。地震第 5 题保留原命令行试次，平台调度器复用该正式失败记录。平台画布上的节点编辑和现场交互仍缺直接证据。人工操作次数 H0 和改进方案的操作次数尚未实测。 [配对证据](comparison.csv)
-
-地震的追加同模型试次也由 `RSI_WEEK4_RESUME` 发起。首次追加把题意冲突处理放在筛选及测距阶段，模型在准备阶段先输出了旧的测距结果，官方判分仍为 7/8。 [首次追加的官方判分与启动响应](refinement/earthquake-5-stage-guidance/)
-
-第二次追加把冲突处理规则前移到准备阶段，原版 verifier 正常退出并记录 7/8、reward=0。 [第二次追加的官方判分与启动响应](refinement/earthquake-5/)
+其余精选试次由本地运行器发起 Qwen API 调用。原平台画布点击执行这些试次仍待验证。 [逐题结果](comparison.csv)

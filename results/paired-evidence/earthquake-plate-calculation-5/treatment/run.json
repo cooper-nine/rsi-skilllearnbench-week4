@@ -1,97 +1,22 @@
 {
-  "task": "earthquake-plate-calculation/earthquake-plate-calculation-5",
-  "run": "20261124-162102-9da280",
-  "official_pass": false,
-  "official_status": "assertion_failed_outer_timeout",
-  "verifier_exit": -1,
-  "agent_exit": 0,
-  "agent_timed_out": false,
-  "agent_completed": true,
-  "model_steps": 23,
-  "error": null,
-  "reward": "0",
-  "checks": 8,
-  "checks_passed": 7,
-  "checks_failed": [
-    "test_outputs.py::TestEarthquakeTask::test_distance_within_tolerance"
-  ],
-  "protocol": "budget-v3",
-  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "run_id": "20261124-215351-cde393",
   "model": "qwen3.5-plus",
-  "flow_sha256": "87b0a32feab0801e07723812aad2988f642b508173a2b12e4f3eb3fb4ae49227",
-  "model_parameters": {
-    "temperature": 0,
-    "max_steps": 100,
-    "max_tokens": 2048,
-    "enable_thinking": false,
-    "tool_stdout_chars": 2000,
-    "tool_stderr_chars": 1000
-  },
-  "baseline_image": null,
-  "platform_run_id": null,
-  "verifier_replay_of": null,
-  "flow_events": [
-    {
-      "event": "enter",
-      "node": "prepare",
-      "retries": 0
-    },
-    {
-      "event": "complete",
-      "node": "prepare",
-      "retries": 0
-    },
-    {
-      "event": "enter",
-      "node": "filter",
-      "retries": 0
-    },
-    {
-      "event": "premature_final",
-      "node": "filter",
-      "retries": 0
-    },
-    {
-      "event": "complete",
-      "node": "filter",
-      "retries": 0
-    },
-    {
-      "event": "enter",
-      "node": "measure",
-      "retries": 0
-    },
-    {
-      "event": "premature_final",
-      "node": "measure",
-      "retries": 0
-    },
-    {
-      "event": "complete",
-      "node": "measure",
-      "retries": 0
-    },
-    {
-      "event": "enter",
-      "node": "verify",
-      "retries": 0
-    },
-    {
-      "event": "premature_final",
-      "node": "verify",
-      "retries": 0
-    },
-    {
-      "event": "complete",
-      "node": "verify",
-      "retries": 0
-    }
+  "official_pass": true,
+  "verifier_exit": 0,
+  "reward": "1",
+  "passed_checks": 8,
+  "checks": 8,
+  "api_tokens": 184153,
+  "delivered_checkpoints": [
+    "prepare",
+    "filter",
+    "measure",
+    "verify"
   ],
-  "official_report_sha256": "fb51814d0217a2d11457b260b64f70304ab6fec2646c7eca622fc5e2834a1af6",
-  "retained_outputs": [
-    {
-      "path": "answer.json",
-      "sha256": "832f85ede258d272252e637268c325118dc51650954483649c8a8887031ed1b1"
-    }
-  ]
+  "flow_sha256": "22794a298c56800daa5643229080db049bbd08b59767403a3e3e6f6631ca361b",
+  "protocol": "budget-v3",
+  "qwen_seed_run": null,
+  "error": null,
+  "finished": true,
+  "failed_checks": []
 }

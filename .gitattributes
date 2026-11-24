@@ -1,0 +1,4 @@
+# Keep archived verifier and graph bytes stable across platforms.
+results/paired-evidence/**/ctrf.json -text whitespace=cr-at-eol
+results/paired-evidence/**/reward.txt -text whitespace=cr-at-eol
+results/paired-evidence/**/treatment/flow.json -text whitespace=cr-at-eol
