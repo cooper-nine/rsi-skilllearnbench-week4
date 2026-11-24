@@ -25,7 +25,7 @@ test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct
 test_outputs.py::test_answer_quality
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/financial-analysis-1/)
 
 ## financial-analysis/3
 
@@ -38,7 +38,7 @@ test_outputs.py::test_file_exists
 test_outputs.py::test_answer_quality
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/financial-analysis-3/)
 
 ## weighted-gdp-calculation/1
 
@@ -65,7 +65,7 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable
 test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/weighted-gdp-calculation-1/)
 
 ## weighted-gdp-calculation/5
 
@@ -80,7 +80,7 @@ test_outputs.py::TestStep2Statistics::test_median_values
 test_outputs.py::TestStep2Statistics::test_mean_values
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/weighted-gdp-calculation-5/)
 
 ## weighted-gdp-calculation/4
 
@@ -108,7 +108,7 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable
 test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/weighted-gdp-calculation-4/)
 
 ## stock-data-visualization/1
 
@@ -120,7 +120,7 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 test_outputs.py::test_output_structure_and_files[/root/output/data/indiv-stock-indiv-stock/ directory]
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/stock-data-visualization-1/)
 
 ## stock-data-visualization/2
 
@@ -135,7 +135,7 @@ test_outputs.py::test_interactive_linking
 test_outputs.py::test_market_cap_formatting
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/stock-data-visualization-2/)
 
 ## stock-data-visualization/3
 
@@ -155,7 +155,7 @@ test_outputs.py::test_sector_clustering
 test_outputs.py::test_legend_completeness
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/stock-data-visualization-3/)
 
 ## stock-data-visualization/4
 
@@ -174,4 +174,4 @@ test_outputs.py::test_sector_clustering
 test_outputs.py::test_legend_completeness
 ```
 
-待运行，暂无修改后结果。
+[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/stock-data-visualization-4/)

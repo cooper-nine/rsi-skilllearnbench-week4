@@ -1,0 +1,12 @@
+{
+  "result": true,
+  "status": 200,
+  "message": "请求成功",
+  "timestamp": 1795522373632,
+  "data": {
+    "value": {
+      "launchStatus": "already_running",
+      "platformRunId": "fe6251b9-5511-47b8-baa5-8573bfbf2f91"
+    }
+  }
+}

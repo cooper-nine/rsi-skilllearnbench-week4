@@ -1,0 +1,30 @@
+{
+  "task": "financial-analysis/financial-analysis-1",
+  "run": "20261118-114709-707627",
+  "official_pass": false,
+  "official_status": "valid",
+  "verifier_exit": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "error": null,
+  "reward": "0",
+  "checks": 2,
+  "checks_passed": 1,
+  "checks_failed": [
+    "test_outputs.py::test_answer_quality"
+  ],
+  "protocol": "budget-v3",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "qwen3.5-plus",
+  "flow_sha256": null,
+  "baseline_image": null,
+  "platform_run_id": null,
+  "flow_events": [],
+  "official_report_sha256": "41147a3b319298f2ed1544088f21a3c00f977f8d513ab16177dca774ebcd63d9",
+  "retained_outputs": [
+    {
+      "path": "artifacts/answers.json",
+      "sha256": "e09d48118cd23b2d3f5732f4539e69b978de8584d95c379d635a58b98ea1b45d"
+    }
+  ]
+}

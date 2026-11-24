@@ -1,0 +1,6 @@
+2026-11-24 20:12:27.348  INFO 108996 --- [           main] c.e.open.flow.spring.ComponentScanner    : FlowComponent [week4Resume] has been found
+2026-11-24 20:12:29.610  INFO 108996 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 39911 (http) with context path ''
+2026-11-24 20:12:30.099  INFO 108996 --- [           main] c.h.common.whuTalent.core.AppStarter     : Started AppStarter in 6.705 seconds (JVM running for 9.901)
+2026-11-24 20:12:35.317  INFO 108996 --- [.1-39911-exec-1] c.e.o.f.c.s.s.execute.EventExecutable    : 流程节点：launch-week4-campaign 执行错误，错误信息为:Week 4 campaign unavailable
+2026-11-24 20:12:35.447  INFO 108996 --- [.1-39911-exec-3] c.e.o.f.s.s.s.d.SpringCodeProxy          : method named launch in com.horsecoder.common.whuTalent.core.flow.Run.code.Week4Resume executed 9 ms.
+2026-11-24 20:12:53.630  INFO 108996 --- [.1-39911-exec-5] c.e.o.f.s.s.s.d.SpringCodeProxy          : method named launch in com.horsecoder.common.whuTalent.core.flow.Run.code.Week4Resume executed 0 ms.

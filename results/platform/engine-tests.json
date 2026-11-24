@@ -1,0 +1,30 @@
+{
+  "commit": "52ad99480a8254bb13eb3595ab094f376e98e6e3",
+  "runner": "Maven Surefire + TestNG",
+  "tests": 5,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "testcases": [
+    {
+      "class": "cc.eamon.open.flow.FLOW_CONDITION_SIMPLE.FlowConditionTest",
+      "method": "caseConditionAdult"
+    },
+    {
+      "class": "cc.eamon.open.flow.FLOW_CONDITION_SIMPLE.FlowConditionTest",
+      "method": "caseConditionChild"
+    },
+    {
+      "class": "cc.eamon.open.flow.FLOW_NEST.FlowNestTest",
+      "method": "caseNest"
+    },
+    {
+      "class": "cc.eamon.open.flow.FLOW_NODE_MULTI.FlowMultiNodeTest",
+      "method": "caseMultiNode"
+    },
+    {
+      "class": "cc.eamon.open.flow.skill.loop.SkillLoopEventTest",
+      "method": "runsLoopAsAnExistingEvent"
+    }
+  ]
+}

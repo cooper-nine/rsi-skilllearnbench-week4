@@ -1,0 +1,31 @@
+{
+  "task": "earthquake-plate-calculation/earthquake-plate-calculation-5",
+  "run": "20261118-122708-583ff7",
+  "official_pass": false,
+  "official_status": "valid",
+  "verifier_exit": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "error": null,
+  "reward": "0",
+  "checks": 8,
+  "checks_passed": 6,
+  "checks_failed": [
+    "test_outputs.py::TestEarthquakeTask::test_distance_within_tolerance",
+    "test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct"
+  ],
+  "protocol": "budget-v3",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "qwen3.5-plus",
+  "flow_sha256": null,
+  "baseline_image": null,
+  "platform_run_id": null,
+  "flow_events": [],
+  "official_report_sha256": "60e58fab380905fe934ddbb9b4e081c55513edcd69484c2bc14c20621a77bb1b",
+  "retained_outputs": [
+    {
+      "path": "answer.json",
+      "sha256": "0d2bcef3389689b245382a78ea5d3eaf71b46f1f41c4ac59d7762167c3dd1898"
+    }
+  ]
+}

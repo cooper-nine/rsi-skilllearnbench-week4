@@ -1,0 +1,240 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "1.0.0",
+    "reportId": "99d0f34e-e323-40ff-bd71-47244cc53646",
+    "timestamp": "2026-11-18T05:57:29.562219+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.2.0"
+        },
+        "summary": {
+            "tests": 15,
+            "passed": 14,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "flaky": 0,
+            "suites": 1,
+            "start": 1794981436031,
+            "stop": 1794981449559,
+            "duration": 13528
+        },
+        "environment": {
+            "osPlatform": "linux",
+            "osRelease": "6.18.33.2-microsoft-standard-WSL2",
+            "osVersion": "#1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026"
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_0_diagnostic_info",
+                "status": "passed",
+                "duration": 541,
+                "start": 1794981436168,
+                "stop": 1794981436710,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/index.html-index.html]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1794981436711,
+                "stop": 1794981436711,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/index.html",
+                    "description": "index.html"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/js/d3.v6.min.js-D3.js v6 library]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1794981436711,
+                "stop": 1794981436712,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/js/d3.v6.min.js",
+                    "description": "D3.js v6 library"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/js/visualization.js-custom visualization.js]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1794981436712,
+                "stop": 1794981436712,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/js/visualization.js",
+                    "description": "custom visualization.js"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/css/style.css-style.css]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1794981436713,
+                "stop": 1794981436713,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/css/style.css",
+                    "description": "style.css"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/data/stock-descriptions.csv-stock-descriptions.csv]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1794981436713,
+                "stop": 1794981436714,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/data/stock-descriptions.csv",
+                    "description": "stock-descriptions.csv"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/data/indiv-stock-indiv-stock/ directory]",
+                "status": "failed",
+                "rawStatus": "call_failed",
+                "duration": 1,
+                "start": 1794981436714,
+                "stop": 1794981436730,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/data/indiv-stock",
+                    "description": "indiv-stock/ directory"
+                },
+                "trace": "path = '/root/output/data/indiv-stock', description = 'indiv-stock/ directory'\n\n    @pytest.mark.parametrize(\"path,description\", [\n        (INDEX_HTML, \"index.html\"),\n        (f\"{JS_DIR}/d3.v6.min.js\", \"D3.js v6 library\"),\n        (f\"{JS_DIR}/visualization.js\", \"custom visualization.js\"),\n        (f\"{CSS_DIR}/style.css\", \"style.css\"),\n        (f\"{DATA_DIR}/stock-descriptions.csv\", \"stock-descriptions.csv\"),\n        (DATA_DIR + \"/indiv-stock\", \"indiv-stock/ directory\"),\n    ])\n    def test_output_structure_and_files(path, description):\n        \"\"\"Output structure must match instruction.md: index.html, js/, css/, data/ with all required files.\"\"\"\n        if path.endswith(\"indiv-stock\"):\n>           assert os.path.isdir(path), f\"{description} must exist\"\nE           AssertionError: indiv-stock/ directory must exist\nE           assert False\nE            +  where False = <function isdir at 0x7aa753f8c2c0>('/root/output/data/indiv-stock')\nE            +    where <function isdir at 0x7aa753f8c2c0> = <module 'posixpath' (frozen)>.isdir\nE            +      where <module 'posixpath' (frozen)> = os.path\n\n/tests/test_outputs.py:273: AssertionError",
+                "message": "AssertionError: indiv-stock/ directory must exist\nassert False\n +  where False = <function isdir at 0x7aa753f8c2c0>('/root/output/data/indiv-stock')\n +    where <function isdir at 0x7aa753f8c2c0> = <module 'posixpath' (frozen)>.isdir\n +      where <module 'posixpath' (frozen)> = os.path"
+            },
+            {
+                "name": "test_outputs.py::test_bubble_chart_rendering",
+                "status": "passed",
+                "duration": 5769,
+                "start": 1794981436731,
+                "stop": 1794981442500,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_data_table",
+                "status": "passed",
+                "duration": 31,
+                "start": 1794981442500,
+                "stop": 1794981442532,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_tooltips_non_etf_and_etf",
+                "status": "passed",
+                "duration": 2536,
+                "start": 1794981442532,
+                "stop": 1794981445068,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_interactive_linking",
+                "status": "passed",
+                "duration": 632,
+                "start": 1794981445069,
+                "stop": 1794981445701,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_market_cap_formatting",
+                "status": "passed",
+                "duration": 47,
+                "start": 1794981445701,
+                "stop": 1794981445748,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_sector_clustering",
+                "status": "passed",
+                "duration": 3319,
+                "start": 1794981445749,
+                "stop": 1794981449068,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_legend_completeness",
+                "status": "passed",
+                "duration": 5,
+                "start": 1794981449068,
+                "stop": 1794981449074,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_data_integrity",
+                "status": "passed",
+                "duration": 485,
+                "start": 1794981449074,
+                "stop": 1794981449559,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            }
+        ]
+    }
+}

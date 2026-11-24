@@ -1,0 +1,45 @@
+{
+  "task": "weighted-gdp-calculation/weighted-gdp-calculation-1",
+  "run": "20261118-124901-2690d3",
+  "official_pass": false,
+  "official_status": "valid",
+  "verifier_exit": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "error": null,
+  "reward": "0",
+  "checks": 27,
+  "checks_passed": 11,
+  "checks_failed": [
+    "test_outputs.py::TestStep1LookupFormulas::test_exports_have_data",
+    "test_outputs.py::TestStep1LookupFormulas::test_imports_have_data",
+    "test_outputs.py::TestStep1DataValues::test_exports_values",
+    "test_outputs.py::TestStep1DataValues::test_imports_values",
+    "test_outputs.py::TestStep1DataValues::test_gdp_values",
+    "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_have_data",
+    "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_values",
+    "test_outputs.py::TestStep2Statistics::test_statistics_have_data",
+    "test_outputs.py::TestStep2Statistics::test_min_values",
+    "test_outputs.py::TestStep2Statistics::test_max_values",
+    "test_outputs.py::TestStep2Statistics::test_median_values",
+    "test_outputs.py::TestStep2Statistics::test_mean_values",
+    "test_outputs.py::TestStep2Statistics::test_percentile_values",
+    "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_has_data",
+    "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable",
+    "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values"
+  ],
+  "protocol": "budget-v3",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "qwen3.5-plus",
+  "flow_sha256": null,
+  "baseline_image": null,
+  "platform_run_id": null,
+  "flow_events": [],
+  "official_report_sha256": "5e5ec2efc2cd1671854e2b2945193b58e31bd255711ad656ac2fe4e0e861c66b",
+  "retained_outputs": [
+    {
+      "path": "artifacts/gdp.xlsx",
+      "sha256": "fb8873433c7206cf431a01d2dec7e943b91d3faacfe2ce4c30b9de65c8842caa"
+    }
+  ]
+}

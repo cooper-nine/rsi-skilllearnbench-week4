@@ -1,0 +1,34 @@
+{
+  "id": "RSI_WEEK4_RESUME",
+  "name": "RSI_WEEK4_RESUME",
+  "type": "flow",
+  "title": "Resume SkillLearnBench Week 4",
+  "params": [
+    { "name": "campaignId", "type": "String", "notnull": true },
+    { "name": "token", "type": "String", "notnull": true }
+  ],
+  "results": [
+    { "name": "launchStatus", "type": "String", "notnull": true },
+    { "name": "platformRunId", "type": "String", "notnull": true }
+  ],
+  "nodes": [
+    {
+      "id": "launch-week4-campaign",
+      "type": "event",
+      "name": "Launch fixed Week 4 campaign",
+      "reference": "RSI_WEEK4_LAUNCH",
+      "params": [
+        { "name": "campaignId", "type": "String", "notnull": true },
+        { "name": "token", "type": "String", "notnull": true }
+      ],
+      "results": [
+        { "name": "launchStatus", "type": "String", "notnull": true },
+        { "name": "platformRunId", "type": "String", "notnull": true }
+      ]
+    }
+  ],
+  "routes": [
+    { "source": "start", "target": "launch-week4-campaign" },
+    { "source": "launch-week4-campaign", "target": "end" }
+  ]
+}

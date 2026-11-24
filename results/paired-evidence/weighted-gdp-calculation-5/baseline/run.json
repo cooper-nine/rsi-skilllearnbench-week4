@@ -1,0 +1,33 @@
+{
+  "task": "weighted-gdp-calculation/weighted-gdp-calculation-5",
+  "run": "20261118-150937-21cedf",
+  "official_pass": false,
+  "official_status": "valid",
+  "verifier_exit": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "error": null,
+  "reward": "0",
+  "checks": 25,
+  "checks_passed": 21,
+  "checks_failed": [
+    "test_outputs.py::TestStep2Statistics::test_min_values",
+    "test_outputs.py::TestStep2Statistics::test_max_values",
+    "test_outputs.py::TestStep2Statistics::test_median_values",
+    "test_outputs.py::TestStep2Statistics::test_mean_values"
+  ],
+  "protocol": "budget-v3",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "qwen3.5-plus",
+  "flow_sha256": null,
+  "baseline_image": null,
+  "platform_run_id": null,
+  "flow_events": [],
+  "official_report_sha256": "8b0dde5b3482c8d57c0b5ff9697966b62cff29a05ec642b612b983a83baaa428",
+  "retained_outputs": [
+    {
+      "path": "artifacts/gdp.xlsx",
+      "sha256": "04553ddedd013d7f97b16d636b6ddd91654b78729db69a87d286bc89cfc722ce"
+    }
+  ]
+}

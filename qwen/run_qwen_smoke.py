@@ -68,6 +68,10 @@ def main():
         (out / "flow.json").write_bytes(flow_bytes)
         config.update(treatment="rsi_flow", flow_sha256=hashlib.sha256(flow_bytes).hexdigest(),
                       agent_source_sha256=hashlib.sha256(agent_source.encode()).hexdigest())
+        if os.environ.get("RSI_WEEK4_PLATFORM_RUN"):
+            config["platform_run_id"] = os.environ["RSI_WEEK4_PLATFORM_RUN"]
+        if args.image:
+            config["baseline_image"] = args.image
         (out / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
     encoded=base64.b64encode(agent_source.encode()).decode()
     os.environ["PIP_INDEX_URL"]="https://mirrors.aliyun.com/pypi/simple/"

@@ -4,21 +4,25 @@
 
 - [十题的输入、期望和失败检查](results/CASE-EVIDENCE.md)
 - [前后对照 CSV](results/comparison.csv)
+- [官方判分与运行证据](results/paired-evidence)
+- [RSI 平台运行记录](results/PLATFORM.md)
 - [四类结构化流程](qwen/flows)
 - [十题运行清单](qwen/cases.json)
 - [SkillLearnBench 来源与固定提交](upstream-reference/source.json)
 
 ## 当前验收状态
 
-地震第 5 题已得到一次结构化运行输出。Agent 正常退出，外层 verifier 运行超时，但落盘的 CTRF 包含全部 8 条检查和具体断言。事件 ID 从错误变为正确，检查通过数由 6/8 增至 7/8。距离 1732.30 km 仍偏离官方值 419.32 km，题目依然失败。剩余 9 题未完成复测，当前没有可报告的十题修复率。
+同模型配对复测以官方 verifier 为准。整题通过须同时满足 verifier 正常退出、CTRF 非空且所有检查通过、`reward.txt` 为 `1`。通过数和失败断言见[逐题对照](results/comparison.csv)。
 
-流程 JSON 目前由 Qwen 复测运行器执行。rsi-flow-platform 上已验证的是另一条 Excel 演示链路。本项目四类流程仍待本人确认节点结构并在平台上搭建、接入和逐题验证。现有 JSON 属于 AI 辅助草案。
+地震第 5 题的原同模型复测由 6/8 增至 7/8。题干与输出字段指定了不同的测距对象。补充诊断以数据选中的板块边缘为准，计算得 419.32 km，运行原版 verifier 后通过全部 8 项。该次由确定性脚本执行，独立列于[测距修复证据](results/diagnostics/earthquake-5)。
+
+用户已确认四类流程顺序和回退规则。Spring Boot FlowEngine 接收平台运行请求，启动复测程序。Qwen 适配器在任务容器中执行流程节点，官方 verifier 在产物生成后评分。 [平台运行方式](platform/README.md)
 
 ## 结构和失败反馈
 
 地震流程将事件筛选和距离计算拆开，以便分别定位地理匹配与测距错误。金融流程先确定基金、季度和申报标识，再分析持仓或补充查询。GDP 流程分开处理模板读取、公式计算、重算验证。股票流程把输入整理、渲染与交互检查分开。同一类题共享流程，实例变更由基准输入携带。
 
-草案的节点契约以原 Skill 文本片段为输入，并通过共享工作目录传递产物。运行器保留节点进入、完成及 shell 失败恢复记录。平台正式版本仍需逐节点定义产物名称与类型、必填校验、可恢复错误和回退条件。地震题优先复查边界选择、投影和测距方法。距离不合格须回到测距节点，保留筛选正确的事件；修复方法由实际复测验证。
+节点以原 Skill 文本片段指导模型，并通过共享工作目录传递产物。运行器保留节点进入、完成及命令失败恢复记录。四类流程同样使用一次失败恢复提示。节点完成由模型工具调用推进，逐题报告可见实际走过的节点。
 
 ## 本地复测
 
@@ -31,7 +35,7 @@ $env:DASHSCOPE_API_KEY = [Environment]::GetEnvironmentVariable('DASHSCOPE_API_KE
 .\.venv\Scripts\python.exe .\qwen\run_rsi_retests.py
 ```
 
-将本仓库的 qwen 复测文件和流程同步至基准工作目录的 qwen 目录后运行。已有有效结果按实例与流程哈希复用。外层超时且保存了完整失败断言的记录单独标记，继续后续用例。输出在 output/qwen_rsi_flow。公网上的仓库不包含 API 凭证和本机运行环境。
+将本仓库的 qwen 复测文件和流程同步至基准工作目录的 qwen 目录后运行。已有有效结果按实例与流程哈希复用。续跑优先沿用基线记录中的本地镜像。外层超时且保存了完整失败断言的记录单独标记。输出在 `output/qwen_rsi_flow`。用 `python qwen/export_paired_evidence.py <基准工作区>` 导出前后对照与原版判分文件。
 
 ## 下一阶段的人在回路指标
 

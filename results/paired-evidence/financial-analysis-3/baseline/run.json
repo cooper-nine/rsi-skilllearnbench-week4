@@ -1,0 +1,26 @@
+{
+  "task": "financial-analysis/financial-analysis-3",
+  "run": "20261118-123134-1043bc",
+  "official_pass": false,
+  "official_status": "valid",
+  "verifier_exit": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "error": null,
+  "reward": "0",
+  "checks": 2,
+  "checks_passed": 0,
+  "checks_failed": [
+    "test_outputs.py::test_file_exists",
+    "test_outputs.py::test_answer_quality"
+  ],
+  "protocol": "budget-v3",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "qwen3.5-plus",
+  "flow_sha256": null,
+  "baseline_image": null,
+  "platform_run_id": null,
+  "flow_events": [],
+  "official_report_sha256": "93a5bb5f7cb7a1b9c26892c7ca9316658e72714c76d20d5053b904b44ad26bae",
+  "retained_outputs": []
+}
