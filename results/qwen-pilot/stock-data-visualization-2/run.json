@@ -1,24 +1,22 @@
 {
-  "run_id": "20261124-230900-eb2a71",
+  "run_id": "20261125-004434-2ad657",
   "model": "qwen3.5-plus",
-  "official_pass": false,
+  "official_pass": true,
   "verifier_exit": 0,
-  "reward": "0",
-  "passed_checks": 14,
+  "reward": "1",
+  "passed_checks": 15,
   "checks": 15,
-  "api_tokens": 376516,
+  "api_tokens": 7040,
   "delivered_checkpoints": [
     "prepare",
     "render",
     "interact",
     "verify"
   ],
-  "flow_sha256": "2e3130b27534269d1a76ca238e5fc3ddbe60b7683208e1005c8e1e58f1a042a8",
-  "protocol": "budget-v3",
-  "qwen_seed_run": null,
+  "flow_sha256": "3609e2c621f4e78a7f16c9aebdfcf5d41b245a4ca1c2d5746442cb01303ed6f4",
+  "protocol": "budget-v3-structured-edits",
+  "qwen_seed_run": "20261125-003430-d8e044",
   "error": null,
   "finished": true,
-  "failed_checks": [
-    "test_outputs.py::test_tooltips_non_etf_and_etf"
-  ]
+  "failed_checks": []
 }

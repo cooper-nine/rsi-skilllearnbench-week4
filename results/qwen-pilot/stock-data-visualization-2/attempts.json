@@ -181,5 +181,48 @@
     "failed_checks": [
       "test_outputs.py::test_tooltips_non_etf_and_etf"
     ]
+  },
+  {
+    "run_id": "20261125-003430-d8e044",
+    "model": "qwen3.5-plus",
+    "official_pass": true,
+    "verifier_exit": 0,
+    "reward": "1",
+    "passed_checks": 15,
+    "checks": 15,
+    "api_tokens": 19004,
+    "delivered_checkpoints": [
+      "prepare",
+      "render",
+      "interact"
+    ],
+    "flow_sha256": "8f799ddb20c4ceb619d7e46955571faa1b7fa9bff1fab000387ffdc869f5a084",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261125-002839-e17950",
+    "error": "Qwen did not confirm the required artifact: {'ready': False, 'checks': [\"JSON parse error in stock-descriptions.json or malformed data causing 'Expecting ',' delimiter' at char 204\"]}",
+    "finished": true,
+    "failed_checks": []
+  },
+  {
+    "run_id": "20261125-004434-2ad657",
+    "model": "qwen3.5-plus",
+    "official_pass": true,
+    "verifier_exit": 0,
+    "reward": "1",
+    "passed_checks": 15,
+    "checks": 15,
+    "api_tokens": 7040,
+    "delivered_checkpoints": [
+      "prepare",
+      "render",
+      "interact",
+      "verify"
+    ],
+    "flow_sha256": "3609e2c621f4e78a7f16c9aebdfcf5d41b245a4ca1c2d5746442cb01303ed6f4",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261125-003430-d8e044",
+    "error": null,
+    "finished": true,
+    "failed_checks": []
   }
 ]

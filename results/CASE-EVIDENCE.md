@@ -2,7 +2,7 @@
 
 加权 GDP 第 2 题的历史 CTRF 收集到 0 条测试。本次根据可核验性换入同类第 5 题。保留原始历史调度 CSV，后续运行以 qwen/cases.json 为准。
 
-同一批十题最终均通过原版官方脚本。各题保留初版记录，最终验收见每题末尾。 [最终汇总](ARTIFACT-REPAIR.md)
+各题末尾的最终验收是确定性产物修复实验，十题均通过原版官方脚本。Qwen 3.5 Plus 的同输入对照、官方判分和节点记录见独立报告。 [确定性修复汇总](ARTIFACT-REPAIR.md) · [Qwen API 复测](QWEN-PILOT.md)
 
 ## earthquake-plate-calculation/5
 earthquake-plate-calculation5

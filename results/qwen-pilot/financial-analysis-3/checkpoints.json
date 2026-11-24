@@ -4,10 +4,10 @@
     "stage": "identify",
     "output": {
       "accessions": {
-        "soros_fund_management_q2": "0000902664-25-003648",
-        "soros_fund_management_q3": "0000902664-25-005044",
-        "pershing_square_q2": "0001172661-25-003509",
-        "pershing_square_q3": "0001172661-25-005039"
+        "soros_fund_management_llc_2025_q2": "0000902664-25-003648",
+        "pershing_square_capital_management_l_p_2025_q2": "0001172661-25-003509",
+        "soros_fund_management_llc_2025_q3": "0000902664-25-005044",
+        "pershing_square_capital_management_l_p_2025_q3": "0001172661-25-005039"
       }
     }
   },
@@ -18,15 +18,15 @@
       "q1_answer": 7020738956.0,
       "q2_answer": [
         "44267T102",
-        "11271J107",
-        "02079K305"
+        "90353T100",
+        "812215200"
       ],
       "q3_answer": [
         "VANGUARD GROUP INC",
         "BlackRock, Inc.",
         "FMR LLC",
         "STATE STREET CORP",
-        "JPMORGAN CHASE & CO"
+        "GEODE CAPITAL MANAGEMENT, LLC"
       ]
     }
   },

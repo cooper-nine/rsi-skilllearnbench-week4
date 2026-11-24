@@ -142,5 +142,45 @@
     "error": "Use the exact stock category set via .isin(title_class_of_stocks); no ad-hoc matching",
     "finished": true,
     "failed_checks": []
+  },
+  {
+    "run_id": "20261125-003653-853155",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": null,
+    "reward": null,
+    "passed_checks": 0,
+    "checks": 0,
+    "api_tokens": 8985,
+    "delivered_checkpoints": [
+      "identify"
+    ],
+    "flow_sha256": "102ad36cb5349f97ae94fe2dca0ae5420ddb0422840aa20be399fe4e2a022e34",
+    "protocol": "budget-v3-structured-code",
+    "qwen_seed_run": null,
+    "error": "Traceback (most recent call last):\n  File \"/tmp/current-stage.py\", line 79, in <module>\n    grouped = pal_q3.groupby('ACCESSION_NUMBER').agg(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/pandas/core/groupby/generic.py\", line 1432, in aggregate\n    result = op.agg()\n             ^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/pandas/core/apply.py\", line 190, in agg\n    return self.agg_dict_like()\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/pandas/core/apply.py\", line 423, in agg_dict_like\n    return self.agg_or_apply_dict_like(op_name=\"agg\")\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/pandas/core/apply.py\", line 1603, in agg_or_apply_dict_like\n    result_index, result_data = self.compute_dict_like(\n                                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/pandas/core/apply.py\", line 462, in compute_dict_like\n    func = self.normalize_dictlike_arg(op_name, selected_obj, func)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/dist-packages/pandas/core/apply.py\", line 663, in normalize_dictlike_arg\n    raise KeyError(f\"Column(s) {list(cols)} do not exist\")\nKeyError: \"Column(s) ['FILINGMANAGER_NAME'] do not exist\"\n",
+    "finished": true,
+    "failed_checks": []
+  },
+  {
+    "run_id": "20261125-004055-e951df",
+    "model": "qwen3.5-plus",
+    "official_pass": true,
+    "verifier_exit": 0,
+    "reward": "1",
+    "passed_checks": 2,
+    "checks": 2,
+    "api_tokens": 5119,
+    "delivered_checkpoints": [
+      "identify",
+      "calculate",
+      "verify"
+    ],
+    "flow_sha256": "102ad36cb5349f97ae94fe2dca0ae5420ddb0422840aa20be399fe4e2a022e34",
+    "protocol": "budget-v3-structured-code",
+    "qwen_seed_run": "20261125-003653-853155",
+    "error": null,
+    "finished": true,
+    "failed_checks": []
   }
 ]

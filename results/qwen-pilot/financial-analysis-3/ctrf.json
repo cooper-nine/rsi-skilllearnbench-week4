@@ -6,35 +6,32 @@
         },
         "summary": {
             "tests": 2,
-            "passed": 1,
-            "failed": 1,
+            "passed": 2,
+            "failed": 0,
             "skipped": 0,
             "pending": 0,
             "other": 0,
-            "start": 1795537102.104826,
-            "stop": 1795537102.1196144
+            "start": 1795538877.7933931,
+            "stop": 1795538877.8010075
         },
         "tests": [
             {
                 "name": "test_outputs.py::test_file_exists",
                 "status": "passed",
-                "duration": 0.0003797530007432215,
-                "start": 1795537102.1117418,
-                "stop": 1795537102.1123574,
+                "duration": 0.0006453319983847905,
+                "start": 1795538877.7991242,
+                "stop": 1795538877.8000553,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_answer_quality",
-                "status": "failed",
-                "raw_status": "call_failed",
-                "duration": 0.0006534039966936689,
-                "start": 1795537102.1125042,
-                "stop": 1795537102.1194158,
+                "status": "passed",
+                "duration": 0.00047663599980296567,
+                "start": 1795538877.8003423,
+                "stop": 1795538877.800911,
                 "retries": 0,
-                "file_path": "test_outputs.py",
-                "trace": "def test_answer_quality():\n        \"\"\"Test that the outputs are correct.\"\"\"\n        ground_truth = json.load(open(GROUND_TRUTH))\n        answers = json.load(open(OUTPUT_FILE))\n        # Check that all questions are answered\n        assert \"q1_answer\" in answers\n        assert \"q2_answer\" in answers\n        assert \"q3_answer\" in answers\n    \n        # Check answer 1 is within 0.1% of ground truth\n        assert abs(answers[\"q1_answer\"] / ground_truth[\"q1_answer\"] - 1) < 0.001\n    \n        # Check other answers match exactly\n>       assert answers[\"q2_answer\"] == ground_truth[\"q2_answer\"]\nE       AssertionError: assert ['44267T102',..., '02079K305'] == ['44267T102',..., '812215200']\nE         \nE         At index 1 diff: '11271J107' != '90353T100'\nE         Use -v to get more diff\n\n/tests/test_outputs.py:33: AssertionError",
-                "message": "The test failed in the call phase due to an assertion error"
+                "file_path": "test_outputs.py"
             }
         ]
     }

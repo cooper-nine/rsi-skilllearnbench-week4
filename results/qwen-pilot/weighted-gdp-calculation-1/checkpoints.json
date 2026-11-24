@@ -3,79 +3,226 @@
     "type": "checkpoint",
     "stage": "requirements",
     "output": {
-      "contract": {
-        "file_path": "gdp.xlsx",
-        "sheets_required": [
-          "Task",
-          "Data"
-        ],
-        "operations": {
-          "step_1_lookup_ranges": [
-            "H12:L17",
-            "H19:L24",
-            "H26:L31"
-          ],
-          "lookup_method": "INDEX&MATCH or XLOOKUP with two conditions (Series Code in Col D, Year in Row 10)",
-          "step_2_calculation_range": "H35:L40",
-          "step_2_metrics": [
-            "Min",
-            "Max",
-            "Median",
-            "Simple Mean",
-            "25th Percentile",
-            "75th Percentile"
-          ],
-          "step_3_weighted_mean_formula": "SUMPRODUCT(NetExports, GDP) / SUM(GDP) * 100",
-          "formatting_rules": {
-            "percentage_display": "Multiply by 100 within formula and round to 1 decimal place",
-            "preserve_original_formatting": true,
-            "no_macros_or_vba": true
-          }
-        },
-        "statistics_to_generate": [
-          "Weighted Mean Net Exports % of GDP for GCC (Step 3)",
-          "Descriptive Statistics for Net Exports % of GDP (Step 2)"
-        ],
-        "artifact_path": null,
-        "status": "ready_for_execution"
-      }
+      "sheet_names": [
+        "Task",
+        "Data"
+      ],
+      "H46_formula": "=ROUND(QUARTILE(H$35:H$40, 1), 1)",
+      "H46_cached_value": null
     }
   },
   {
     "type": "checkpoint",
     "stage": "read",
     "output": {
-      "incompatible": [
-        "quartile.inc"
-      ],
-      "checkpoint": "The function 'quartile.inc' is not a valid Excel function; the correct function for calculating quartiles in Excel is 'QUARTILE.INC' (with a dot) or the legacy 'QUARTILE'. The sample shows lowercase 'quartile.inc' which would result in a #NAME? error in Excel."
+      "formulas_mode": {
+        "Task": {
+          "H46": {
+            "formula": "=ROUND(QUARTILE(H$35:H$40, 1), 1)",
+            "value": "=ROUND(QUARTILE(H$35:H$40, 1), 1)"
+          },
+          "I46": {
+            "formula": "=ROUND(QUARTILE(I$35:I$40, 1), 1)",
+            "value": "=ROUND(QUARTILE(I$35:I$40, 1), 1)"
+          },
+          "J46": {
+            "formula": "=ROUND(QUARTILE(J$35:J$40, 1), 1)",
+            "value": "=ROUND(QUARTILE(J$35:J$40, 1), 1)"
+          },
+          "K46": {
+            "formula": "=ROUND(QUARTILE(K$35:K$40, 1), 1)",
+            "value": "=ROUND(QUARTILE(K$35:K$40, 1), 1)"
+          },
+          "L46": {
+            "formula": "=ROUND(QUARTILE(L$35:L$40, 1), 1)",
+            "value": "=ROUND(QUARTILE(L$35:L$40, 1), 1)"
+          },
+          "H47": {
+            "formula": "=ROUND(QUARTILE(H$35:H$40, 3), 1)",
+            "value": "=ROUND(QUARTILE(H$35:H$40, 3), 1)"
+          },
+          "I47": {
+            "formula": "=ROUND(QUARTILE(I$35:I$40, 3), 1)",
+            "value": "=ROUND(QUARTILE(I$35:I$40, 3), 1)"
+          },
+          "J47": {
+            "formula": "=ROUND(QUARTILE(J$35:J$40, 3), 1)",
+            "value": "=ROUND(QUARTILE(J$35:J$40, 3), 1)"
+          },
+          "K47": {
+            "formula": "=ROUND(QUARTILE(K$35:K$40, 3), 1)",
+            "value": "=ROUND(QUARTILE(K$35:K$40, 3), 1)"
+          },
+          "L47": {
+            "formula": "=ROUND(QUARTILE(L$35:L$40, 3), 1)",
+            "value": "=ROUND(QUARTILE(L$35:L$40, 3), 1)"
+          }
+        },
+        "Data": {
+          "H46": {
+            "formula": null,
+            "value": 17.6389135194575
+          },
+          "I46": {
+            "formula": null,
+            "value": 21.5595300412865
+          },
+          "J46": {
+            "formula": null,
+            "value": 31.0006075870423
+          },
+          "K46": {
+            "formula": null,
+            "value": 28.6160267111733
+          },
+          "L46": {
+            "formula": null,
+            "value": 23.9332059708389
+          },
+          "H47": {
+            "formula": null,
+            "value": 21.3291891227321
+          },
+          "I47": {
+            "formula": null,
+            "value": 26.8010743987642
+          },
+          "J47": {
+            "formula": null,
+            "value": 41.0858143361495
+          },
+          "K47": {
+            "formula": null,
+            "value": 35.8851537876201
+          },
+          "L47": {
+            "formula": null,
+            "value": 31.08212281738
+          }
+        }
+      },
+      "values_mode": {
+        "Task": {
+          "H46": {
+            "formula": null,
+            "value": null
+          },
+          "I46": {
+            "formula": null,
+            "value": null
+          },
+          "J46": {
+            "formula": null,
+            "value": null
+          },
+          "K46": {
+            "formula": null,
+            "value": null
+          },
+          "L46": {
+            "formula": null,
+            "value": null
+          },
+          "H47": {
+            "formula": null,
+            "value": null
+          },
+          "I47": {
+            "formula": null,
+            "value": null
+          },
+          "J47": {
+            "formula": null,
+            "value": null
+          },
+          "K47": {
+            "formula": null,
+            "value": null
+          },
+          "L47": {
+            "formula": null,
+            "value": null
+          }
+        },
+        "Data": {
+          "H46": {
+            "formula": null,
+            "value": 17.6389135194575
+          },
+          "I46": {
+            "formula": null,
+            "value": 21.5595300412865
+          },
+          "J46": {
+            "formula": null,
+            "value": 31.0006075870423
+          },
+          "K46": {
+            "formula": null,
+            "value": 28.6160267111733
+          },
+          "L46": {
+            "formula": null,
+            "value": 23.9332059708389
+          },
+          "H47": {
+            "formula": null,
+            "value": 21.3291891227321
+          },
+          "I47": {
+            "formula": null,
+            "value": 26.8010743987642
+          },
+          "J47": {
+            "formula": null,
+            "value": 41.0858143361495
+          },
+          "K47": {
+            "formula": null,
+            "value": 35.8851537876201
+          },
+          "L47": {
+            "formula": null,
+            "value": 31.08212281738
+          }
+        }
+      },
+      "cache_lost_check": {
+        "H46_formula": "=ROUND(QUARTILE(H$35:H$40, 1), 1)",
+        "H46_value_data_only": null,
+        "lost_numeric_cache": true
+      }
     }
   },
   {
     "type": "checkpoint",
     "stage": "calculate",
     "output": {
-      "replacements": [
-        {
-          "old": "quartile.inc",
-          "new": "QUARTILE"
-        }
-      ],
-      "checkpoint": "Replace lowercase 'quartile.inc' with the legacy compatible function 'QUARTILE' to fix #NAME? errors while preserving workbook structure."
+      "recalculated_values": {
+        "H46": 11.6,
+        "I46": 3.3,
+        "J46": 12.8,
+        "K46": 21.5,
+        "L46": 15.4,
+        "H47": 13.9,
+        "I47": 7.6,
+        "J47": 24.1,
+        "K47": 29.1,
+        "L47": 22.6
+      },
+      "output_path": "/root/gdp.xlsx"
     }
   },
   {
     "type": "checkpoint",
     "stage": "verify",
     "output": {
-      "ready": true,
-      "artifact": "gdp.xlsx",
-      "checks": [
-        "Verified QUARTILE function compatibility for legacy Excel support",
-        "Confirmed SUMPRODUCT weighted mean formulas include *100 and ROUND(...,1) for percentage display",
-        "Validated INDEX/MATCH lookup structure for two-condition data retrieval in yellow ranges",
-        "Ensured no VBA/macros added and original formatting preserved"
-      ]
+      "file": "/root/gdp.xlsx",
+      "sample_cell": "H46",
+      "sheet": "Task",
+      "formula_mode_value": "=ROUND(QUARTILE(H$35:H$40, 1), 1)",
+      "formula_mode_formula": null,
+      "cached_value": 11.6
     }
   }
 ]
