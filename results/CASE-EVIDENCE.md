@@ -108,7 +108,7 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable
 test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 ```
 
-[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/weighted-gdp-calculation-4/)
+改编前 10/27，改编后 27/27。官方 verifier 退出码为 0，reward=1。平台试次使用和基线相同的 Qwen 模型、预算协议与容器镜像。 [基线 CTRF](paired-evidence/weighted-gdp-calculation-4/baseline/ctrf.json) · [复测 CTRF](paired-evidence/weighted-gdp-calculation-4/treatment/ctrf.json) · [奖励](paired-evidence/weighted-gdp-calculation-4/treatment/reward.txt) · [运行记录](paired-evidence/weighted-gdp-calculation-4/treatment/run.json)
 
 ## stock-data-visualization/1
 

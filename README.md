@@ -14,6 +14,8 @@
 
 同模型配对复测以官方 verifier 为准。整题通过须同时满足 verifier 正常退出、CTRF 非空且所有检查通过、`reward.txt` 为 `1`。通过数和失败断言见[逐题对照](results/comparison.csv)。
 
+加权 GDP 第 4 题是已确认的整题修复案例。原人工 Skill 基线通过 10/27 项，RSI 平台发起的同模型复测通过 27/27 项，奖励为 1。 [两组官方判分与平台运行记录](results/paired-evidence/weighted-gdp-calculation-4/)
+
 地震第 5 题的原同模型复测由 6/8 增至 7/8。题干与输出字段指定了不同的测距对象。补充诊断以数据选中的板块边缘为准，计算得 419.32 km，运行原版 verifier 后通过全部 8 项。该次由确定性脚本执行，独立列于[测距修复证据](results/diagnostics/earthquake-5)。
 
 用户已确认四类流程顺序和回退规则。Spring Boot FlowEngine 接收平台运行请求，启动复测程序。Qwen 适配器在任务容器中执行流程节点，官方 verifier 在产物生成后评分。 [平台运行方式](platform/README.md)
