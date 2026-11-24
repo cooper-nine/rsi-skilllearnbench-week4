@@ -25,7 +25,7 @@ test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct
 test_outputs.py::test_answer_quality
 ```
 
-[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/financial-analysis-1/)
+改编后 1/2，官方 reward=0。已生成答案文件，基金持仓数量的断言仍失败。 [配对证据](paired-evidence/financial-analysis-1/)
 
 ## financial-analysis/3
 
@@ -38,7 +38,7 @@ test_outputs.py::test_file_exists
 test_outputs.py::test_answer_quality
 ```
 
-[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/financial-analysis-3/)
+改编前 0/2，改编后 1/2，官方 reward=0。文件存在检查已通过，持仓变化排序的断言仍失败。 [配对证据](paired-evidence/financial-analysis-3/)
 
 ## weighted-gdp-calculation/1
 
