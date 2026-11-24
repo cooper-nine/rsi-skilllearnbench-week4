@@ -1,0 +1,66 @@
+[
+  {
+    "type": "checkpoint",
+    "stage": "prepare",
+    "output": {
+      "loader": "csv",
+      "checkpoint": "Identified stock-descriptions.csv as the primary source for company details, sector, and market cap to drive the bubble chart and table visualization.",
+      "description": "stock-descriptions.csv"
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "render",
+    "output": {
+      "edits": [],
+      "checkpoint": "Verified that the existing code correctly loads 'data/stock-descriptions.csv' which matches the required input path '/root/data/stock-descriptions.csv' when the app is served from '/root/output/' with data copied to '/root/output/data/'. The D3 v6 loader line is correct, and no auxiliary circles are present in the SVG generation logic."
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "interact",
+    "output": {
+      "edits": [
+        {
+          "file": "js/visualization.js",
+          "old": "    const tooltip = d3.select('body')\n        .append('div')\n        .attr('class', 'tooltip');",
+          "new": "    const tooltip = d3.select('body')\n        .append('div')\n        .attr('class', 'tooltip')\n        .attr('aria-hidden', 'true');"
+        },
+        {
+          "file": "js/visualization.js",
+          "old": "        .on('mouseover', function(event, d) {\n            if (!d.isETF) {\n                tooltip.style('opacity', 1)\n                    .html('<strong>' + d.ticker + '</strong><br>' + d.fullName + '<br>Sector: ' + d.sector)\n                    .style('left', (event.pageX + 15) + 'px')\n                    .style('top', (event.pageY - 10) + 'px');\n                d3.select(this).attr('stroke', '#333').attr('stroke-width', 3);\n            }\n        })",
+          "new": "        .on('mouseover', function(event, d) {\n            if (!d.isETF) {\n                tooltip.classed('visible', true)\n                    .attr('aria-hidden', 'false')\n                    .html('<strong>' + d.ticker + '</strong><br>' + d.fullName + '<br>Sector: ' + d.sector)\n                    .style('left', (event.pageX + 15) + 'px')\n                    .style('top', (event.pageY - 10) + 'px');\n                d3.select(this).attr('stroke', '#333').attr('stroke-width', 3);\n            }\n        })"
+        },
+        {
+          "file": "js/visualization.js",
+          "old": "        .on('mousemove', function(event, d) {\n            if (!d.isETF) {\n                tooltip.style('left', (event.pageX + 15) + 'px')\n                    .style('top', (event.pageY - 10) + 'px');\n            }\n        })",
+          "new": "        .on('mousemove', function(event, d) {\n            if (!d.isETF) {\n                tooltip.style('left', (event.pageX + 15) + 'px')\n                    .style('top', (event.pageY - 10) + 'px');\n            }\n        })"
+        },
+        {
+          "file": "js/visualization.js",
+          "old": "        .on('mouseout', function() {\n            tooltip.style('opacity', 0);\n            d3.select(this).attr('stroke', '#fff').attr('stroke-width', 2);\n        })",
+          "new": "        .on('mouseout', function() {\n            tooltip.classed('visible', false)\n                .attr('aria-hidden', 'true');\n            d3.select(this).attr('stroke', '#fff').attr('stroke-width', 2);\n        })"
+        }
+      ],
+      "checkpoint": "Updated tooltip logic to use .classed('visible', true/false) for visibility toggling and aria-hidden attribute management. Ensured tooltips only appear for non-ETF stocks on hover and are hidden with aria-hidden=true on mouseout."
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "verify",
+    "output": {
+      "ready": true,
+      "artifact": "output/index.html",
+      "checks": [
+        "Verified loader matches file structure",
+        "Confirmed required data aliases (ticker, fullName, sector, marketCap) are present",
+        "Checked charts and table link via highlightStock function",
+        "Verified visible class is set and reset for tooltip using .classed('visible', true/false)",
+        "Confirmed ETFs do not show tooltip via !d.isETF check",
+        "Validated SVG circle elements represent only stock bubbles",
+        "Confirmed legend is implemented as a div element",
+        "Checked text display without truncation"
+      ]
+    }
+  }
+]

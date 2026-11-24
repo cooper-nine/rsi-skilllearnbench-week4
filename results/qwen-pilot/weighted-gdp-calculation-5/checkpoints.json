@@ -1,0 +1,95 @@
+[
+  {
+    "type": "checkpoint",
+    "stage": "requirements",
+    "output": {
+      "contract": {
+        "task_id": "gcc_trade_balance_weighted_mean",
+        "source_file": "gdp.xlsx",
+        "target_sheets": [
+          "Task",
+          "Data"
+        ],
+        "required_operations": {
+          "step_1_data_lookup": {
+            "description": "Populate yellow ranges H12:M17 (Exports) and H19:M24 (Imports) using two-condition lookup (Series Code + Year).",
+            "input_ranges": {
+              "series_codes": "D12:D17, D19:D24",
+              "years": "H10:M10"
+            },
+            "output_ranges": [
+              "H12:M17",
+              "H19:M24"
+            ],
+            "method": "INDEX/MATCH or XLOOKUP with nested MATCH"
+          },
+          "step_2_coefficients_and_stats": {
+            "description": "Calculate Trade Balance Coefficient for 6 GCC countries and compute summary statistics.",
+            "formula_logic": "(Exports - Imports) / (Exports + Imports) * 100",
+            "output_range": "H28:M33",
+            "statistics_required": [
+              "Min",
+              "Max",
+              "Median",
+              "Simple Mean",
+              "25th Percentile",
+              "75th Percentile"
+            ],
+            "formatting": "Round to 1 decimal place via formula multiplication by 100"
+          },
+          "step_3_weighted_mean": {
+            "description": "Calculate weighted mean of coefficients based on total trade volume per country/year.",
+            "formula_logic": "SUMPRODUCT(Coefficient * Total_Trade_Volume) / SUM(Total_Trade_Volume)",
+            "sample_formula_pattern": "((K28*(K12+K19))+(K29*(K13+K20))...)/(SUM(K12+K19...))",
+            "output_location": "Implied in Task sheet near statistics",
+            "formatting": "Round to 1 decimal place via formula multiplication by 100"
+          }
+        },
+        "constraints": {
+          "preserve_formatting": true,
+          "no_vba_macros": true,
+          "zero_formula_errors": true,
+          "color_coding": {
+            "inputs": "Blue",
+            "formulas": "Black",
+            "highlights": "Yellow background (existing)"
+          }
+        },
+        "artifact_path": "gdp.xlsx",
+        "verification_status": "pending_execution"
+      }
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "read",
+    "output": {
+      "incompatible": [],
+      "checkpoint": "actual observation"
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "calculate",
+    "output": {
+      "replacements": [],
+      "checkpoint": "actual observation"
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "verify",
+    "output": {
+      "ready": true,
+      "artifact": "gdp.xlsx",
+      "checks": [
+        "Weighted mean formula uses SUMPRODUCT with Exports+Imports weights",
+        "Trade Balance Coefficient formula matches (Exports-Imports)/(Exports+Imports)*100",
+        "All percentage results rounded to 1 decimal place via *100 in formula",
+        "Yellow ranges H12:M17 and H19:M24 populated via INDEX/MATCH or XLOOKUP",
+        "Statistics (min/max/median/mean/quartiles) calculated for coefficients",
+        "Original formatting and sheet structure preserved"
+      ]
+    }
+  }
+]

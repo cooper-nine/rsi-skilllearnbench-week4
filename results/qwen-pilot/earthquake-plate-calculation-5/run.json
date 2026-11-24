@@ -14,6 +14,8 @@
     "verify"
   ],
   "flow_sha256": "22794a298c56800daa5643229080db049bbd08b59767403a3e3e6f6631ca361b",
+  "protocol": "budget-v3",
+  "qwen_seed_run": null,
   "error": null,
   "finished": true,
   "failed_checks": []

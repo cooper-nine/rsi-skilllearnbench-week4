@@ -9,6 +9,8 @@
   "api_tokens": 661558,
   "delivered_checkpoints": [],
   "flow_sha256": "5f9798778ed507bcd25709de6ed1fe545685aa62b960a8e2f077660996384c71",
+  "protocol": "budget-v3",
+  "qwen_seed_run": null,
   "error": null,
   "finished": true,
   "failed_checks": []

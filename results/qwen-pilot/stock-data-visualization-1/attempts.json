@@ -10,6 +10,8 @@
     "api_tokens": 102000,
     "delivered_checkpoints": [],
     "flow_sha256": "17f9abe47ef0b5dacaf6b2e0d9b7b63d0b67c646de3b3e292a6bdb9e043c1c82",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": "agent_api_or_runtime_aborted; tee exit does not report actual agent status",
     "finished": true,
     "failed_checks": [
@@ -33,6 +35,8 @@
       "verify"
     ],
     "flow_sha256": "2e3130b27534269d1a76ca238e5fc3ddbe60b7683208e1005c8e1e58f1a042a8",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": true,
     "failed_checks": [
@@ -53,6 +57,8 @@
       "render"
     ],
     "flow_sha256": "afeb475de51fd6eb3f0fbc1f977e61986715d8d8671597a415ceb3fd351d4b26",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": true,
     "failed_checks": [
@@ -77,6 +83,8 @@
     "api_tokens": 2403,
     "delivered_checkpoints": [],
     "flow_sha256": "c04da50a9b50e4ba6b43d56358020a84a05d0ee5225bda8f31e0a67bbe63115a",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-230322-a22de3",
     "error": "Incorrect source file or missing directory alias",
     "finished": true,
     "failed_checks": []
@@ -84,19 +92,23 @@
   {
     "run_id": "20261124-235639-135ea2",
     "model": "qwen3.5-plus",
-    "official_pass": false,
-    "verifier_exit": null,
-    "reward": null,
-    "passed_checks": 0,
-    "checks": 0,
-    "api_tokens": null,
+    "official_pass": true,
+    "verifier_exit": 0,
+    "reward": "1",
+    "passed_checks": 15,
+    "checks": 15,
+    "api_tokens": 14494,
     "delivered_checkpoints": [
       "prepare",
-      "render"
+      "render",
+      "interact",
+      "verify"
     ],
     "flow_sha256": "4f4572b6059101384b355001562cc285228270086aeebace1f4b2b6483ea0342",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-230322-a22de3",
     "error": null,
-    "finished": false,
+    "finished": true,
     "failed_checks": []
   }
 ]

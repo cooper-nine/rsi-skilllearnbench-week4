@@ -1,0 +1,81 @@
+[
+  {
+    "type": "checkpoint",
+    "stage": "requirements",
+    "output": {
+      "contract": {
+        "file_path": "gdp.xlsx",
+        "sheets_required": [
+          "Task",
+          "Data"
+        ],
+        "operations": {
+          "step_1_lookup_ranges": [
+            "H12:L17",
+            "H19:L24",
+            "H26:L31"
+          ],
+          "lookup_method": "INDEX&MATCH or XLOOKUP with two conditions (Series Code in Col D, Year in Row 10)",
+          "step_2_calculation_range": "H35:L40",
+          "step_2_metrics": [
+            "Min",
+            "Max",
+            "Median",
+            "Simple Mean",
+            "25th Percentile",
+            "75th Percentile"
+          ],
+          "step_3_weighted_mean_formula": "SUMPRODUCT(NetExports, GDP) / SUM(GDP) * 100",
+          "formatting_rules": {
+            "percentage_display": "Multiply by 100 within formula and round to 1 decimal place",
+            "preserve_original_formatting": true,
+            "no_macros_or_vba": true
+          }
+        },
+        "statistics_to_generate": [
+          "Weighted Mean Net Exports % of GDP for GCC (Step 3)",
+          "Descriptive Statistics for Net Exports % of GDP (Step 2)"
+        ],
+        "artifact_path": null,
+        "status": "ready_for_execution"
+      }
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "read",
+    "output": {
+      "incompatible": [
+        "quartile.inc"
+      ],
+      "checkpoint": "The function 'quartile.inc' is not a valid Excel function; the correct function for calculating quartiles in Excel is 'QUARTILE.INC' (with a dot) or the legacy 'QUARTILE'. The sample shows lowercase 'quartile.inc' which would result in a #NAME? error in Excel."
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "calculate",
+    "output": {
+      "replacements": [
+        {
+          "old": "quartile.inc",
+          "new": "QUARTILE"
+        }
+      ],
+      "checkpoint": "Replace lowercase 'quartile.inc' with the legacy compatible function 'QUARTILE' to fix #NAME? errors while preserving workbook structure."
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "verify",
+    "output": {
+      "ready": true,
+      "artifact": "gdp.xlsx",
+      "checks": [
+        "Verified QUARTILE function compatibility for legacy Excel support",
+        "Confirmed SUMPRODUCT weighted mean formulas include *100 and ROUND(...,1) for percentage display",
+        "Validated INDEX/MATCH lookup structure for two-condition data retrieval in yellow ranges",
+        "Ensured no VBA/macros added and original formatting preserved"
+      ]
+    }
+  }
+]

@@ -10,6 +10,8 @@
     "api_tokens": null,
     "delivered_checkpoints": [],
     "flow_sha256": "275d25566daf1641ecf6ad8120baf83869c699e54f64f78b480da81b6f657b33",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": false,
     "failed_checks": []
@@ -25,6 +27,8 @@
     "api_tokens": 623002,
     "delivered_checkpoints": [],
     "flow_sha256": "275d25566daf1641ecf6ad8120baf83869c699e54f64f78b480da81b6f657b33",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": true,
     "failed_checks": [
@@ -48,6 +52,8 @@
       "verify"
     ],
     "flow_sha256": "1931fbb80a7de661b81b2b109a70f36fc4974892d1827c4ae3e87731b5a41a28",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": true,
     "failed_checks": [
@@ -82,6 +88,8 @@
       "verify"
     ],
     "flow_sha256": "b965ebe3a42bfcb89cec0d8cc44779201f45c6287497edbd06b3db11ff8be4e4",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": true,
     "failed_checks": [
@@ -111,8 +119,70 @@
       "requirements"
     ],
     "flow_sha256": "4653d957a7b548aeb1977e9f2a57303cafa4edf5d0db2d0e8140f9ed3efd1bc6",
+    "protocol": "budget-v3-structured-code",
+    "qwen_seed_run": "20261124-221509-a66fdd",
     "error": "Traceback (most recent call last):\n  File \"/tmp/current-stage.py\", line 33, in <module>\n    formula_str = cell.formula\n                  ^^^^^^^^^^^^\nAttributeError: 'Cell' object has no attribute 'formula'\n",
     "finished": true,
     "failed_checks": []
+  },
+  {
+    "run_id": "20261125-000617-a71789",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 15,
+    "checks": 27,
+    "api_tokens": 10460,
+    "delivered_checkpoints": [
+      "requirements",
+      "read",
+      "calculate",
+      "verify"
+    ],
+    "flow_sha256": "0f6cc5e4abc58c1b750fdd585001d6ea9175b6885d781f5fabfb89578014d3f8",
+    "protocol": "budget-v3-structured-code",
+    "qwen_seed_run": "20261124-221509-a66fdd",
+    "error": null,
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::TestStep1DataValues::test_exports_values",
+      "test_outputs.py::TestStep1DataValues::test_imports_values",
+      "test_outputs.py::TestStep1DataValues::test_gdp_values",
+      "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_values",
+      "test_outputs.py::TestStep2Statistics::test_min_values",
+      "test_outputs.py::TestStep2Statistics::test_max_values",
+      "test_outputs.py::TestStep2Statistics::test_median_values",
+      "test_outputs.py::TestStep2Statistics::test_mean_values",
+      "test_outputs.py::TestStep2Statistics::test_percentile_values",
+      "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable",
+      "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values",
+      "test_outputs.py::TestNoExcelErrors::test_no_formula_errors"
+    ]
+  },
+  {
+    "run_id": "20261125-001833-853789",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 25,
+    "checks": 27,
+    "api_tokens": 8670,
+    "delivered_checkpoints": [
+      "requirements",
+      "read",
+      "calculate",
+      "verify"
+    ],
+    "flow_sha256": "1cf67cb2cb6e940280e2b7ef71eddfd955588686d57b1ef5a6b73d613a2369b8",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-221509-a66fdd",
+    "error": null,
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::TestStep2Statistics::test_percentile_values",
+      "test_outputs.py::TestNoExcelErrors::test_no_formula_errors"
+    ]
   }
 ]

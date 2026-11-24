@@ -11,16 +11,16 @@
             "skipped": 0,
             "pending": 0,
             "other": 0,
-            "start": 1795531248.580257,
-            "stop": 1795531248.599479
+            "start": 1795536155.9066377,
+            "stop": 1795536155.9202707
         },
         "tests": [
             {
                 "name": "test_outputs.py::test_file_exists",
                 "status": "passed",
-                "duration": 0.0005941269992035814,
-                "start": 1795531248.5904598,
-                "stop": 1795531248.5912142,
+                "duration": 0.0003138619977107737,
+                "start": 1795536155.913766,
+                "stop": 1795536155.9142206,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
@@ -28,12 +28,12 @@
                 "name": "test_outputs.py::test_answer_quality",
                 "status": "failed",
                 "raw_status": "call_failed",
-                "duration": 0.0011265410012128996,
-                "start": 1795531248.5914385,
-                "stop": 1795531248.5993626,
+                "duration": 0.0006095829958212562,
+                "start": 1795536155.9143288,
+                "stop": 1795536155.9201398,
                 "retries": 0,
                 "file_path": "test_outputs.py",
-                "trace": "def test_answer_quality():\n        \"\"\"Test that the outputs are correct.\"\"\"\n        ground_truth = json.load(open(GROUND_TRUTH))\n        answers = json.load(open(OUTPUT_FILE))\n        # Check that all questions are answered\n        assert \"q1_answer\" in answers\n        assert \"q2_answer\" in answers\n        assert \"q3_answer\" in answers\n        assert \"q4_answer\" in answers\n    \n        # Check answer 1 is within 0.1% of ground truth\n        assert abs(answers[\"q1_answer\"] / ground_truth[\"q1_answer\"] - 1) < 0.001\n    \n        # Check other answers match exactly\n>       assert answers[\"q2_answer\"] == ground_truth[\"q2_answer\"]\nE       assert 2859 == 2451\n\n/tests/test_outputs.py:34: AssertionError",
+                "trace": "def test_answer_quality():\n        \"\"\"Test that the outputs are correct.\"\"\"\n        ground_truth = json.load(open(GROUND_TRUTH))\n        answers = json.load(open(OUTPUT_FILE))\n        # Check that all questions are answered\n        assert \"q1_answer\" in answers\n        assert \"q2_answer\" in answers\n        assert \"q3_answer\" in answers\n        assert \"q4_answer\" in answers\n    \n        # Check answer 1 is within 0.1% of ground truth\n>       assert abs(answers[\"q1_answer\"] / ground_truth[\"q1_answer\"] - 1) < 0.001\nE       assert 1.0 < 0.001\nE        +  where 1.0 = abs(((0.0 / 75753182516.0) - 1))\n\n/tests/test_outputs.py:31: AssertionError",
                 "message": "The test failed in the call phase due to an assertion error"
             }
         ]

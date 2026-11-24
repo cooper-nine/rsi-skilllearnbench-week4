@@ -10,6 +10,8 @@
     "api_tokens": 70035,
     "delivered_checkpoints": [],
     "flow_sha256": "17f9abe47ef0b5dacaf6b2e0d9b7b63d0b67c646de3b3e292a6bdb9e043c1c82",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": "agent_api_or_runtime_aborted; tee exit does not report actual agent status",
     "finished": true,
     "failed_checks": [
@@ -40,6 +42,8 @@
       "verify"
     ],
     "flow_sha256": "2e3130b27534269d1a76ca238e5fc3ddbe60b7683208e1005c8e1e58f1a042a8",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": true,
     "failed_checks": [
@@ -59,6 +63,8 @@
       "prepare"
     ],
     "flow_sha256": "8dd3615b85b8467ea333690468869096d84357865420ae48c8063e8fbd337a50",
+    "protocol": "budget-v3",
+    "qwen_seed_run": null,
     "error": null,
     "finished": true,
     "failed_checks": [
@@ -82,8 +88,98 @@
     "api_tokens": 2413,
     "delivered_checkpoints": [],
     "flow_sha256": "c04da50a9b50e4ba6b43d56358020a84a05d0ee5225bda8f31e0a67bbe63115a",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-230900-eb2a71",
     "error": "Incorrect source file or missing directory alias",
     "finished": true,
     "failed_checks": []
+  },
+  {
+    "run_id": "20261124-235714-7e684c",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": null,
+    "reward": null,
+    "passed_checks": 0,
+    "checks": 0,
+    "api_tokens": 18573,
+    "delivered_checkpoints": [
+      "prepare",
+      "render",
+      "interact"
+    ],
+    "flow_sha256": "4f4572b6059101384b355001562cc285228270086aeebace1f4b2b6483ea0342",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-230900-eb2a71",
+    "error": "Qwen did not confirm the required artifact",
+    "finished": true,
+    "failed_checks": []
+  },
+  {
+    "run_id": "20261125-001217-7de5a5",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": null,
+    "reward": null,
+    "passed_checks": 0,
+    "checks": 0,
+    "api_tokens": 18129,
+    "delivered_checkpoints": [
+      "prepare",
+      "render",
+      "interact"
+    ],
+    "flow_sha256": "8f799ddb20c4ceb619d7e46955571faa1b7fa9bff1fab000387ffdc869f5a084",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-235714-7e684c",
+    "error": "Qwen did not confirm the required artifact: {'ready': False, 'checks': [\"The force simulation does not correctly cluster bubbles by sector; it currently uses a generic centering force instead of distinct sector-based forces (forceX/forceY per sector) to group them. The tooltip visibility class logic is present but the 'visible' class in CSS relies on opacity transition which may conflict with direct class toggling without explicit opacity handling in the class definition.\"]}",
+    "finished": true,
+    "failed_checks": []
+  },
+  {
+    "run_id": "20261125-001334-stock2-rejudge",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 14,
+    "checks": 15,
+    "api_tokens": 18129,
+    "delivered_checkpoints": [
+      "prepare",
+      "render",
+      "interact"
+    ],
+    "flow_sha256": "8f799ddb20c4ceb619d7e46955571faa1b7fa9bff1fab000387ffdc869f5a084",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-235714-7e684c",
+    "error": null,
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_tooltips_non_etf_and_etf"
+    ]
+  },
+  {
+    "run_id": "20261125-002839-e17950",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 14,
+    "checks": 15,
+    "api_tokens": 14750,
+    "delivered_checkpoints": [
+      "prepare",
+      "render",
+      "interact"
+    ],
+    "flow_sha256": "8f799ddb20c4ceb619d7e46955571faa1b7fa9bff1fab000387ffdc869f5a084",
+    "protocol": "budget-v3-structured-edits",
+    "qwen_seed_run": "20261124-235714-7e684c",
+    "error": "Qwen did not confirm the required artifact: {'ready': False, 'checks': ['JSON parse error in previous response due to malformed JSON structure']}",
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_tooltips_non_etf_and_etf"
+    ]
   }
 ]

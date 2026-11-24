@@ -1,0 +1,35 @@
+[
+  {
+    "type": "checkpoint",
+    "stage": "identify",
+    "output": {
+      "q1_answer": 75753182516.0,
+      "q2_answer": 3457,
+      "q3_answer": [
+        "674599105",
+        "H1467J104",
+        "500754106",
+        "615369105",
+        "02079K305"
+      ],
+      "q4_answer": []
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "calculate",
+    "output": {
+      "q1_answer": 0.0,
+      "q2_answer": 0,
+      "q3_answer": [],
+      "q4_answer": []
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "verify",
+    "output": {
+      "verified_path": "/root/answers.json"
+    }
+  }
+]

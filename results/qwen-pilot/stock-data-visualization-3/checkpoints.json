@@ -1,0 +1,57 @@
+[
+  {
+    "type": "checkpoint",
+    "stage": "prepare",
+    "output": {
+      "loader": "tsv",
+      "checkpoint": "Identified stock-descriptions.tsv as the primary source for company details (ticker, name, sector, market cap) to drive the bubble chart and data table.",
+      "description": "stock-descriptions.tsv"
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "render",
+    "output": {
+      "edits": [
+        {
+          "file": "js/visualization.js",
+          "old": "d3.csv('data/stock-descriptions.csv')",
+          "new": "d3.tsv('data/stock-descriptions.tsv')"
+        }
+      ],
+      "checkpoint": "Identified mismatch between requested TSV input file and CSV loader in visualization script; proposed literal replacement to use d3.tsv for correct data parsing."
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "interact",
+    "output": {
+      "edits": [
+        {
+          "file": "js/visualization.js",
+          "old": "      .on('mouseover', function(event, d) {\n        if (d.sector !== 'ETF') {\n          const tooltip = d3.select('#tooltip');\n          tooltip.style('opacity', 1)\n            .html(`<strong>${d.ticker}</strong><br>${d['full name']}<br>Sector: ${d.sector}`)\n            .style('left', (event.pageX + 10) + 'px')\n            .style('top', (event.pageY - 10) + 'px');\n        }\n      })\n      .on('mouseout', function() {\n        d3.select('#tooltip').style('opacity', 0);\n      })",
+          "new": "      .on('mouseover', function(event, d) {\n        if (d.sector !== 'ETF') {\n          const tooltip = d3.select('#tooltip');\n          tooltip.classed('visible', true)\n            .attr('aria-hidden', 'false')\n            .html(`<strong>${d.ticker}</strong><br>${d['full name']}<br>Sector: ${d.sector}`)\n            .style('left', (event.pageX + 10) + 'px')\n            .style('top', (event.pageY - 10) + 'px');\n        }\n      })\n      .on('mouseout', function() {\n        const tooltip = d3.select('#tooltip');\n        tooltip.classed('visible', false)\n          .attr('aria-hidden', 'true');\n      })"
+        }
+      ],
+      "checkpoint": "Updated tooltip event handlers to use .classed('visible', true/false) for visibility toggling and set aria-hidden attribute accordingly, while ensuring tooltips only appear for non-ETF stocks."
+    }
+  },
+  {
+    "type": "checkpoint",
+    "stage": "verify",
+    "output": {
+      "ready": true,
+      "artifact": "output/index.html",
+      "checks": [
+        "Verified loader matches file structure",
+        "Confirmed required data aliases (ticker, full name, sector, marketCap) are used",
+        "Checked charts and table linking via highlightStock function",
+        "Verified visible class toggling and aria-hidden reset for tooltip",
+        "Confirmed ETFs do not show tooltips",
+        "Validated only stock bubbles use SVG circle elements",
+        "Confirmed legend is implemented as div elements",
+        "Checked text truncation is prevented via white-space nowrap and full text rendering"
+      ]
+    }
+  }
+]
