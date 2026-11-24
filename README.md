@@ -4,6 +4,7 @@
 
 - [十题的输入、期望和失败检查](results/CASE-EVIDENCE.md)
 - [前后对照 CSV](results/comparison.csv)
+- [第四周复测报告](results/REPORT.md)
 - [官方判分与运行证据](results/paired-evidence)
 - [RSI 平台运行记录](results/PLATFORM.md)
 - [四类结构化流程](qwen/flows)

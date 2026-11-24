@@ -6,6 +6,8 @@
   "verifier_exit": 0,
   "agent_exit": 0,
   "agent_timed_out": false,
+  "agent_completed": true,
+  "model_steps": 11,
   "error": null,
   "reward": "0",
   "checks": 8,
@@ -18,6 +20,14 @@
   "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
   "model": "qwen3.5-plus",
   "flow_sha256": null,
+  "model_parameters": {
+    "temperature": 0,
+    "max_steps": 100,
+    "max_tokens": 2048,
+    "enable_thinking": false,
+    "tool_stdout_chars": 2000,
+    "tool_stderr_chars": 1000
+  },
   "baseline_image": null,
   "platform_run_id": null,
   "verifier_replay_of": null,

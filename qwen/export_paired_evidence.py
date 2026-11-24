@@ -46,6 +46,8 @@ def verdict(run, destination):
     trace_root = run.with_name(original_run) if original_run else run
     trace = next(trace_root.rglob("agent/qwen.txt"), None)
     events = []
+    model_steps = 0
+    agent_completed = None
     if trace:
         for line in trace.read_text(encoding="utf-8", errors="replace").splitlines():
             try:
@@ -54,6 +56,10 @@ def verdict(run, destination):
                 continue
             if event.get("type") == "flow":
                 events.append({key: event[key] for key in ("event", "node", "retries")})
+            elif event.get("type") == "assistant":
+                model_steps += 1
+            elif event.get("type") == "result":
+                agent_completed = event.get("completed")
     outputs = list((run / "artifacts").rglob("*"))
     if (run / "answer.json").is_file():
         outputs.append(run / "answer.json")
@@ -64,12 +70,15 @@ def verdict(run, destination):
         "official_pass": result.get("passed") is True if official_status else None,
         "official_status": official_status, "verifier_exit": result.get("verifier_exit"),
         "agent_exit": result.get("agent_exit"), "agent_timed_out": result.get("agent_timed_out"),
+        "agent_completed": agent_completed, "model_steps": model_steps if trace else None,
         "error": result.get("error"), "reward": reward,
         "checks": len(tests) if report else None,
         "checks_passed": sum(test["status"] == "passed" for test in tests) if report else None,
         "checks_failed": [test["name"] for test in tests if test["status"] == "failed"],
         "protocol": config.get("protocol"), "upstream_commit": config.get("upstream_commit"),
         "model": config.get("model"), "flow_sha256": config.get("flow_sha256"),
+        "model_parameters": {field: config.get(field) for field in ("temperature", "max_steps", "max_tokens",
+                              "enable_thinking", "tool_stdout_chars", "tool_stderr_chars")},
         "baseline_image": config.get("baseline_image"), "platform_run_id": config.get("platform_run_id"),
         "verifier_replay_of": original_run, "flow_events": events,
         "official_report_sha256": digest(report) if report else None,
@@ -106,7 +115,7 @@ def export(workspace, results_dir):
         if row["status"] == "valid" and treatment.get("official_status") != "valid":
             raise ValueError(f"Treatment is inconsistent with the verifier for {family}/{instance}")
         if treatment:
-            for field in ("model", "protocol", "upstream_commit", "task"):
+            for field in ("model", "model_parameters", "protocol", "upstream_commit", "task"):
                 if treatment[field] != baseline[field]:
                     raise ValueError(f"Paired {field} differs for {family}/{instance}")
             if treatment["flow_sha256"] != row["flow_sha256"]:

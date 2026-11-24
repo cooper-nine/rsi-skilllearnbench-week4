@@ -6,6 +6,8 @@
   "verifier_exit": 0,
   "agent_exit": 0,
   "agent_timed_out": false,
+  "agent_completed": true,
+  "model_steps": 100,
   "error": null,
   "reward": "0",
   "checks": 2,
@@ -17,6 +19,14 @@
   "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
   "model": "qwen3.5-plus",
   "flow_sha256": "7a0045ca4380f051ccf872a3c289fe030fb618c4ee4c497cd6643db74c5f6f75",
+  "model_parameters": {
+    "temperature": 0,
+    "max_steps": 100,
+    "max_tokens": 2048,
+    "enable_thinking": false,
+    "tool_stdout_chars": 2000,
+    "tool_stderr_chars": 1000
+  },
   "baseline_image": "evaluation_financial-analysis-financial-analysis-1_none:qwen-20261118-013516-financial-analysis-1-none",
   "platform_run_id": "fe6251b9-5511-47b8-baa5-8573bfbf2f91",
   "verifier_replay_of": null,
