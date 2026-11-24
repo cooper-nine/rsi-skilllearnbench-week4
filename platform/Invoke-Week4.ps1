@@ -1,6 +1,6 @@
 param(
     [string]$Backend = 'http://127.0.0.1:39911',
-    [ValidateSet('week4', 'week4-earthquake')][string]$Campaign = 'week4'
+    [ValidateSet('week4', 'week4-earthquake', 'week4-artifact-repair')][string]$Campaign = 'week4'
 )
 
 $ErrorActionPreference = 'Stop'

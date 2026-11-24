@@ -1,0 +1,34 @@
+{
+  "task": "financial-analysis-3",
+  "source_run": "20261124-201236-0e9bfa",
+  "platform_run_id": "2cc575ff-b112-4d68-a9fd-9f4eb5128c69",
+  "verifier_exit": 0,
+  "reward": "1",
+  "official_pass": true,
+  "artifact_sha256": "48a58dcb6c0f497afbda85bbe6da8246a5e91751718645cb4a82761c205ce2e9",
+  "events": [
+    {
+      "node": "verify",
+      "event": "route_to_repair",
+      "failed_checks": [
+        "test_outputs.py::test_answer_quality"
+      ]
+    },
+    {
+      "node": "calculate",
+      "event": "enter"
+    },
+    {
+      "node": "calculate",
+      "event": "complete"
+    },
+    {
+      "node": "verify",
+      "event": "enter"
+    },
+    {
+      "node": "verify",
+      "event": "passed"
+    }
+  ]
+}

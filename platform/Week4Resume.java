@@ -35,6 +35,9 @@ public class Week4Resume {
             case "week4-earthquake":
                 script = "run_earthquake_refinement.py";
                 break;
+            case "week4-artifact-repair":
+                script = "run_artifact_repairs.py";
+                break;
             default:
                 throw new IllegalArgumentException("Unknown Week 4 campaign");
         }

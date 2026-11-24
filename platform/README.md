@@ -10,4 +10,6 @@
 
 主批次结束后，可以用 `./platform/Invoke-Week4.ps1 -Campaign week4-earthquake` 运行地震测距提示的受控追加试次。追加试次使用单独的 `earthquake-5-guided-result.json`，保留主批次对照。
 
+用 `./platform/Invoke-Week4.ps1 -Campaign week4-artifact-repair` 发起产物修复。将 `qwen/` 中的修复文件同步到基准工作区，并将 `results/diagnostics/earthquake-5/derive_answer.py` 复制为基准工作区的 `qwen/derive_earthquake_answer.py`。该入口依赖已保留的初版试次、原始数据和容器镜像。结果写入 `output/week4-artifact-repairs/<platformRunId>/`。 [追加结果](../results/ARTIFACT-REPAIR.md)
+
 有效试次按任务、实例和流程哈希复用。复用记录保留原始运行来源。旧命令行试次由 `treatment_origin=cli` 标识。
