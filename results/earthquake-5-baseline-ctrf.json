@@ -1,0 +1,98 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 6,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794976114.3001342,
+            "stop": 1794976114.328201
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_distance_within_tolerance",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0009452249942114577,
+                "start": 1794976114.3096406,
+                "stop": 1794976114.3203425,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestEarthquakeTask testMethod=test_distance_within_tolerance>\n\n    def test_distance_within_tolerance(self):\n        \"\"\"\n        Verify computed distance is within tolerance (\u00b10.01 km).\n    \n        The distance represents the furthest earthquake within the\n        Pacific plate from the Pacific plate boundary in 2024.\n        \"\"\"\n        distance = self.result.get(\"distance_km\")\n        self.assertIsInstance(distance, (int, float), \"Distance should be a number\")\n    \n        # Sanity checks\n        self.assertGreater(distance, 0.0, msg=\"Distance should be positive\")\n        self.assertLess(\n            distance, 10000.0, msg=\"Distance seems unreasonably large (> 10000 km)\"\n        )\n    \n>       self.assertAlmostEqual(\n            distance,\n            self.EXPECTED_RESULT[\"distance_km\"],\n            delta=self.DISTANCE_TOLERANCE,\n            msg=(\n                f\"Expected {self.EXPECTED_RESULT['distance_km']} \u00b1 {self.DISTANCE_TOLERANCE} km, \"\n                f\"got {distance} km\"\n            ),\n        )\nE       AssertionError: 1732.3 != 419.32 within 0.01 delta (1312.98 difference) : Expected 419.32 \u00b1 0.01 km, got 1732.3 km\n\n/tests/test_outputs.py:161: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0010092370066558942,
+                "start": 1794976114.3206336,
+                "stop": 1794976114.3248174,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestEarthquakeTask testMethod=test_earthquake_id_correct>\n\n    def test_earthquake_id_correct(self):\n        \"\"\"\n        Verify earthquake ID is correct.\n    \n        This is the most critical test - it confirms the correct earthquake\n        was identified (furthest from Pacific plate boundary within Pacific plate).\n        \"\"\"\n        expected = self.EXPECTED_RESULT[\"id\"]\n        actual = self.result.get(\"id\")\n    \n>       self.assertEqual(\n            actual,\n            expected,\n            f\"Expected id '{expected}', got '{actual}' - wrong earthquake selected!\",\n        )\nE       AssertionError: '7000myfa' != 'us7000myfa'\nE       - 7000myfa\nE       + us7000myfa\nE       ? ++\nE        : Expected id 'us7000myfa', got '7000myfa' - wrong earthquake selected!\n\n/tests/test_outputs.py:77: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_latitude_within_tolerance",
+                "status": "passed",
+                "duration": 0.00034388199856039137,
+                "start": 1794976114.325045,
+                "stop": 1794976114.325517,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_longitude_within_tolerance",
+                "status": "passed",
+                "duration": 0.00037593700108118355,
+                "start": 1794976114.3256583,
+                "stop": 1794976114.3261626,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_magnitude_within_tolerance",
+                "status": "passed",
+                "duration": 0.0003542850026860833,
+                "start": 1794976114.326316,
+                "stop": 1794976114.3267794,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_output_file_and_structure",
+                "status": "passed",
+                "duration": 0.00019295799575047567,
+                "start": 1794976114.3269155,
+                "stop": 1794976114.3271883,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_place_correct",
+                "status": "passed",
+                "duration": 0.0001785120039130561,
+                "start": 1794976114.327301,
+                "stop": 1794976114.3275535,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_time_correct",
+                "status": "passed",
+                "duration": 0.00020211099763400853,
+                "start": 1794976114.327643,
+                "stop": 1794976114.3279145,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            }
+        ]
+    }
+}

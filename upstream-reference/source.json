@@ -1,0 +1,6 @@
+{
+  "upstream": "https://github.com/cxcscmu/SkillLearnBench",
+  "commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "file_count": 145,
+  "selection": "Unmodified task definitions, tests and evaluation scripts. Runtime data fetched by prepare.py."
+}

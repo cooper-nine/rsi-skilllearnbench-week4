@@ -1,0 +1,62 @@
+[
+  {
+    "family": "earthquake-plate-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-122708-583ff7"
+  },
+  {
+    "family": "financial-analysis",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-114709-707627"
+  },
+  {
+    "family": "financial-analysis",
+    "instance": 3,
+    "baseline_passed": false,
+    "baseline_run": "20261118-123134-1043bc"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-124901-2690d3"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-150937-21cedf"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 4,
+    "baseline_passed": false,
+    "baseline_run": "20261118-140525-7fb55f"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-134937-19d1a4"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 2,
+    "baseline_passed": false,
+    "baseline_run": "20261118-141811-3aa771"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 3,
+    "baseline_passed": false,
+    "baseline_run": "20261118-145831-ff084f"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 4,
+    "baseline_passed": false,
+    "baseline_run": "20261118-152648-61d383"
+  }
+]

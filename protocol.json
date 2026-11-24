@@ -1,0 +1,13 @@
+{
+  "model": "qwen3.5-plus",
+  "temperature": 0,
+  "thinking": false,
+  "max_tokens": 2048,
+  "max_steps": 100,
+  "stdout_chars": 2000,
+  "stderr_chars": 1000,
+  "history": "recent 3 + deterministic excerpts",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "combined_budget_cny": 20,
+  "smoke_budget_cny": 3
+}
