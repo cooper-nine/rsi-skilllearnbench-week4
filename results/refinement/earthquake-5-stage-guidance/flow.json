@@ -1,0 +1,53 @@
+{
+  "id": "earthquake-plate-calculation",
+  "entry": "prepare",
+  "nodes": [
+    {
+      "id": "prepare",
+      "skill": "geospatial-analysis",
+      "sourceSha256": "eb0026e2b52d5cd6d92bdd0009fad0483092bb9bb9fd8b542932c2644bff138b",
+      "text": "---\r\nname: geospatial-analysis\r\ndescription: Analyze geospatial data using geopandas with proper coordinate projections. Use when calculating distances between geographic features, performing spatial filtering, or working with plate boundaries and earthquake data.\r\nlicense: MIT\r\n---\r\n\r\n# Geospatial Analysis with GeoPandas\r\n\r\n## Overview\r\n\r\nWhen working with geographic data (earthquakes, plate boundaries, etc.), using geopandas with proper coordinate projections provides accurate distance calculations and efficient spatial operations. This guide covers best practices for geospatial analysis.\r\n\r\n## Key Concepts\r\n\r\n### Geographic vs Projected Coordinate Systems\r\n\r\n| Coordinate System | Type | Units | Use Case |\r\n|-------------------|------|-------|----------|\r\n| EPSG:4326 (WGS84) | Geographic | Degrees (lat/lon) | Data storage, display |\r\n| EPSG:4087 (World Equidistant Cylindrical) | Projected | Meters | Distance calculations |\r\n\r\n**Critical Rule**: Never calculate distances directly in geographic coordinates (EPSG:4326). Always project to a metric coordinate system first.\r\n\r\n### Why Projection Matters\r\n\r\n```python\r\n# ❌ INCORRECT: Calculating distance in EPSG:4326\r\n# This treats degrees as if they were equal distances everywhere on Earth\r\ngdf = gpd.GeoDataFrame(..., crs=\"EPSG:4326\")\r\ndistance = point1.distance(point2)  # Wrong! Returns degrees, not meters\r\n\r\n# ✅ CORRECT: Project to metric CRS first\r\ngdf_projected = gdf.to_crs(\"EPSG:4087\")\r\ndistance_meters = point1_proj.distance(point2_proj)  # Correct! Returns meters\r\ndistance_km = distance_meters / 1000.0\r\n```\r\n\r\n## Loading Geospatial Data\r\n\r\n### From GeoJSON Files\r\n\r\n```python\r\nimport geopandas as gpd\r\n\r\n# Load GeoJSON files directly\r\ngdf_plates = gpd.read_file(\"plates.json\")\r\ngdf_boundaries = gpd.read_file(\"boundaries.json\")\r\n```\r\n\r\n### From Regular Data with Coordinates\r\n\r\n```python\r\nfrom shapely.geometry import Point\r\nimport geopandas as gpd\r\n\r\n# Convert coordinate data to GeoDataFrame\r\ndata = [\r\n    {\"id\": 1, \"lat\": 35.0, \"lon\": 140.0, \"value\": 5.5},\r\n    {\"id\": 2, \"lat\": 36.0, \"lon\": 141.0, \"value\": 6.0},\r\n]\r\n\r\ngeometry = [Point(row[\"lon\"], row[\"lat\"]) for row in data]\r\ngdf = gpd.GeoDataFrame(data, geometry=geometry, crs=\"EPSG:4326\")\r\n```\r\n\r\n"
+    },
+    {
+      "id": "filter",
+      "skill": "geospatial-analysis",
+      "sourceSha256": "eb0026e2b52d5cd6d92bdd0009fad0483092bb9bb9fd8b542932c2644bff138b",
+      "text": "## Spatial Filtering\r\n\r\n### Finding Points Within a Polygon\r\n\r\n```python\r\n# Get the polygon of interest\r\ntarget_poly = gdf_plates[gdf_plates[\"Name\"] == \"Pacific\"].geometry.unary_union\r\n\r\n# Filter points that fall within the polygon\r\npoints_inside = gdf_points[gdf_points.within(target_poly)]\r\n\r\nprint(f\"Found {len(points_inside)} points inside the polygon\")\r\n```\r\n\r\n### Using `.unary_union` for Multiple Geometries\r\n\r\nWhen you have multiple polygons or lines that should be treated as one:\r\n\r\n```python\r\n# Combine multiple boundary segments into one geometry\r\nall_boundaries = gdf_boundaries.geometry.unary_union\r\n\r\n# Or filter first, then combine\r\npacific_boundaries = gdf_boundaries[\r\n    gdf_boundaries[\"Name\"].str.contains(\"PA\")\r\n].geometry.unary_union\r\n```\r\n\r\n",
+      "guidance": "Record the selected plate code and earthquake together before proceeding. If a field description names a reference plate that conflicts with the main objective, carry the main objective’s reference plate into the distance stage."
+    },
+    {
+      "id": "measure",
+      "skill": "geospatial-analysis",
+      "sourceSha256": "eb0026e2b52d5cd6d92bdd0009fad0483092bb9bb9fd8b542932c2644bff138b",
+      "text": "## Distance Calculations\r\n\r\n### Point to Line/Boundary Distance\r\n\r\n```python\r\n# 1. Load your data\r\ngdf_points = gpd.read_file(\"points.json\")\r\ngdf_boundaries = gpd.read_file(\"boundaries.json\")\r\n\r\n# 2. Project to metric coordinate system\r\nMETRIC_CRS = \"EPSG:4087\"\r\npoints_proj = gdf_points.to_crs(METRIC_CRS)\r\nboundaries_proj = gdf_boundaries.to_crs(METRIC_CRS)\r\n\r\n# 3. Combine boundary segments if needed\r\nboundary_geom = boundaries_proj.geometry.unary_union\r\n\r\n# 4. Calculate distances (returns meters)\r\ngdf_points[\"distance_m\"] = points_proj.geometry.distance(boundary_geom)\r\ngdf_points[\"distance_km\"] = gdf_points[\"distance_m\"] / 1000.0\r\n```\r\n\r\n### Finding Furthest Point\r\n\r\n```python\r\n# Sort by distance and get the furthest point\r\nfurthest = gdf_points.nlargest(1, \"distance_km\").iloc[0]\r\n\r\nprint(f\"Furthest point: {furthest['id']}\")\r\nprint(f\"Distance: {furthest['distance_km']:.2f} km\")\r\n```\r\n\r\n## Common Workflow Pattern\r\n\r\nHere's a complete example for analyzing earthquakes near plate boundaries:\r\n\r\n```python\r\nimport geopandas as gpd\r\nfrom shapely.geometry import Point\r\n\r\n# 1. Load data\r\nearthquakes_data = [...]  # Your earthquake data\r\ngdf_plates = gpd.read_file(\"plates.json\")\r\ngdf_boundaries = gpd.read_file(\"boundaries.json\")\r\n\r\n# 2. Create earthquake GeoDataFrame\r\ngeometry = [Point(eq[\"longitude\"], eq[\"latitude\"]) for eq in earthquakes_data]\r\ngdf_eq = gpd.GeoDataFrame(earthquakes_data, geometry=geometry, crs=\"EPSG:4326\")\r\n\r\n# 3. Spatial filtering - find earthquakes in specific plate\r\ntarget_plate = gdf_plates[gdf_plates[\"Code\"] == \"PA\"].geometry.unary_union\r\nearthquakes_in_plate = gdf_eq[gdf_eq.within(target_plate)].copy()\r\n\r\n# 4. Calculate distances (project to metric CRS)\r\nMETRIC_CRS = \"EPSG:4087\"\r\neq_proj = earthquakes_in_plate.to_crs(METRIC_CRS)\r\n\r\n# Filter and combine relevant boundaries\r\nplate_boundaries = gdf_boundaries[\r\n    gdf_boundaries[\"Name\"].str.contains(\"PA\")\r\n].to_crs(METRIC_CRS).geometry.unary_union\r\n\r\n# Calculate distances\r\nearthquakes_in_plate[\"distance_km\"] = eq_proj.geometry.distance(plate_boundaries) / 1000.0\r\n\r\n# 5. Find the furthest earthquake\r\nfurthest_eq = earthquakes_in_plate.nlargest(1, \"distance_km\").iloc[0]\r\n```\r\n\r\n## Filtering by Attributes\r\n\r\n```python\r\n# Filter by name or code\r\npacific_plate = gdf_plates[gdf_plates[\"PlateName\"] == \"Pacific\"]\r\npacific_plate_alt = gdf_plates[gdf_plates[\"Code\"] == \"PA\"]\r\n\r\n# Filter boundaries involving a specific plate\r\npacific_bounds = gdf_boundaries[\r\n    (gdf_boundaries[\"PlateA\"] == \"PA\") | \r\n    (gdf_boundaries[\"PlateB\"] == \"PA\")\r\n]\r\n\r\n# String pattern matching\r\npa_related = gdf_boundaries[gdf_boundaries[\"Name\"].str.contains(\"PA\")]\r\n```\r\n\r\n## Performance Tips\r\n\r\n1. **Filter before projecting**: Reduce data size before expensive operations\r\n2. **Project once**: Convert to metric CRS once, not in loops\r\n3. **Use `.unary_union`**: Combine geometries before distance calculations\r\n4. **Copy when modifying**: Use `.copy()` when creating filtered DataFrames\r\n\r\n```python\r\n# Good: Filter first, then project\r\nsmall_subset = gdf_large[gdf_large[\"region\"] == \"Pacific\"]\r\nsmall_projected = small_subset.to_crs(METRIC_CRS)\r\n\r\n# Avoid: Projecting large dataset just to filter\r\n# gdf_projected = gdf_large.to_crs(METRIC_CRS)\r\n# small_subset = gdf_projected[gdf_projected[\"region\"] == \"Pacific\"]\r\n```\r\n\r\n",
+      "guidance": "Carry forward the plate ID and the earthquake selected by the filter node. If the task’s main objective and the field description name conflicting reference plates, follow the main objective. Measure to the selected plate’s edge in a metric projection. Cross-check the polygon edge distance against the nearest recorded boundary segment incident to the same plate. Keep the verified earthquake ID and round only the final distance."
+    },
+    {
+      "id": "verify",
+      "skill": "geospatial-analysis",
+      "sourceSha256": "eb0026e2b52d5cd6d92bdd0009fad0483092bb9bb9fd8b542932c2644bff138b",
+      "text": "## Common Pitfalls\r\n\r\n| Issue | Problem | Solution |\r\n|-------|---------|----------|\r\n| Distance in degrees | Using EPSG:4326 for distance calculations | Project to EPSG:4087 or similar metric CRS |\r\n| Antimeridian issues | Manual longitude adjustments (±360) | Use geopandas spatial operations, they handle it |\r\n| Slow performance | Calculating distance to each boundary point separately | Use `.unary_union` + single `.distance()` call |\r\n| Missing geometries | Some features have no geometry | Filter with `gdf[gdf.geometry.notna()]` |\r\n\r\n## When NOT to Use Manual Calculations\r\n\r\nAvoid implementing your own:\r\n- Haversine distance formulas (use geopandas projections instead)\r\n- Point-in-polygon checks (use `.within()`)\r\n- Iterating through boundary points (use `.distance()` with `.unary_union`)\r\n\r\nThese manual approaches are slower, more error-prone, and less accurate than geopandas methods.\r\n\r\n## Best Practices Summary\r\n\r\n1. ✅ Load GeoJSON with `gpd.read_file()`\r\n2. ✅ Use `.within()` for spatial filtering\r\n3. ✅ Project to metric CRS (`EPSG:4087`) before distance calculations\r\n4. ✅ Combine geometries with `.unary_union` before distance calculation\r\n5. ✅ Use `.distance()` method for point-to-geometry distances\r\n6. ✅ Use `.nlargest()` / `.nsmallest()` for finding extreme values\r\n7. ❌ Never calculate distances in EPSG:4326\r\n8. ❌ Avoid manual Haversine implementations\r\n9. ❌ Don't iterate through individual boundary points\r\n"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prepare",
+      "to": "filter",
+      "on": "complete"
+    },
+    {
+      "from": "filter",
+      "to": "measure",
+      "on": "complete"
+    },
+    {
+      "from": "measure",
+      "to": "verify",
+      "on": "complete"
+    }
+  ],
+  "retry": {
+    "on": "shell_failure",
+    "limitPerNode": 1
+  }
+}

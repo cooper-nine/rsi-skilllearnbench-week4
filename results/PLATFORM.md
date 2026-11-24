@@ -14,3 +14,7 @@ Spring Boot `AppTestStarter` 在本机端口 39911 启动。请求 `POST /api/en
 FlowEngine 循环节点的集成测试与条件、嵌套、多节点回归共运行 5 项，5 项通过。集成测试的循环体使用测试回调。四类研究任务由上述 Spring Boot 流程负责启动，容器内的具体阶段由 Qwen 适配器执行。 [循环节点测试记录](platform/engine-tests.json)
 
 主批次中其余九题均由平台发起。GDP 第 1 题的工作簿首次判题因依赖下载中断，随后以同一产物补判。地震第 5 题保留原命令行试次，平台调度器复用该正式失败记录。平台画布上的节点编辑和现场交互仍缺直接证据。人工操作次数 H0 和改进方案的操作次数尚未实测。 [配对证据](comparison.csv)
+
+地震的追加同模型试次也由 `RSI_WEEK4_RESUME` 发起。首次追加把题意冲突处理放在筛选及测距阶段，模型在准备阶段先输出了旧的测距结果，官方判分仍为 7/8。 [首次追加的官方判分与启动响应](refinement/earthquake-5-stage-guidance/)
+
+第二次追加把冲突处理规则前移到准备阶段，原版 verifier 正常退出并记录 7/8、reward=0。 [第二次追加的官方判分与启动响应](refinement/earthquake-5/)

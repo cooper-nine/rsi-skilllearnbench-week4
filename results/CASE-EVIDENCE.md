@@ -15,6 +15,8 @@ test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct
 
 复测输出的事件 ID 已匹配。距离为 1732.30 km。逐项从 6/8 变为 7/8，距离仍失败。外层运行器报告 verifier 超时。 [复测判分](earthquake-5-ctrf.json)
 
+两次平台追加同模型试次均为 7/8。确定性测距复核通过 8/8，原版 verifier 正常退出，reward=1。 [平台试次](refinement/earthquake-5/) · [确定性复核](diagnostics/earthquake-5/)
+
 ## financial-analysis/1
 
 - 输入　Q2/Q3 2025 SEC 13F 数据和本题问题列表。 [原题](../upstream-reference/tasks/financial-analysis/financial-analysis-1/instruction.md)

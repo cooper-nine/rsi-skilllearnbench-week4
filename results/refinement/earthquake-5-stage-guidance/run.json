@@ -1,0 +1,102 @@
+{
+  "task": "earthquake-plate-calculation/earthquake-plate-calculation-5",
+  "run": "20261124-204929-b953ab",
+  "official_pass": false,
+  "official_status": "valid",
+  "verifier_exit": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "agent_completed": true,
+  "model_steps": 23,
+  "error": null,
+  "reward": "0",
+  "checks": 8,
+  "checks_passed": 7,
+  "checks_failed": [
+    "test_outputs.py::TestEarthquakeTask::test_distance_within_tolerance"
+  ],
+  "protocol": "budget-v3",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "qwen3.5-plus",
+  "flow_sha256": "a4b100068d09762565bc7e50a0326942ff7082d2833bad479873018fe56413d0",
+  "model_parameters": {
+    "temperature": 0,
+    "max_steps": 100,
+    "max_tokens": 2048,
+    "enable_thinking": false,
+    "tool_stdout_chars": 2000,
+    "tool_stderr_chars": 1000
+  },
+  "baseline_image": "evaluation_earthquake-plate-calculation-earthquake-plate-calculation-1_none:qwen-20261117-203355",
+  "platform_run_id": "bf9a5d49-760a-422f-9efa-2e82f471b182",
+  "verifier_replay_of": null,
+  "flow_events": [
+    {
+      "event": "enter",
+      "node": "prepare",
+      "retries": 0
+    },
+    {
+      "event": "retry",
+      "node": "prepare",
+      "retries": 1
+    },
+    {
+      "event": "complete",
+      "node": "prepare",
+      "retries": 1
+    },
+    {
+      "event": "enter",
+      "node": "filter",
+      "retries": 0
+    },
+    {
+      "event": "premature_final",
+      "node": "filter",
+      "retries": 0
+    },
+    {
+      "event": "complete",
+      "node": "filter",
+      "retries": 0
+    },
+    {
+      "event": "enter",
+      "node": "measure",
+      "retries": 0
+    },
+    {
+      "event": "premature_final",
+      "node": "measure",
+      "retries": 0
+    },
+    {
+      "event": "complete",
+      "node": "measure",
+      "retries": 0
+    },
+    {
+      "event": "enter",
+      "node": "verify",
+      "retries": 0
+    },
+    {
+      "event": "premature_final",
+      "node": "verify",
+      "retries": 0
+    },
+    {
+      "event": "complete",
+      "node": "verify",
+      "retries": 0
+    }
+  ],
+  "official_report_sha256": "39160dd96a7813c84f45190f7437982618954ae12e246f4b9bd328e39380f0dc",
+  "retained_outputs": [
+    {
+      "path": "answer.json",
+      "sha256": "832f85ede258d272252e637268c325118dc51650954483649c8a8887031ed1b1"
+    }
+  ]
+}

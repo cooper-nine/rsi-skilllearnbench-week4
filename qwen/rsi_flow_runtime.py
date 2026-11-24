@@ -28,6 +28,8 @@ class SkillFlow:
             instruction += "\nA shell command failed. Review its output and repair or recover before advancing."
         if self.retries >= self.retry_limit and self.failed:
             instruction += "\nThe recovery limit was reached. Advance only if recovery is unnecessary for this stage."
+        if node.get("guidance"):
+            instruction += "\n" + node["guidance"]
         return instruction + "\n\n" + node["text"]
 
     def advance(self):

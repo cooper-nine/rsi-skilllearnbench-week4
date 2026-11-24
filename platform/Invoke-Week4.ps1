@@ -1,8 +1,11 @@
-param([string]$Backend = 'http://127.0.0.1:39911')
+param(
+    [string]$Backend = 'http://127.0.0.1:39911',
+    [ValidateSet('week4', 'week4-earthquake')][string]$Campaign = 'week4'
+)
 
 $ErrorActionPreference = 'Stop'
 if (-not $env:RSI_WEEK4_TOKEN) { throw 'Set RSI_WEEK4_TOKEN for this terminal.' }
-$params = @{ campaignId = 'week4'; token = $env:RSI_WEEK4_TOKEN }
+$params = @{ campaignId = $Campaign; token = $env:RSI_WEEK4_TOKEN }
 $body = @{ flowId = 'RSI_WEEK4_RESUME'; params = $params } | ConvertTo-Json -Compress
 $response = Invoke-RestMethod -Uri "$Backend/api/engine/flow" -Method Post -ContentType 'application/json' -Body $body
 $launch = $response.data.value

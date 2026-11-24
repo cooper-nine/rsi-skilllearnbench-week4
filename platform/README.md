@@ -8,4 +8,6 @@
 4. 在有相同 `RSI_WEEK4_TOKEN` 的终端运行 `./platform/Invoke-Week4.ps1`。响应中的 `data.value.platformRunId` 对应基准工作区的 `output/qwen_rsi_flow/platform/<id>.log`。重复请求在活动任务存续时返回相同运行 ID。
 5. 通过 `output/qwen_rsi_flow/paired-results.csv` 检查逐题状态。使用 `python qwen/export_paired_evidence.py <基准工作区>` 导出报告和官方 CTRF。
 
+主批次结束后，可以用 `./platform/Invoke-Week4.ps1 -Campaign week4-earthquake` 运行地震测距提示的受控追加试次。追加试次使用单独的 `earthquake-5-guided-result.json`，保留主批次对照。
+
 有效试次按任务、实例和流程哈希复用。复用记录保留原始运行来源。旧命令行试次由 `treatment_origin=cli` 标识。

@@ -107,14 +107,14 @@ def baseline_image(family, instance):
     return match[1] if result.returncode == 0 else None
 
 
-def run_case(case, env):
+def run_case(case, env, flow_path=None):
     family, instance = case["family"], case["instance"]
     previous = list(matching_runs(case))
     valid = next((path for path in previous if completed_status(path)), None)
     if not valid:
         command = [sys.executable, "-u", str(QWEN / "run_qwen_smoke.py"), "--mode", "human_authored",
                    "--task", family, "--instance", str(instance), "--stage", "formal",
-                   "--flow", str(QWEN / "flows" / (family + ".json"))]
+                   "--flow", str(flow_path or QWEN / "flows" / (family + ".json"))]
         image = baseline_image(family, instance)
         if image:
             command.extend(["--image", image])
