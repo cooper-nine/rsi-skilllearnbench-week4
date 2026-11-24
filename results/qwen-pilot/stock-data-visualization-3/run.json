@@ -1,0 +1,26 @@
+{
+  "run_id": "20261124-233908-d71b96",
+  "model": "qwen3.5-plus",
+  "official_pass": false,
+  "verifier_exit": 0,
+  "reward": "0",
+  "passed_checks": 8,
+  "checks": 15,
+  "api_tokens": 429266,
+  "delivered_checkpoints": [
+    "prepare",
+    "render"
+  ],
+  "flow_sha256": "c9908ff6073304e837fde35cac1b9b2cdeebdf6665aa59ed2b17053b0762829e",
+  "error": null,
+  "finished": true,
+  "failed_checks": [
+    "test_outputs.py::test_bubble_chart_rendering",
+    "test_outputs.py::test_data_table",
+    "test_outputs.py::test_tooltips_non_etf_and_etf",
+    "test_outputs.py::test_interactive_linking",
+    "test_outputs.py::test_market_cap_formatting",
+    "test_outputs.py::test_sector_clustering",
+    "test_outputs.py::test_legend_completeness"
+  ]
+}

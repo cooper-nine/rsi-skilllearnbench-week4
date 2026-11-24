@@ -1,0 +1,15 @@
+{
+  "run_id": "20261124-202303-42cdb5",
+  "model": "qwen3.5-plus",
+  "official_pass": true,
+  "verifier_exit": 0,
+  "reward": "1",
+  "passed_checks": 27,
+  "checks": 27,
+  "api_tokens": 661558,
+  "delivered_checkpoints": [],
+  "flow_sha256": "5f9798778ed507bcd25709de6ed1fe545685aa62b960a8e2f077660996384c71",
+  "error": null,
+  "finished": true,
+  "failed_checks": []
+}

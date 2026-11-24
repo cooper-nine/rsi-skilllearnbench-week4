@@ -1,0 +1,78 @@
+[
+  {
+    "run_id": "20261124-220944-f536e7",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 0,
+    "checks": 2,
+    "api_tokens": 189900,
+    "delivered_checkpoints": [],
+    "flow_sha256": "48cb0a2e9d697e3d83ae001ad630e67ac917330a8fae016a937c026ae323d288",
+    "error": "agent_api_or_runtime_aborted; tee exit does not report actual agent status",
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_file_exists",
+      "test_outputs.py::test_answer_quality"
+    ]
+  },
+  {
+    "run_id": "20261124-222943-42f360",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 1,
+    "checks": 2,
+    "api_tokens": 234197,
+    "delivered_checkpoints": [
+      "identify",
+      "calculate",
+      "verify"
+    ],
+    "flow_sha256": "d4517d62c768d8f71a523df37d1a3a9826ff17127a1501960b3064977c7d4df8",
+    "error": null,
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_answer_quality"
+    ]
+  },
+  {
+    "run_id": "20261124-232202-e7f952",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 0,
+    "checks": 2,
+    "api_tokens": 182603,
+    "delivered_checkpoints": [
+      "identify",
+      "calculate",
+      "verify"
+    ],
+    "flow_sha256": "6ecbf042542a35e14df600fc99f860182866dbd91027c8cfe21ba1831852bff0",
+    "error": null,
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_file_exists",
+      "test_outputs.py::test_answer_quality"
+    ]
+  },
+  {
+    "run_id": "20261124-235252-e6a388",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": null,
+    "reward": null,
+    "passed_checks": 0,
+    "checks": 0,
+    "api_tokens": 0,
+    "delivered_checkpoints": [],
+    "flow_sha256": "102ad36cb5349f97ae94fe2dca0ae5420ddb0422840aa20be399fe4e2a022e34",
+    "error": "HTTP Error 502: Bad Gateway",
+    "finished": true,
+    "failed_checks": []
+  }
+]

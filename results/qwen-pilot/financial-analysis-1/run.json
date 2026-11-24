@@ -1,0 +1,21 @@
+{
+  "run_id": "20261124-222943-4f01a9",
+  "model": "qwen3.5-plus",
+  "official_pass": false,
+  "verifier_exit": 0,
+  "reward": "0",
+  "passed_checks": 1,
+  "checks": 2,
+  "api_tokens": 301332,
+  "delivered_checkpoints": [
+    "identify",
+    "calculate",
+    "verify"
+  ],
+  "flow_sha256": "d4517d62c768d8f71a523df37d1a3a9826ff17127a1501960b3064977c7d4df8",
+  "error": null,
+  "finished": true,
+  "failed_checks": [
+    "test_outputs.py::test_answer_quality"
+  ]
+}

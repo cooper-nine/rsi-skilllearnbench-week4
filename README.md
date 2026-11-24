@@ -3,6 +3,7 @@
 本项目比较同一道题在原始人工 Skill 组和结构化 Skill 组的结果。两组使用相同任务输入、官方 verifier 和既有 budget-v3 协议。复测选取原人工 Skill 组已经失败的十题，覆盖地震、金融、加权 GDP 和股票可视化。
 
 - [十题的输入、期望和失败检查](results/CASE-EVIDENCE.md)
+- [Qwen API 编排复测与四类画布](results/QWEN-PILOT.md)
 - [前后对照 CSV](results/comparison.csv)
 - [第四周复测报告](results/REPORT.md)
 - [追加修复的整题验收结果](results/ARTIFACT-REPAIR.md)

@@ -1,0 +1,22 @@
+{
+  "run_id": "20261124-230900-eb2a71",
+  "model": "qwen3.5-plus",
+  "official_pass": false,
+  "verifier_exit": 0,
+  "reward": "0",
+  "passed_checks": 14,
+  "checks": 15,
+  "api_tokens": 376516,
+  "delivered_checkpoints": [
+    "prepare",
+    "render",
+    "interact",
+    "verify"
+  ],
+  "flow_sha256": "2e3130b27534269d1a76ca238e5fc3ddbe60b7683208e1005c8e1e58f1a042a8",
+  "error": null,
+  "finished": true,
+  "failed_checks": [
+    "test_outputs.py::test_tooltips_non_etf_and_etf"
+  ]
+}

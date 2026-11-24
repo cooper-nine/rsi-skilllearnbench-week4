@@ -1,0 +1,102 @@
+[
+  {
+    "run_id": "20261124-220948-5bc0f4",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 13,
+    "checks": 15,
+    "api_tokens": 102000,
+    "delivered_checkpoints": [],
+    "flow_sha256": "17f9abe47ef0b5dacaf6b2e0d9b7b63d0b67c646de3b3e292a6bdb9e043c1c82",
+    "error": "agent_api_or_runtime_aborted; tee exit does not report actual agent status",
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_output_structure_and_files[/root/output/data/indiv-stock-indiv-stock/ directory]",
+      "test_outputs.py::test_tooltips_non_etf_and_etf"
+    ]
+  },
+  {
+    "run_id": "20261124-230322-a22de3",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 14,
+    "checks": 15,
+    "api_tokens": 360038,
+    "delivered_checkpoints": [
+      "prepare",
+      "render",
+      "interact",
+      "verify"
+    ],
+    "flow_sha256": "2e3130b27534269d1a76ca238e5fc3ddbe60b7683208e1005c8e1e58f1a042a8",
+    "error": null,
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_tooltips_non_etf_and_etf"
+    ]
+  },
+  {
+    "run_id": "20261124-233319-7375da",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": 0,
+    "reward": "0",
+    "passed_checks": 7,
+    "checks": 15,
+    "api_tokens": 415922,
+    "delivered_checkpoints": [
+      "prepare",
+      "render"
+    ],
+    "flow_sha256": "afeb475de51fd6eb3f0fbc1f977e61986715d8d8671597a415ceb3fd351d4b26",
+    "error": null,
+    "finished": true,
+    "failed_checks": [
+      "test_outputs.py::test_output_structure_and_files[/root/output/index.html-index.html]",
+      "test_outputs.py::test_bubble_chart_rendering",
+      "test_outputs.py::test_data_table",
+      "test_outputs.py::test_tooltips_non_etf_and_etf",
+      "test_outputs.py::test_interactive_linking",
+      "test_outputs.py::test_market_cap_formatting",
+      "test_outputs.py::test_sector_clustering",
+      "test_outputs.py::test_legend_completeness"
+    ]
+  },
+  {
+    "run_id": "20261124-235114-cacbd0",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": null,
+    "reward": null,
+    "passed_checks": 0,
+    "checks": 0,
+    "api_tokens": 2403,
+    "delivered_checkpoints": [],
+    "flow_sha256": "c04da50a9b50e4ba6b43d56358020a84a05d0ee5225bda8f31e0a67bbe63115a",
+    "error": "Incorrect source file or missing directory alias",
+    "finished": true,
+    "failed_checks": []
+  },
+  {
+    "run_id": "20261124-235639-135ea2",
+    "model": "qwen3.5-plus",
+    "official_pass": false,
+    "verifier_exit": null,
+    "reward": null,
+    "passed_checks": 0,
+    "checks": 0,
+    "api_tokens": null,
+    "delivered_checkpoints": [
+      "prepare",
+      "render"
+    ],
+    "flow_sha256": "4f4572b6059101384b355001562cc285228270086aeebace1f4b2b6483ea0342",
+    "error": null,
+    "finished": false,
+    "failed_checks": []
+  }
+]
