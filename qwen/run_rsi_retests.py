@@ -79,21 +79,25 @@ def completed_status(path):
     result = json.loads(report.read_bytes())
     if result.get("error") or result.get("agent_exit") is None or not isinstance(result.get("passed"), bool):
         return None
-    if result.get("verifier_exit") == 0 and any(path.rglob("reward.txt")):
-        return "valid"
-    if result.get("verifier_exit") != -1 or result["passed"]:
-        return None
-
-    # An outer timeout never qualifies as a pass. Preserve a conclusive failed
-    # assertion when the verifier managed to save its completed report.
+    exit_code = result.get("verifier_exit")
     for report in path.rglob("verifier/ctrf.json"):
         try:
             evidence = json.loads(report.read_bytes())["results"]
             summary = evidence["summary"]
-            complete = summary["tests"] == len(evidence["tests"]) and summary["pending"] == 0
-            if complete and any(test["status"] == "failed" for test in evidence["tests"]):
-                return "assertion_failed_outer_timeout"
-        except (ValueError, KeyError, TypeError):
+            tests = evidence["tests"]
+            if not tests or summary["tests"] != len(tests) or summary["pending"] != 0:
+                continue
+            if exit_code == 0:
+                reward = (report.parent / "reward.txt").read_text(encoding="utf-8").strip()
+                if result["passed"]:
+                    if reward == "1" and all(test["status"] == "passed" for test in tests):
+                        return "valid"
+                elif reward == "0" and any(test["status"] == "failed" for test in tests):
+                    return "valid"
+            elif exit_code == -1 and not result["passed"]:
+                if any(test["status"] == "failed" for test in tests):
+                    return "assertion_failed_outer_timeout"
+        except (OSError, ValueError, KeyError, TypeError):
             continue
     return None
 
