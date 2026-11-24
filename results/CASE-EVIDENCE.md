@@ -65,7 +65,7 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable
 test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 ```
 
-[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/weighted-gdp-calculation-1/)
+改编前 11/27，改编后 13/27，官方 reward=0。首次判题下载 `uv` 失败。保留首次环境错误，对同一份工作簿运行未改动的官方 verifier 得到后续判分。 [配对证据](paired-evidence/weighted-gdp-calculation-1/)
 
 ## weighted-gdp-calculation/5
 
@@ -80,7 +80,7 @@ test_outputs.py::TestStep2Statistics::test_median_values
 test_outputs.py::TestStep2Statistics::test_mean_values
 ```
 
-[当前复测状态](comparison.csv) · [已归档的本题证据](paired-evidence/weighted-gdp-calculation-5/)
+改编前 21/25，改编后 11/25，官方 reward=0。数据值、净出口比例、统计和加权均值仍有检查失败。 [配对证据](paired-evidence/weighted-gdp-calculation-5/)
 
 ## weighted-gdp-calculation/4
 

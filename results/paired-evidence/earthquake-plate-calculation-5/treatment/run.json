@@ -19,6 +19,7 @@
   "flow_sha256": "87b0a32feab0801e07723812aad2988f642b508173a2b12e4f3eb3fb4ae49227",
   "baseline_image": null,
   "platform_run_id": null,
+  "verifier_replay_of": null,
   "flow_events": [
     {
       "event": "enter",

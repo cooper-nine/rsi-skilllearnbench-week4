@@ -42,7 +42,9 @@ def verdict(run, destination):
             reward = reward_path.read_text().strip()
             shutil.copyfile(reward_path, destination / "reward.txt")
     config = read_json(run / "config.json")
-    trace = next(run.rglob("agent/qwen.txt"), None)
+    original_run = config.get("verifier_replay_of")
+    trace_root = run.with_name(original_run) if original_run else run
+    trace = next(trace_root.rglob("agent/qwen.txt"), None)
     events = []
     if trace:
         for line in trace.read_text(encoding="utf-8", errors="replace").splitlines():
@@ -69,10 +71,10 @@ def verdict(run, destination):
         "protocol": config.get("protocol"), "upstream_commit": config.get("upstream_commit"),
         "model": config.get("model"), "flow_sha256": config.get("flow_sha256"),
         "baseline_image": config.get("baseline_image"), "platform_run_id": config.get("platform_run_id"),
-        "flow_events": events,
+        "verifier_replay_of": original_run, "flow_events": events,
         "official_report_sha256": digest(report) if report else None,
         "retained_outputs": [{"path": path.relative_to(run).as_posix(), "sha256": digest(path)}
-                             for path in sorted(outputs) if path.is_file()],
+                             for path in sorted(outputs) if path.is_file() and not path.is_symlink()],
     }
     (destination / "run.json").write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n",
                                           encoding="utf-8")
@@ -92,7 +94,15 @@ def export(workspace, results_dir):
         baseline = verdict(workspace / "output/qwen_formal" / case["baseline_run"], root / "baseline")
         if baseline.get("official_status") != "valid" or baseline["official_pass"]:
             raise ValueError(f"Baseline lacks an official failure for {family}/{instance}")
-        treatment = verdict(flow_output / row["treatment_run"], root / "treatment") if row["treatment_run"] else {}
+        treatment = {}
+        if row["treatment_run"]:
+            trial = flow_output / row["treatment_run"]
+            replay = trial.with_name(trial.name + "-verifier-replay")
+            if row["status"] == "infrastructure_error" and completed_status(replay) == "valid":
+                verdict(trial, root / "original-infrastructure-error")
+                trial = replay
+                row = dict(row, status="valid", treatment_run=trial.name)
+            treatment = verdict(trial, root / "treatment")
         if row["status"] == "valid" and treatment.get("official_status") != "valid":
             raise ValueError(f"Treatment is inconsistent with the verifier for {family}/{instance}")
         if treatment:

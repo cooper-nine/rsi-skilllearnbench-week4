@@ -1,5 +1,21 @@
 """Network-only adjustments applied to disposable official build contexts."""
+import hashlib
+import json
 from pathlib import Path
+import subprocess
+
+
+def preload_verifier_uv(container, cache):
+    archive = cache / "uv-x86_64-unknown-linux-gnu.tar.gz"
+    provenance = json.loads((cache / "provenance.json").read_bytes())
+    if hashlib.sha256(archive.read_bytes()).hexdigest() != provenance["sha256"]:
+        raise ValueError("uv archive does not match the recorded checksum")
+    subprocess.run(["docker", "cp", str(archive), f"{container}:/tmp/uv.tar.gz"],
+                   check=True, capture_output=True, timeout=60)
+    subprocess.run(["docker", "exec", container, "bash", "-eu", "-c",
+                    'mkdir -p "$HOME/.local/bin"; tar -xzf /tmp/uv.tar.gz --strip-components=1 '
+                    '-C "$HOME/.local/bin"; printf \'export PATH="$HOME/.local/bin:$PATH"\\n\' > "$HOME/.local/bin/env"'],
+                   check=True, capture_output=True, timeout=60)
 
 def install_build_workaround(runner, evidence_dir):
     original=runner._prepare_build_env
@@ -30,7 +46,7 @@ def install_build_workaround(runner, evidence_dir):
     runner._prepare_build_env=prepare
 
 
-    import subprocess, os
+    import os
     class BoundedBuild:
         def __init__(self):
             self.verifier_mounts={}
@@ -99,10 +115,10 @@ for pid in sorted(targets,reverse=True):
                 if family in outputs:
                     destination=Path(evidence_dir,"artifacts");destination.mkdir(exist_ok=True)
                     copied=subprocess.run(["docker","cp",command[2]+":"+outputs[family],str(destination)],capture_output=True,text=True,encoding="utf-8",errors="replace")
-                    import json
                     Path(evidence_dir,"artifact-copy.json").write_text(json.dumps({"source":outputs[family],"exit_code":copied.returncode,"stderr":copied.stderr},indent=2),encoding="utf-8")
                 cache=Path(__file__).parent/"uv-cache"
                 if tests and "astral.sh/uv/0.9.7/install.sh" in (Path(tests)/"test.sh").read_text(encoding="utf-8") and (cache/"uv-x86_64-unknown-linux-gnu.tar.gz").exists():
+                    preload_verifier_uv(command[2], cache)
                     subprocess.run(["docker","cp",str(cache),command[2]+":/tmp/slb-uv-cache"],capture_output=True,check=True)
                     command=["docker","exec","-e","UV_DOWNLOAD_URL=file:///tmp/slb-uv-cache",*command[2:]]
                 result = subprocess.run(command,*args,**kwargs)

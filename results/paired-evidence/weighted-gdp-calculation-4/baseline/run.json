@@ -35,6 +35,7 @@
   "flow_sha256": null,
   "baseline_image": null,
   "platform_run_id": null,
+  "verifier_replay_of": null,
   "flow_events": [],
   "official_report_sha256": "2e5812bb310560b0f0c78bbb5c92f11e33d3f4a0c4c3ee6d94247daa0bd842e4",
   "retained_outputs": [

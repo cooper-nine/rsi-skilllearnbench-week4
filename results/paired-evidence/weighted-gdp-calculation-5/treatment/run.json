@@ -1,0 +1,55 @@
+{
+  "task": "weighted-gdp-calculation/weighted-gdp-calculation-5",
+  "run": "20261124-202214-13a1fa",
+  "official_pass": false,
+  "official_status": "valid",
+  "verifier_exit": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "error": null,
+  "reward": "0",
+  "checks": 25,
+  "checks_passed": 11,
+  "checks_failed": [
+    "test_outputs.py::TestStep1LookupFormulas::test_exports_have_data",
+    "test_outputs.py::TestStep1DataValues::test_exports_values",
+    "test_outputs.py::TestStep1DataValues::test_imports_values",
+    "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_have_data",
+    "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_values",
+    "test_outputs.py::TestStep2Statistics::test_statistics_have_data",
+    "test_outputs.py::TestStep2Statistics::test_min_values",
+    "test_outputs.py::TestStep2Statistics::test_max_values",
+    "test_outputs.py::TestStep2Statistics::test_median_values",
+    "test_outputs.py::TestStep2Statistics::test_mean_values",
+    "test_outputs.py::TestStep2Statistics::test_percentile_values",
+    "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_has_data",
+    "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable",
+    "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values"
+  ],
+  "protocol": "budget-v3",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "qwen3.5-plus",
+  "flow_sha256": "5f9798778ed507bcd25709de6ed1fe545685aa62b960a8e2f077660996384c71",
+  "baseline_image": "evaluation_weighted-gdp-calculation-weighted-gdp-calculation-5_none:qwen-20261118-145831-de20a7",
+  "platform_run_id": "fe6251b9-5511-47b8-baa5-8573bfbf2f91",
+  "verifier_replay_of": null,
+  "flow_events": [
+    {
+      "event": "enter",
+      "node": "requirements",
+      "retries": 0
+    },
+    {
+      "event": "retry",
+      "node": "requirements",
+      "retries": 1
+    }
+  ],
+  "official_report_sha256": "c0805f26cc868c24454d97b5c22dfd4b8ce1c83c290850895092dcf7f50b280b",
+  "retained_outputs": [
+    {
+      "path": "artifacts/gdp.xlsx",
+      "sha256": "7c9613dac80f6383c53d8c9b985fb1896389ec4d89c92b61473b7155ef0fceaa"
+    }
+  ]
+}
