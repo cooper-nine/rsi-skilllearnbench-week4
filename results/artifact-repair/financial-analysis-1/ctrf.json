@@ -6,35 +6,32 @@
         },
         "summary": {
             "tests": 2,
-            "passed": 1,
-            "failed": 1,
+            "passed": 2,
+            "failed": 0,
             "skipped": 0,
             "pending": 0,
             "other": 0,
-            "start": 1795526521.0028248,
-            "stop": 1795526521.014464
+            "start": 1795526739.3350017,
+            "stop": 1795526739.3419852
         },
         "tests": [
             {
                 "name": "test_outputs.py::test_file_exists",
                 "status": "passed",
-                "duration": 0.00022000600074534304,
-                "start": 1795526521.008493,
-                "stop": 1795526521.0088346,
+                "duration": 0.00026774600155476946,
+                "start": 1795526739.3409822,
+                "stop": 1795526739.3413954,
                 "retries": 0,
                 "file_path": "test_outputs.py"
             },
             {
                 "name": "test_outputs.py::test_answer_quality",
-                "status": "failed",
-                "raw_status": "call_failed",
-                "duration": 0.00035615200067695696,
-                "start": 1795526521.0089283,
-                "stop": 1795526521.0143466,
+                "status": "passed",
+                "duration": 0.0002952659997390583,
+                "start": 1795526739.341501,
+                "stop": 1795526739.3418903,
                 "retries": 0,
-                "file_path": "test_outputs.py",
-                "trace": "def test_answer_quality():\n        \"\"\"Test that the outputs are correct.\"\"\"\n        ground_truth = json.load(open(GROUND_TRUTH))\n        answers = json.load(open(OUTPUT_FILE))\n        # Check that all questions are answered\n        assert \"q1_answer\" in answers\n        assert \"q2_answer\" in answers\n        assert \"q3_answer\" in answers\n        assert \"q4_answer\" in answers\n    \n        # Check answer 1 is within 0.1% of ground truth\n>       assert abs(answers[\"q1_answer\"] / ground_truth[\"q1_answer\"] - 1) < 0.001\nE       assert 1.0 < 0.001\nE        +  where 1.0 = abs(((0 / 75753182516.0) - 1))\n\n/tests/test_outputs.py:31: AssertionError",
-                "message": "The test failed in the call phase due to an assertion error"
+                "file_path": "test_outputs.py"
             }
         ]
     }

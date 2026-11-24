@@ -1,11 +1,11 @@
 {
   "task": "weighted-gdp-calculation-1",
   "source_run": "20261124-201236-daabf2",
-  "platform_run_id": "2cc575ff-b112-4d68-a9fd-9f4eb5128c69",
+  "platform_run_id": "37681267-bdb1-4b7d-8043-feec487f218f",
   "verifier_exit": 0,
-  "reward": "0",
-  "official_pass": false,
-  "artifact_sha256": "20b32e77bdb4a449158a23f1c57b6fe629ff13cfbae90bce201c336f3f78151f",
+  "reward": "1",
+  "official_pass": true,
+  "artifact_sha256": "27f6c112fadfe5e44fb504892ede96c5f8331f79bd93dbd75e93ee329f5b12df",
   "events": [
     {
       "node": "verify",
@@ -41,7 +41,7 @@
     },
     {
       "node": "verify",
-      "event": "failed"
+      "event": "passed"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "task": "financial-analysis-1",
   "source_run": "20261124-201236-9e2e97",
-  "platform_run_id": "2cc575ff-b112-4d68-a9fd-9f4eb5128c69",
+  "platform_run_id": "37681267-bdb1-4b7d-8043-feec487f218f",
   "verifier_exit": 0,
-  "reward": "0",
-  "official_pass": false,
-  "artifact_sha256": "2137c6be34efbc32fb7e75c2bbe8ca8605219dcad325f78f577e1b59bec35452",
+  "reward": "1",
+  "official_pass": true,
+  "artifact_sha256": "aefc89d449a9bf232e0cbe6891a2271a8d4502ff18e73692e40737c10d07da57",
   "events": [
     {
       "node": "verify",
@@ -28,7 +28,7 @@
     },
     {
       "node": "verify",
-      "event": "failed"
+      "event": "passed"
     }
   ]
 }

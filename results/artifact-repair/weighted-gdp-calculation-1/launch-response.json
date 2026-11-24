@@ -2,11 +2,11 @@
   "result": true,
   "status": 200,
   "message": "请求成功",
-  "timestamp": 1795526368750,
+  "timestamp": 1795526611671,
   "data": {
     "value": {
       "launchStatus": "started",
-      "platformRunId": "2cc575ff-b112-4d68-a9fd-9f4eb5128c69"
+      "platformRunId": "37681267-bdb1-4b7d-8043-feec487f218f"
     }
   }
 }
