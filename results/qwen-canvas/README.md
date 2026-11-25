@@ -1,26 +1,21 @@
-# Qwen 3.5 Plus 编排画布
+# RSI Flow Platform 编排画布
 
-| 任务族 | 浏览器截图 |
-| --- | --- |
-| 地震板块 | [地震](earthquake.jpg) |
-| 金融分析 | [金融](financial.jpg) |
-| 加权 GDP | [GDP](gdp.jpg) |
-| 股票可视化 | [股票](stock.jpg) |
-
-截图在临时 RSI Flow Visual 前端中呈现节点、输入输出契约、失败回退及官方判题环节。实际 Qwen 调用和 Docker 官方判分由本地运行器发起。截图记录编排逻辑，运行结果由试次证据单独记录。
+以下截图来自原 `rsi-flow-platform` 项目的 `/test/week4`，每张都记录保存后的节点、连线、输入输出契约和回退规则。整题结果见[平台验收表](../platform/ACCEPTANCE.md)。
 
 ## 地震板块
 
-![地震板块编排画布](earthquake.jpg)
+![地震板块画布](platform-earthquake.jpg)
 
 ## 金融分析
 
-![金融分析编排画布](financial.jpg)
+![金融分析画布](platform-financial.jpg)
 
 ## 加权 GDP
 
-![加权 GDP编排画布](gdp.jpg)
+![加权 GDP 画布](platform-gdp.jpg)
 
 ## 股票可视化
 
-![股票可视化编排画布](stock.jpg)
+![股票可视化画布](platform-stock.jpg)
+
+早期临时 Visual 前端截图保留为过程记录。[地震](earthquake.jpg) · [金融](financial.jpg) · [GDP](gdp.jpg) · [股票](stock.jpg)

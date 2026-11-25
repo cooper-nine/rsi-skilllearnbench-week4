@@ -1,0 +1,14 @@
+[
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-150937-21cedf",
+    "flow_sha256": "865d2049fc015364ad1fb11da4addcfd334c59b8c6be1afcf8a9a9fec26032a6",
+    "treatment_run": "weighted-gdp-calculation-5",
+    "treatment_origin": "platform",
+    "platform_run_id": "a2748e5a-d538-41d0-82a1-d9353b00f77f",
+    "treatment_passed": false,
+    "status": "valid"
+  }
+]

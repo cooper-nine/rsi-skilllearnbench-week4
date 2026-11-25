@@ -1,17 +1,17 @@
 # SkillLearnBench 第四周｜人工编排与 Qwen 3.5 Plus
 
-同一批十题的人工 Skill 基线全部未通过。采用人工确认的四类节点、输入输出契约和定向回退后，**Qwen API 复测由 0/10 提升至 10/10 整题通过**。其中两题来自同轮试点，后续八题全部通过。整题通过要求原版 Docker `test.sh` 正常退出、CTRF 报告全部通过、`reward.txt` 为 `1`。
+同一批十题的人工 Skill 基线全部未通过。四类流程在原 `rsi-flow-platform` 画布配置，由原前端和 Spring Boot 发起，业务节点调用 Qwen 3.5 Plus。最新整题结果见原平台验收表。整题结果以 Docker 容器内原版 `test.sh` 产生的官方记录为准。
 
-- [十题清单：输入、期望、基线失败与 Qwen 结果](results/CASE-EVIDENCE.md)
-- [原平台逐题验收](results/platform/ACCEPTANCE.md)
-- [同输入逐题对照 CSV](results/comparison.csv) · [原始配对证据](results/paired-evidence/)
+- [原平台逐题验收与基线对照](results/platform/ACCEPTANCE.md) · [CSV](results/platform/comparison.csv)
+- [十题清单与早期试点](results/CASE-EVIDENCE.md)
+- [早期 Qwen 试点对照 CSV](results/comparison.csv) · [原始配对证据](results/paired-evidence/)
 - [实验报告、失败分析和下一阶段指标](results/QWEN-PILOT.md)
 - [四类浏览器编排截图](results/qwen-canvas/) · [平台运行证据](results/PLATFORM.md)
 - [节点配置](qwen/flows/) · [运行清单](qwen/cases.json) · [基准固定版本](upstream-reference/source.json)
 
 ## 运行与核验
 
-GDP 第 4 题的 Qwen 试点由 RSI 后端发起。其余精选结果由本地运行器调用 Qwen API，保存节点产物，并在 Docker 中运行官方脚本。四张截图来自临时 RSI Flow Visual 浏览器前端，展示四类流程。原平台测试页已完成一批十题的产物复核，从原始输入重新生成的一批也已发起。 [原平台联调记录](results/PLATFORM.md)
+原平台测试页为 `/test/week4`。选择任务类型并保存画布，可从原始输入运行。后端为每次执行返回运行 ID，可用该 ID 对照画布、节点记录和官方报告。 [原平台联调记录](results/PLATFORM.md)
 
 在仓库根目录执行 `python qwen/export_paired_evidence.py`，从已发布的原始报告、奖励文件和运行配置重新核验十份配对并生成 CSV。这一步可离线运行。
 
