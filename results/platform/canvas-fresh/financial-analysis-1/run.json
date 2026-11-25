@@ -1,0 +1,18 @@
+{
+  "family": "financial-analysis",
+  "instance": 1,
+  "baseline_passed": false,
+  "baseline_run": "20261118-114709-707627",
+  "flow_sha256": "dc800c607ff85f0f6026f2625ffcff0cdd1ee7d5117009e11bb54ac1a92e1d8e",
+  "status": "valid",
+  "treatment_passed": false,
+  "treatment_run": "20261125-013500-602c0e",
+  "treatment_origin": "platform",
+  "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042",
+  "passed": false,
+  "reward": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "verifier_exit": 0,
+  "error": null
+}

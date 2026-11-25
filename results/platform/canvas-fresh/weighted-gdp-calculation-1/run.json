@@ -1,0 +1,17 @@
+{
+  "family": "weighted-gdp-calculation",
+  "instance": 1,
+  "baseline_passed": false,
+  "baseline_run": "20261118-124901-2690d3",
+  "flow_sha256": "dfa221d6b64f79754075d68878454eec7ac59801658a67b4a32e321860142900",
+  "status": "infrastructure_error",
+  "treatment_run": "20261125-014745-e040c5",
+  "treatment_origin": "platform",
+  "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042",
+  "passed": false,
+  "reward": 0,
+  "agent_exit": 124,
+  "agent_timed_out": true,
+  "verifier_exit": 0,
+  "error": null
+}

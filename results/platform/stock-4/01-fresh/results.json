@@ -1,0 +1,14 @@
+[
+  {
+    "family": "stock-data-visualization",
+    "instance": 4,
+    "baseline_passed": false,
+    "baseline_run": "20261118-152648-61d383",
+    "flow_sha256": "c4aae8a6af24d686f846a33b5261e610c07dbcf3df7261266cccf692599490fe",
+    "status": "valid",
+    "treatment_passed": false,
+    "treatment_run": "20261125-122429-79a2c0",
+    "treatment_origin": "platform",
+    "platform_run_id": "7c6439a0-8b26-4e97-a7c2-92b51cd5e729"
+  }
+]

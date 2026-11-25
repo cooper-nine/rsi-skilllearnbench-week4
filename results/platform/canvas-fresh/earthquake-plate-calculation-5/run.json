@@ -1,0 +1,18 @@
+{
+  "family": "earthquake-plate-calculation",
+  "instance": 5,
+  "baseline_passed": false,
+  "baseline_run": "20261118-122708-583ff7",
+  "flow_sha256": "def8a5ef517507301f674665ba2abe3450c0cbbdb81bb49783d0f6814556b3be",
+  "status": "valid",
+  "treatment_passed": false,
+  "treatment_run": "20261125-013500-f6bd58",
+  "treatment_origin": "platform",
+  "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042",
+  "passed": false,
+  "reward": 0,
+  "agent_exit": 0,
+  "agent_timed_out": false,
+  "verifier_exit": 0,
+  "error": null
+}

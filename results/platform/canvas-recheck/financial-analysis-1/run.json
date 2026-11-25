@@ -1,0 +1,27 @@
+{
+  "task": "financial-analysis-1",
+  "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+  "qwen_draft_run": "20261125-004055-e951df",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [
+    {
+      "stage": "identify",
+      "attempt": 2,
+      "error": "The draft evidence provides three accession numbers but fails to satisfy the node's input requirements ('题面', '季度申报表', '持仓表') as it lacks the raw source documents or explicit mapping confirming these IDs correspond to the specific required document types. Furthermore, the presence of 'renai_2025_q3' cannot be validated against the original task scope without the missing prior execution artifact, leaving it unclear if this fund is intended or if other expected funds are missing from the output list."
+    },
+    {
+      "stage": "calculate",
+      "attempt": 2,
+      "error": "The draft evidence provides calculated outputs (Q1 total value, Q2 count, Q3 accession numbers, Q4 names) but completely lacks the required input artifacts defined in the node schema ('题面', '季度申报表', '持仓表'). There is no source data, raw document content, or explicit mapping linking the provided accession numbers to specific quarterly declaration forms or holdings tables. Additionally, the previous review noted missing historic context to validate if 'renai_2025_q3' is within scope, which remains unaddressed as no prior execution artifact was provided in this prompt to verify fund eligibility or completeness."
+    },
+    {
+      "stage": "verify",
+      "attempt": 2,
+      "error": "The draft evidence contains only final calculated outputs (Q1 value, Q2 count, Q3 accession numbers, Q4 names) and completely lacks the mandatory input artifacts defined in the node schema: '题面' (problem statement), '季度申报表' (quarterly declaration forms), and '持仓表' (holdings tables). There is no raw source data, document content, or explicit mapping linking the provided accession numbers to specific required document types. Additionally, the historical context required to validate if 'renai_2025_q3' is within the original task scope remains missing, as no prior execution artifact was provided to verify fund eligibility or list completeness."
+    }
+  ],
+  "verifier_exit": 0,
+  "reward": "1",
+  "checks": 2,
+  "passed": true
+}

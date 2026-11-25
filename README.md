@@ -10,7 +10,7 @@
 
 ## 运行与核验
 
-GDP 第 4 题的 Qwen 试点由 RSI 后端发起。其余精选结果由本地运行器调用 Qwen API，保存节点产物，并在 Docker 中运行官方脚本。四张截图来自临时 RSI Flow Visual 浏览器前端，展示四类流程。原平台画布点击执行全部题目的验证仍待完成。
+GDP 第 4 题的 Qwen 试点由 RSI 后端发起。其余精选结果由本地运行器调用 Qwen API，保存节点产物，并在 Docker 中运行官方脚本。四张截图来自临时 RSI Flow Visual 浏览器前端，展示四类流程。原平台测试页已完成一批十题的产物复核，从原始输入重新生成的一批也已发起。 [原平台联调记录](results/PLATFORM.md)
 
 在仓库根目录执行 `python qwen/export_paired_evidence.py`，从已发布的原始报告、奖励文件和运行配置重新核验十份配对并生成 CSV。这一步可离线运行。
 

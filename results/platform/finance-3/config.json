@@ -1,0 +1,10 @@
+{
+  "task": "financial-analysis",
+  "instance": 3,
+  "model": "qwen3.5-plus",
+  "protocol": "budget-v3-structured-code",
+  "upstream_commit": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "baseline_image": "evaluation_financial-analysis-financial-analysis-1_none:qwen-20261118-013516-financial-analysis-1-none",
+  "flow_sha256": "be59ac853a5a1ee1d3d65e128f9ae913bec2d1bdce3d61e64b6ae965f5899463",
+  "platform_run_id": "163a5035-6444-40fc-847a-8544edbe4fb1"
+}

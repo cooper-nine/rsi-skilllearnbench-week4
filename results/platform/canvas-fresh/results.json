@@ -1,0 +1,115 @@
+[
+  {
+    "family": "earthquake-plate-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-122708-583ff7",
+    "flow_sha256": "def8a5ef517507301f674665ba2abe3450c0cbbdb81bb49783d0f6814556b3be",
+    "status": "valid",
+    "treatment_passed": false,
+    "treatment_run": "20261125-013500-f6bd58",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "financial-analysis",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-114709-707627",
+    "flow_sha256": "dc800c607ff85f0f6026f2625ffcff0cdd1ee7d5117009e11bb54ac1a92e1d8e",
+    "status": "valid",
+    "treatment_passed": false,
+    "treatment_run": "20261125-013500-602c0e",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "financial-analysis",
+    "instance": 3,
+    "baseline_passed": false,
+    "baseline_run": "20261118-123134-1043bc",
+    "flow_sha256": "dc800c607ff85f0f6026f2625ffcff0cdd1ee7d5117009e11bb54ac1a92e1d8e",
+    "status": "valid",
+    "treatment_passed": false,
+    "treatment_run": "20261125-014043-d9540f",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-124901-2690d3",
+    "flow_sha256": "dfa221d6b64f79754075d68878454eec7ac59801658a67b4a32e321860142900",
+    "status": "infrastructure_error",
+    "treatment_run": "20261125-014745-e040c5",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-150937-21cedf",
+    "flow_sha256": "e56f97d55562c54fd02f2abb8eb08b6b060ce0a78a5b906ca9cbd83ae321d6fa",
+    "status": "infrastructure_error",
+    "treatment_run": "20261125-014817-1d78c3",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 4,
+    "baseline_passed": false,
+    "baseline_run": "20261118-140525-7fb55f",
+    "flow_sha256": "5dfa1c482b336aec7898bc9bc6b09e4df56d0be6c22002fb801ae44aacb16a06",
+    "status": "infrastructure_error",
+    "treatment_run": "20261125-111723-adeaca",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-134937-19d1a4",
+    "flow_sha256": "b92364eac478783b3279d7ce3967d5df91bbd5386fb0b563758eb9b14627c5de",
+    "status": "infrastructure_error",
+    "treatment_run": "20261125-111728-c57688",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 2,
+    "baseline_passed": false,
+    "baseline_run": "20261118-141811-3aa771",
+    "flow_sha256": "d74437835baf0075287d1b843927c6ceb5fb8b62afdede164b518b90e4f13da3",
+    "status": "infrastructure_error",
+    "treatment_run": "20261125-111807-428049",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 3,
+    "baseline_passed": false,
+    "baseline_run": "20261118-145831-ff084f",
+    "flow_sha256": "b92364eac478783b3279d7ce3967d5df91bbd5386fb0b563758eb9b14627c5de",
+    "status": "infrastructure_error",
+    "treatment_run": "20261125-111817-734fff",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 4,
+    "baseline_passed": false,
+    "baseline_run": "20261118-152648-61d383",
+    "flow_sha256": "b92364eac478783b3279d7ce3967d5df91bbd5386fb0b563758eb9b14627c5de",
+    "status": "infrastructure_error",
+    "treatment_run": "20261125-111847-05ca31",
+    "treatment_origin": "platform",
+    "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042"
+  }
+]

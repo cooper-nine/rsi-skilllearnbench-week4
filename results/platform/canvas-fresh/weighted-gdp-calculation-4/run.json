@@ -1,0 +1,18 @@
+{
+  "family": "weighted-gdp-calculation",
+  "instance": 4,
+  "baseline_passed": false,
+  "baseline_run": "20261118-140525-7fb55f",
+  "flow_sha256": "5dfa1c482b336aec7898bc9bc6b09e4df56d0be6c22002fb801ae44aacb16a06",
+  "status": "infrastructure_error",
+  "treatment_run": "20261125-111723-adeaca",
+  "treatment_origin": "platform",
+  "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042",
+  "passed": false,
+  "reward": 0,
+  "agent_exit": null,
+  "agent_timed_out": false,
+  "verifier_exit": 0,
+  "error": "agent_api_or_runtime_aborted; tee exit does not report actual agent status",
+  "runtime_error": "DashScope proxy returned HTTP 502"
+}

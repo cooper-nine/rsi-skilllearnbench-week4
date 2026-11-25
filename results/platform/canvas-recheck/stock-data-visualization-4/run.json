@@ -1,0 +1,32 @@
+{
+  "task": "stock-data-visualization-4",
+  "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+  "qwen_draft_run": "20261124-235811-ec73fc",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [
+    {
+      "stage": "prepare",
+      "attempt": 2,
+      "error": "The draft evidence only addresses 'stock-descriptions.csv' for company metadata, failing to identify or validate the '原始股票数据' (raw stock data) input required for time-series visualization as specified in the node's input contract. Additionally, the output fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output are missing from the checkpoint results, leaving the data preparation validation incomplete."
+    },
+    {
+      "stage": "render",
+      "attempt": 2,
+      "error": "The draft evidence exclusively validates the loading of 'stock-descriptions.csv' (metadata) but fails to address the '原始股票数据' (raw stock data) input explicitly required by the node's input contract for time-series visualization. Additionally, the evidence does not verify the output fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output, leaving the data preparation and validation incomplete as noted in previous retry feedback."
+    },
+    {
+      "stage": "interact",
+      "attempt": 2,
+      "error": "The draft evidence successfully implements basic tooltip visibility toggling and accessibility attributes (aria-hidden) for hover events in 'js/visualization.js'. However, it fails to address the critical gaps identified in consecutive retry feedback: 1) There is no evidence of loading or processing the '原始股票数据' (raw stock data) required for time-series visualization; the code only references metadata fields (ticker, fullName, sector) likely from 'stock-descriptions.csv'. 2) The output contract fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output are not validated or documented. 3) The specific requirement for '行与气泡联动' (row and bubble linkage/cross-element synchronization) mentioned in the node's output description is not demonstrated; the current code only handles mouse events on individual elements without showing logic that links table rows to visualization bubbles."
+    },
+    {
+      "stage": "verify",
+      "attempt": 2,
+      "error": "The draft evidence claims readiness but fails to address critical gaps identified in the last seven rounds of retry feedback. Specifically: 1) There is no evidence of loading or processing the '原始股票数据' (raw stock data) required for time-series visualization; the checks only reference metadata fields (ticker, fullName, sector) from 'stock-descriptions.csv'. 2) The output contract fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output are not validated or documented. 3) The specific requirement for '行与气泡联动' (row and bubble linkage/cross-element synchronization) is not demonstrated; while 'highlightStock' is mentioned, the evidence does not confirm the bidirectional synchronization logic between table rows and visualization bubbles as required by the node definition."
+    }
+  ],
+  "verifier_exit": 0,
+  "reward": "1",
+  "checks": 16,
+  "passed": true
+}

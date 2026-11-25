@@ -1,0 +1,318 @@
+[
+  {
+    "task": "earthquake-plate-calculation-5",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261124-215351-cde393",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence successfully inventories the three required input datasets (earthquakes_2024.json, PB2002_plates.json, PB2002_boundaries.json) with correct GeoJSON structural details and field lists. It explicitly documents the critical semantic resolution regarding 'plate' vs 'plate edge' and defines the three-step main objective. The artifact path is recorded. No facts were invented; the data reflects a valid checkpoint of the input verification stage."
+        }
+      },
+      {
+        "stage": "filter",
+        "attempt": 2,
+        "error": "The draft evidence for the 'filter' stage is incomplete and logically disconnected from the defined objectives. While it claims to have identified the Pacific plate (PA) and a specific earthquake, it fails to provide the critical intermediate data required to verify the filtering logic: 1) The list or count of earthquakes for *all* plates to substantiate the claim that Pacific has the 'most' earthquakes; 2) The geometric method or calculation steps used to determine which of the 107 earthquakes fall within the Pacific polygon; 3) The specific boundary segment used and the projection details (EPSG:4087) applied to calculate the 48.77 km distance. The draft jumps directly to final results without documenting the execution of the three-step objective defined in the previous 'prepare' stage."
+      },
+      {
+        "stage": "measure",
+        "attempt": 2,
+        "error": "The draft evidence for the 'measure' stage is critically incomplete and logically unsubstantiated. It presents a final result (Sunda plate, 134 earthquakes, 419.32 km distance) without providing the necessary intermediate data to verify the execution of the three-step objective defined in the 'prepare' stage. Specifically missing are: 1) The earthquake counts for all other plates to prove Sunda has the 'most'; 2) The geometric method or code used to assign the 134 earthquakes to the Sunda polygon; 3) The specific boundary segment identified for the Sunda plate and the projection details (EPSG:4087) used to calculate the 419.32 km distance. Like the previous failed 'filter' attempt, this draft jumps directly to a conclusion without documenting the calculation process."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence for the 'verify' stage is critically incomplete and logically unsubstantiated. It presents a final result (Sunda plate, 134 earthquakes, 419.32 km distance) without providing the necessary intermediate data to verify the execution of the three-step objective defined in the 'prepare' stage. Specifically missing are: 1) The earthquake counts for all other plates to prove Sunda has the 'most'; 2) The geometric method or code used to assign the 134 earthquakes to the Sunda polygon; 3) The specific boundary segment identified for the Sunda plate and the projection details (EPSG:4087) used to calculate the 419.32 km distance. Like the previous failed 'filter' and 'measure' attempts, this draft jumps directly to a conclusion without documenting the calculation process."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 8,
+    "passed": true
+  },
+  {
+    "task": "financial-analysis-1",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261125-004055-e951df",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "identify",
+        "attempt": 2,
+        "error": "The draft evidence provides three accession numbers but fails to satisfy the node's input requirements ('题面', '季度申报表', '持仓表') as it lacks the raw source documents or explicit mapping confirming these IDs correspond to the specific required document types. Furthermore, the presence of 'renai_2025_q3' cannot be validated against the original task scope without the missing prior execution artifact, leaving it unclear if this fund is intended or if other expected funds are missing from the output list."
+      },
+      {
+        "stage": "calculate",
+        "attempt": 2,
+        "error": "The draft evidence provides calculated outputs (Q1 total value, Q2 count, Q3 accession numbers, Q4 names) but completely lacks the required input artifacts defined in the node schema ('题面', '季度申报表', '持仓表'). There is no source data, raw document content, or explicit mapping linking the provided accession numbers to specific quarterly declaration forms or holdings tables. Additionally, the previous review noted missing historic context to validate if 'renai_2025_q3' is within scope, which remains unaddressed as no prior execution artifact was provided in this prompt to verify fund eligibility or completeness."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence contains only final calculated outputs (Q1 value, Q2 count, Q3 accession numbers, Q4 names) and completely lacks the mandatory input artifacts defined in the node schema: '题面' (problem statement), '季度申报表' (quarterly declaration forms), and '持仓表' (holdings tables). There is no raw source data, document content, or explicit mapping linking the provided accession numbers to specific required document types. Additionally, the historical context required to validate if 'renai_2025_q3' is within the original task scope remains missing, as no prior execution artifact was provided to verify fund eligibility or list completeness."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 2,
+    "passed": true
+  },
+  {
+    "task": "financial-analysis-3",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261125-004524-6b896b",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "identify",
+        "attempt": 2,
+        "error": "The draft evidence contains accession numbers for Q3 2025 filings (e.g., '0000902664-25-005044'), which are temporally impossible given the current date is prior to late 2025; these values are hallucinated. Additionally, the required input artifacts defined in the node ('题面', '季度申报表', '持仓表') are missing from the context, preventing verification of the extraction logic against source data."
+      },
+      {
+        "stage": "calculate",
+        "attempt": 2,
+        "error": "The draft evidence fails the readiness checkpoint due to critical data integrity issues and missing context. First, the output contains hallucinated future-dated values; specifically, the Q3 answer lists firm names associated with 'Q3 2025' filings, which is temporally impossible given the current date is prior to late 2025. Second, the required input artifacts defined in the node specification ('题面', '季度申报表', '持仓表') are absent from the execution context, making it impossible to validate the calculation logic or trace the source of the provided figures (e.g., the specific Q1 value of 7020738956.0). The previous retry feedback correctly identified these hallucinations and missing inputs, yet the new draft persists with the same invalid future data without providing the necessary source documents."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence only provides a file path ('/root/answers.json') without the actual content of the answers or the required source input artifacts ('题面', '季度申报表', '持仓表'). Consequently, the critical issues identified in previous reviews—specifically the presence of hallucinated future-dated data (Q3 2025 filings) and the inability to validate calculation logic due to missing inputs—remain unaddressed and unverifiable."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 2,
+    "passed": true
+  },
+  {
+    "task": "weighted-gdp-calculation-1",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261125-005144-c6b49e",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "requirements",
+        "attempt": 2,
+        "error": "The draft evidence partially identifies sheet names ('Task', 'Data') and a specific formula for cell H46, but fails to fulfill the node's output requirement of defining the complete 'target cells and formula contract'. The evidence is limited to a single checkpoint observation rather than a comprehensive specification, and the `H46_cached_value` remains null, indicating incomplete data verification. Additionally, historic fields regarding the full scope of target cells beyond H46 are missing."
+      },
+      {
+        "stage": "read",
+        "attempt": 2,
+        "error": "The draft evidence successfully maps the target cells (H46:L47) and identifies the formula logic for the 'Task' sheet versus static values for the 'Data' sheet, addressing the scope requirements from previous feedback. However, the evidence is not ready because the `cache_lost_check` explicitly reports `lost_numeric_cache: true` and `H46_value_data_only` is null. This confirms that while the formula contract structure is defined, the critical step of verifying the cached numeric result for the source cell H46 has failed, leaving the data verification incomplete as noted in prior retry feedback."
+      },
+      {
+        "stage": "calculate",
+        "attempt": 2,
+        "error": "The draft evidence provides the final numeric results for the target range (H46:L47) and an output path, resolving the previous 'lost_numeric_cache' issue. However, it fails to satisfy the node's core requirement to define the 'formula contract' (目标单元格和公式契约). The evidence lacks the explicit Excel formula strings (e.g., SUMPRODUCT logic) used to generate these values, which was explicitly cited as missing in the immediate prior retry feedback. Additionally, there is no verification that the file at `/root/gdp.xlsx` contains live formulas rather than static values, leaving the '带公式的 gdp.xlsx' output requirement unconfirmed."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence provides a specific formula and cached value for the single sample cell H46, addressing the missing 'formula contract' feedback from the previous review. However, it fails to satisfy the node's requirement for a comprehensive verification of the full target range (H46:L47) identified in prior successful scoping steps. The evidence is limited to one cell while the scope requires validation of the entire block. Additionally, the field `formula_mode_formula` is explicitly null in the draft data, failing to provide the structured formula definition required for a complete contract, and there is no verification data confirming that the output file at `/root/gdp.xlsx` contains live formulas for the entire range as opposed to static values."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 27,
+    "passed": true
+  },
+  {
+    "task": "weighted-gdp-calculation-5",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261125-002513-f38f87",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "requirements",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence successfully defines the 'Target Cell and Formula Contract' required by the 'requirements' node. It explicitly maps the three execution steps (Data Lookup via INDEX/MATCH or XLOOKUP, Trade Balance Coefficient calculation with specific statistics, and Weighted Mean logic) to concrete cell ranges (e.g., H12:M17, H28:M33) and formula patterns. The constraints regarding formatting, prohibition of VBA, and error handling are clearly recorded. No historic fields are missing from the provided context; the artifact path 'gdp.xlsx' and task ID are present, making the requirements sufficient to proceed to the execution stage."
+        }
+      },
+      {
+        "stage": "read",
+        "attempt": 2,
+        "error": "The draft evidence for the 'read' stage is invalid because the 'output' field contains only the placeholder text 'actual observation' instead of concrete data. It fails to provide the specific 'Data Region' coordinates (e.g., row/column ranges in the 'Data' sheet), the extracted 'Year' sequence (e.g., 2018-2023), or the mapping between Series Codes and their corresponding row indices required by the node definition. Without these factual outputs derived from 'gdp.xlsx', the system cannot verify that the source data has been successfully located and parsed."
+      },
+      {
+        "stage": "calculate",
+        "attempt": 2,
+        "error": "The draft evidence for the 'calculate' stage is invalid because the 'output' field contains only the placeholder text 'actual observation' instead of concrete execution data. It fails to provide the specific Excel formulas constructed (e.g., the exact INDEX/MATCH or XLOOKUP syntax used for data lookup, the Trade Balance Coefficient formula applied to range H28:M33, and the SUMPRODUCT logic for the weighted mean), the cell ranges where these formulas were inserted, or confirmation that the 'gdp.xlsx' artifact was updated with these calculations. Without these factual outputs derived from the execution, the system cannot verify that the 'Target Cell and Formula Contract' defined in the previous stage has been successfully implemented."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence for the 'verify' stage is invalid because the 'output' field contains a checklist of expected criteria rather than concrete verification data. It fails to provide the actual calculated values (e.g., the specific numeric result of the weighted mean, the computed min/max/median statistics), confirmation that the 'gdp.xlsx' file was successfully opened and inspected, or evidence of error checks (e.g., '#N/A' or '#DIV/0!' status). Without these factual outputs derived from the actual execution and inspection of the artifact, the system cannot verify that the 'Target Cell and Formula Contract' was correctly implemented."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 25,
+    "passed": true
+  },
+  {
+    "task": "weighted-gdp-calculation-4",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261124-202303-42cdb5",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "requirements",
+        "attempt": 2,
+        "error": "The draft evidence confirms the 'requirements' node reached a 'complete' state after one retry and a 'premature_final' event, but the execution artifact is missing critical output data. Specifically, there are no recorded target cells, formula contracts, or extracted constraints from the workbook to verify if the requirements were correctly confirmed. The premature finalization likely resulted in these specifications being omitted from the record."
+      },
+      {
+        "stage": "read",
+        "attempt": 2,
+        "error": "The draft evidence only records state transitions ('enter', 'premature_final', 'complete') for the 'read' node but completely lacks the required output payload defined in the node's contract. Specifically, the fields for '数据区域' (data regions), '年份' (years), and '序列映射' (sequence mappings) are missing from the execution artifact. Without these concrete data points, it is impossible to verify if the workbook was successfully parsed or if the premature finalization resulted in a total loss of extracted specifications."
+      },
+      {
+        "stage": "calculate",
+        "attempt": 2,
+        "error": "The draft evidence for the 'calculate' node only records state transitions ('enter', 'premature_final', 'complete') with zero retries. It completely lacks the required output payload defined in the node's contract, specifically the generated formulas, the mapping logic applied, and the path or content of the output file '带公式的 gdp.xlsx'. Consistent with previous reviews of the 'read' and 'requirements' nodes, this premature finalization has resulted in a total loss of the execution artifact, making it impossible to verify if the weighted GDP calculation was actually performed or if the output file was created."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence for the 'verify' node only records state transitions ('enter', 'premature_final', 'complete') with zero retries. It completely lacks the required output payload defined in the node's contract, specifically the actual recalculation results, the comparison logic used against the original data, and the specific validation findings for the 'gdp.xlsx' file. Consistent with previous reviews of the 'read', 'requirements', and 'calculate' nodes, this premature finalization has resulted in a total loss of the execution artifact, making it impossible to verify if the weighted GDP calculation was correctly validated or if any errors were identified."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 27,
+    "passed": true
+  },
+  {
+    "task": "stock-data-visualization-1",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261124-235639-135ea2",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 2,
+        "error": "The draft evidence successfully identifies 'stock-descriptions.csv' and maps its fields (ticker, name, sector, market cap) to the visualization needs. However, it fails to satisfy the node's output specification for 'File Format' (e.g., confirming CSV structure, delimiters, or encoding) and 'Output Contract' (e.g., data types, null handling, or schema validation). Furthermore, while the node input requires 'Raw stock data', the evidence only validates the description file, leaving the existence and status of the primary time-series price data unverified."
+      },
+      {
+        "stage": "render",
+        "attempt": 2,
+        "error": "The draft evidence confirms code implementation details (D3 v6, force simulation, determinism) but fails to address the critical data validation gaps highlighted in all three previous retry feedbacks. Specifically, it provides no evidence regarding the 'File Format' (CSV structure/delimiters) or 'Output Contract' (schema validation) for 'stock-descriptions.csv', and it completely omits verification of the primary time-series price data required by the node's 'Raw stock data' input."
+      },
+      {
+        "stage": "interact",
+        "attempt": 2,
+        "error": "The draft evidence provides a code edit for tooltip visibility toggling (using `.classed` and `aria-hidden`) but fails to address the critical data validation gaps highlighted in all four previous retry feedbacks. Specifically, there is still no evidence regarding the 'File Format' (CSV structure/delimiters) or 'Output Contract' (schema validation) for 'stock-descriptions.csv', nor is there any verification of the existence or status of the primary time-series price data required by the node's 'Raw stock data' input. The evidence remains focused solely on interaction logic while ignoring the unverified data prerequisites."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence claims readiness based solely on 'output/index.html' and an undefined 'concrete check', failing to address the critical data validation gaps highlighted in six consecutive retry feedbacks. Specifically, there is no evidence provided for the 'File Format' (CSV structure, delimiters, encoding) or 'Output Contract' (schema validation) of 'stock-descriptions.csv', nor is there any verification of the existence or status of the primary time-series price data required by the node's 'Raw stock data' input. The evidence remains fixated on interaction logic (tooltip toggling) while ignoring the unverified data prerequisites essential for this stage."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 15,
+    "passed": true
+  },
+  {
+    "task": "stock-data-visualization-2",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261125-004434-2ad657",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 2,
+        "error": "The draft evidence confirms the identification of 'stock-descriptions.json' for company metadata but fails to address the '原始股票数据' (raw stock data) input required by the node definition. Specifically, the source file, format, and fields for time-series price/volume data are missing. Additionally, the output contract regarding the final file format and specific field schema is not explicitly defined in the checkpoint."
+      },
+      {
+        "stage": "render",
+        "attempt": 2,
+        "error": "The draft evidence only demonstrates data normalization logic for 'stock-descriptions.json' (metadata) within 'js/visualization.js'. It fails to provide evidence of loading or processing the required '原始股票数据' (raw time-series price/volume data) mentioned in the node's input contract. Furthermore, there is no evidence of the actual rendering outputs (the bubble chart or the table) or the final local webpage file, leaving the node's output contract unverified."
+      },
+      {
+        "stage": "interact",
+        "attempt": 2,
+        "error": "The draft evidence only provides a CSS update for tooltip opacity transitions (.tooltip.visible). It fails to address the critical gaps identified in previous reviews: there is still no evidence of loading or processing the required '原始股票数据' (raw time-series price/volume data), nor is there any implementation of the JavaScript logic for hover events, row highlighting, or bubble chart linkage. The output contract regarding the actual interactive rendering remains unverified."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence only confirms a CSS update for tooltip opacity (.tooltip.visible) and a partial JS logic check regarding ETF tooltips. It critically fails to address the recurring gaps identified in all previous retry feedbacks: there is still no evidence of loading or processing the required '原始股票数据' (raw time-series price/volume data), no implementation of hover events/row highlighting/bubble chart linkage, and no verification of the final rendered interactive webpage (bubble chart or table). The output contract remains unverified."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 15,
+    "passed": true
+  },
+  {
+    "task": "stock-data-visualization-3",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261124-235733-c595ab",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 2,
+        "error": "The draft evidence confirms the identification of 'stock-descriptions.tsv' and its TSV loader format, but it fails to meet the node's output contract by omitting specific column names ('fields') and data validation rules ('output contract'). Furthermore, the evidence only addresses company description data, leaving the status of the required 'raw stock data' (price/volume) unverified despite it being a defined input."
+      },
+      {
+        "stage": "render",
+        "attempt": 2,
+        "error": "The draft evidence successfully resolves the file format mismatch (CSV vs. TSV) in `visualization.js` but remains insufficient for the 'render' node's output contract. Specifically, it fails to define the required 'fields' (exact column names for the bubble chart and table) and 'output contract' details (data types, null handling). Furthermore, the evidence only validates the company description file ('stock-descriptions.tsv') while leaving the status of the primary 'raw stock data' (price/volume), which is a defined input, completely unverified."
+      },
+      {
+        "stage": "interact",
+        "attempt": 2,
+        "error": "The draft evidence provides a concrete code edit in `visualization.js` that successfully implements the 'tooltip' (提示框) visibility logic using `.classed` and `aria-hidden`. However, it completely fails to address the second mandatory part of the node's output contract: '行与气泡联动' (row and bubble linkage). There is no evidence of event handlers linking table rows to chart bubbles or vice versa. Additionally, the persistent historical issue regarding the unverified status of the primary 'raw stock data' (price/volume) input remains unresolved, as the evidence only focuses on interaction logic without confirming the underlying data source integrity."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence claims 'ready: true' and asserts that checks for data aliases and row-bubble linking (via `highlightStock`) were performed, but it fails to provide the concrete artifact content (code snippets or data structure examples) required to validate these claims against persistent historical feedback. Specifically, the previous review explicitly noted the unresolved status of the primary 'raw stock data' (price/volume) input and the missing implementation details of the linkage event handlers. The current draft merely lists these items as 'Confirmed' or 'Checked' without presenting the actual code lines (e.g., the `highlightStock` function body or the raw data loading logic) as evidence. Without seeing the specific implementation in the provided text, the claim that the 'raw stock data' gap is closed and the linkage is fully implemented cannot be verified, leaving the critical historical defects unaddressed."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 15,
+    "passed": true
+  },
+  {
+    "task": "stock-data-visualization-4",
+    "platform_run_id": "a2607d7e-fcb6-431a-b9f5-c8c31b1a84a3",
+    "qwen_draft_run": "20261124-235811-ec73fc",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 2,
+        "error": "The draft evidence only addresses 'stock-descriptions.csv' for company metadata, failing to identify or validate the '原始股票数据' (raw stock data) input required for time-series visualization as specified in the node's input contract. Additionally, the output fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output are missing from the checkpoint results, leaving the data preparation validation incomplete."
+      },
+      {
+        "stage": "render",
+        "attempt": 2,
+        "error": "The draft evidence exclusively validates the loading of 'stock-descriptions.csv' (metadata) but fails to address the '原始股票数据' (raw stock data) input explicitly required by the node's input contract for time-series visualization. Additionally, the evidence does not verify the output fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output, leaving the data preparation and validation incomplete as noted in previous retry feedback."
+      },
+      {
+        "stage": "interact",
+        "attempt": 2,
+        "error": "The draft evidence successfully implements basic tooltip visibility toggling and accessibility attributes (aria-hidden) for hover events in 'js/visualization.js'. However, it fails to address the critical gaps identified in consecutive retry feedback: 1) There is no evidence of loading or processing the '原始股票数据' (raw stock data) required for time-series visualization; the code only references metadata fields (ticker, fullName, sector) likely from 'stock-descriptions.csv'. 2) The output contract fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output are not validated or documented. 3) The specific requirement for '行与气泡联动' (row and bubble linkage/cross-element synchronization) mentioned in the node's output description is not demonstrated; the current code only handles mouse events on individual elements without showing logic that links table rows to visualization bubbles."
+      },
+      {
+        "stage": "verify",
+        "attempt": 2,
+        "error": "The draft evidence claims readiness but fails to address critical gaps identified in the last seven rounds of retry feedback. Specifically: 1) There is no evidence of loading or processing the '原始股票数据' (raw stock data) required for time-series visualization; the checks only reference metadata fields (ticker, fullName, sector) from 'stock-descriptions.csv'. 2) The output contract fields '文件格式' (file format) and '输出契约' (output contract/schema) defined in the node's expected output are not validated or documented. 3) The specific requirement for '行与气泡联动' (row and bubble linkage/cross-element synchronization) is not demonstrated; while 'highlightStock' is mentioned, the evidence does not confirm the bidirectional synchronization logic between table rows and visualization bubbles as required by the node definition."
+      }
+    ],
+    "verifier_exit": 0,
+    "reward": "1",
+    "checks": 16,
+    "passed": true
+  }
+]

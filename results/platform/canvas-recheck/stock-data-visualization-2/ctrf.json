@@ -1,0 +1,237 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "1.0.0",
+    "reportId": "66db1a61-0ca2-47c6-9747-0f1f64b3d0ef",
+    "timestamp": "2026-11-24T17:33:58.204392+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.2.0"
+        },
+        "summary": {
+            "tests": 15,
+            "passed": 15,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "flaky": 0,
+            "suites": 1,
+            "start": 1795541625356,
+            "stop": 1795541638199,
+            "duration": 12843
+        },
+        "environment": {
+            "osPlatform": "linux",
+            "osRelease": "6.18.33.2-microsoft-standard-WSL2",
+            "osVersion": "#1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026"
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_0_diagnostic_info",
+                "status": "passed",
+                "duration": 411,
+                "start": 1795541625464,
+                "stop": 1795541625875,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/index.html-index.html]",
+                "status": "passed",
+                "duration": 1,
+                "start": 1795541625876,
+                "stop": 1795541625877,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/index.html",
+                    "description": "index.html"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/js/d3.v6.min.js-D3.js v6 library]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1795541625877,
+                "stop": 1795541625877,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/js/d3.v6.min.js",
+                    "description": "D3.js v6 library"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/js/visualization.js-custom visualization.js]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1795541625878,
+                "stop": 1795541625878,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/js/visualization.js",
+                    "description": "custom visualization.js"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/css/style.css-style.css]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1795541625878,
+                "stop": 1795541625879,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/css/style.css",
+                    "description": "style.css"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/data/stock-descriptions.json-stock-descriptions.json]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1795541625879,
+                "stop": 1795541625879,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/data/stock-descriptions.json",
+                    "description": "stock-descriptions.json"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_output_structure_and_files[/root/output/data/indiv-stock-indiv-stock/ directory]",
+                "status": "passed",
+                "duration": 0,
+                "start": 1795541625879,
+                "stop": 1795541625880,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py",
+                "parameters": {
+                    "path": "/root/output/data/indiv-stock",
+                    "description": "indiv-stock/ directory"
+                }
+            },
+            {
+                "name": "test_outputs.py::test_bubble_chart_rendering",
+                "status": "passed",
+                "duration": 5788,
+                "start": 1795541625880,
+                "stop": 1795541631668,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_data_table",
+                "status": "passed",
+                "duration": 17,
+                "start": 1795541631669,
+                "stop": 1795541631685,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_tooltips_non_etf_and_etf",
+                "status": "passed",
+                "duration": 2502,
+                "start": 1795541631686,
+                "stop": 1795541634188,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_interactive_linking",
+                "status": "passed",
+                "duration": 588,
+                "start": 1795541634188,
+                "stop": 1795541634777,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_market_cap_formatting",
+                "status": "passed",
+                "duration": 46,
+                "start": 1795541634777,
+                "stop": 1795541634823,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_sector_clustering",
+                "status": "passed",
+                "duration": 3280,
+                "start": 1795541634823,
+                "stop": 1795541638104,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_legend_completeness",
+                "status": "passed",
+                "duration": 3,
+                "start": 1795541638104,
+                "stop": 1795541638107,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_data_integrity",
+                "status": "passed",
+                "duration": 91,
+                "start": 1795541638108,
+                "stop": 1795541638199,
+                "suite": [
+                    "test_outputs.py"
+                ],
+                "retries": 0,
+                "filePath": "test_outputs.py"
+            }
+        ]
+    }
+}

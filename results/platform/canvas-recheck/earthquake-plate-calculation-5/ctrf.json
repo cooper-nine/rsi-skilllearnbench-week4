@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1795541496.943602,
+            "stop": 1795541496.9622533
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_distance_within_tolerance",
+                "status": "passed",
+                "duration": 0.0010611210018396378,
+                "start": 1795541496.955467,
+                "stop": 1795541496.9570415,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct",
+                "status": "passed",
+                "duration": 0.0003342239979247097,
+                "start": 1795541496.9572623,
+                "stop": 1795541496.9577088,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_latitude_within_tolerance",
+                "status": "passed",
+                "duration": 0.000803467002697289,
+                "start": 1795541496.9578369,
+                "stop": 1795541496.9587748,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_longitude_within_tolerance",
+                "status": "passed",
+                "duration": 0.000223631999688223,
+                "start": 1795541496.958924,
+                "stop": 1795541496.9592495,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_magnitude_within_tolerance",
+                "status": "passed",
+                "duration": 0.0002579280007921625,
+                "start": 1795541496.9593527,
+                "stop": 1795541496.959724,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_output_file_and_structure",
+                "status": "passed",
+                "duration": 0.00033556999915163033,
+                "start": 1795541496.9598527,
+                "stop": 1795541496.9602919,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_place_correct",
+                "status": "passed",
+                "duration": 0.00038926900015212595,
+                "start": 1795541496.9604652,
+                "stop": 1795541496.960969,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestEarthquakeTask::test_time_correct",
+                "status": "passed",
+                "duration": 0.00033715699828462675,
+                "start": 1795541496.9611187,
+                "stop": 1795541496.96157,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            }
+        ]
+    }
+}

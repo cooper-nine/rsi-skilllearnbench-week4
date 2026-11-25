@@ -1,0 +1,18 @@
+{
+  "family": "stock-data-visualization",
+  "instance": 2,
+  "baseline_passed": false,
+  "baseline_run": "20261118-141811-3aa771",
+  "flow_sha256": "d74437835baf0075287d1b843927c6ceb5fb8b62afdede164b518b90e4f13da3",
+  "status": "infrastructure_error",
+  "treatment_run": "20261125-111807-428049",
+  "treatment_origin": "platform",
+  "platform_run_id": "8cc89b7b-87d9-471f-bbae-121cb277c042",
+  "passed": false,
+  "reward": 0,
+  "agent_exit": null,
+  "agent_timed_out": false,
+  "verifier_exit": 0,
+  "error": "agent_api_or_runtime_aborted; tee exit does not report actual agent status",
+  "runtime_error": "DashScope proxy returned HTTP 502"
+}
