@@ -304,7 +304,13 @@ def solve_staged(directory, case, graph, server, key):
                     trace = read(prior / "run.json")
                     calculation = next((item for item in trace["checkpoints"]
                                         if item["stage"] == "calculate" and "output" in item), None)
-                    if calculation:
+                    if calculation and instance == 5:
+                        checkpoints.extend(item for item in trace["checkpoints"]
+                                           if item["stage"] in ("requirements", "read") and "output" in item)
+                        previous = next(item["output"] for item in checkpoints if item["stage"] == "read")
+                        outcome["checkpoint_source"] = trace["platform_run_id"]
+                        nodes = [node for node in nodes if node["id"] in ("calculate", "verify")]
+                    elif calculation:
                         state = folder / "checkpoint.json"
                         reading = next(item["output"] for item in trace["checkpoints"]
                                        if item["stage"] == "read" and "output" in item)
@@ -350,6 +356,15 @@ def solve_staged(directory, case, graph, server, key):
                                 "supported by the installed recalculation engine. Write concise Python "
                                 "using loops, no long comments."
                             )
+                            if instance == 5:
+                                sources["previous_failure"] = (
+                                    "The previous workbook MATCH searched for an unqualified reference to "
+                                    "Task row 4, whose year cells are blank. The actual years are Task H9:M9. "
+                                    "Use an anchored Task row 9 reference as the lookup value; compare it "
+                                    "with the matching Data year headers. Check source and destination "
+                                    "coordinate types before saving the formulas. Avoid rounding any "
+                                    "intermediate values beyond what the original task requests."
+                                )
                     if family == "stock-data-visualization" and stage == "interact":
                         for path in ("index.html", "js/visualization.js", "css/style.css"):
                             artifact = docker("exec", name, "cat", f"/root/output/{path}", capture_output=True)
@@ -381,6 +396,9 @@ def solve_staged(directory, case, graph, server, key):
                             "leading rows and columns, losing original Excel coordinates. Preserve the "
                             "Task sheet coordinate origin in CSV by setting a single whitespace character "
                             "in A1 only if it is empty; preserve all task data, formulas and styling. "
+                            "Recalculate with ssconvert to a temporary CSV and check for spreadsheet errors. "
+                            "If any existing quartile formula uses QUARTILE.INC and returns #NAME?, use "
+                            "the equivalent legacy QUARTILE function while preserving all arguments. "
                             "Return the inspected cell and workbook path as JSON."
                         )
                     response, usage = api(server, key, rule, task_context,

@@ -1,0 +1,38 @@
+[
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-124901-2690d3",
+    "flow_sha256": "2fdaa14d0bf868d466fb629f429225d511d700a2180c0274fde7abe0743c8069",
+    "treatment_run": "weighted-gdp-calculation-1",
+    "treatment_origin": "platform",
+    "platform_run_id": "b49640e9-305b-4b1b-a0ba-fc00ce2c4008",
+    "treatment_passed": false,
+    "status": "valid"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-150937-21cedf",
+    "flow_sha256": "1f2cc0978e8a1ee144ae2881134db01940ca2a4776e708186c10f5ab3e215ed8",
+    "treatment_run": "weighted-gdp-calculation-5",
+    "treatment_origin": "platform",
+    "platform_run_id": "b49640e9-305b-4b1b-a0ba-fc00ce2c4008",
+    "treatment_passed": false,
+    "status": "valid"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 4,
+    "baseline_passed": false,
+    "baseline_run": "20261118-140525-7fb55f",
+    "flow_sha256": "ded4249a0c29103f92244c8c917ec5b849416c7ed124fcc6fdd5670e9593965f",
+    "treatment_run": "weighted-gdp-calculation-4",
+    "treatment_origin": "platform",
+    "platform_run_id": "b49640e9-305b-4b1b-a0ba-fc00ce2c4008",
+    "treatment_passed": true,
+    "status": "valid"
+  }
+]
