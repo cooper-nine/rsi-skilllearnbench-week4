@@ -1,0 +1,51 @@
+{
+  "task": "stock-data-visualization-1",
+  "platform_run_id": "025b47f6-e47d-49f4-b5d2-0d49a077225a",
+  "source_run": "9c352f36-3d73-47d8-9d78-8424e2057413",
+  "mode": "repair-fresh-artifact",
+  "checkpoints": [
+    {
+      "stage": "interact",
+      "output": {
+        "ready": true,
+        "observation": "The test failure indicates that the tooltip does not appear when hovering over non-ETF items. The diagnosis points out that the current implementation relies solely on inline opacity changes, which may be overridden or not synchronized with CSS visibility states. Additionally, the hover handlers need to be applied consistently to both the circle and label elements, and the tooltip must hide correctly for ETFs and on mouseout. The fix involves ensuring the tooltip's visibility is controlled by a CSS class (`.visible`) in addition to inline styles, and applying this logic to all relevant hover events.",
+        "edits": [
+          {
+            "file": "css/style.css",
+            "old": ".tooltip {\n    position: absolute;\n    padding: 8px 12px;\n    background: rgba(0, 0, 0, 0.8);\n    color: white;\n    border-radius: 4px;\n    font-size: 12px;\n    pointer-events: none;\n    opacity: 0;\n    transition: opacity 0.2s;\n    max-width: 300px;\n    z-index: 1000;\n}",
+            "new": ".tooltip {\n    position: absolute;\n    padding: 8px 12px;\n    background: rgba(0, 0, 0, 0.8);\n    color: white;\n    border-radius: 4px;\n    font-size: 12px;\n    pointer-events: none;\n    opacity: 0;\n    visibility: hidden;\n    transition: opacity 0.2s, visibility 0.2s;\n    max-width: 300px;\n    z-index: 1000;\n}\n\n.tooltip.visible {\n    opacity: 1;\n    visibility: visible;\n}"
+          },
+          {
+            "file": "js/visualization.js",
+            "old": "        // Draw bubbles (only circles for stocks)\n        const bubbles = svg.selectAll(\"circle\")\n            .data(nodes)\n            .join(\"circle\")\n            .attr(\"cx\", d => d.x)\n            .attr(\"cy\", d => d.y)\n            .attr(\"r\", d => d.radius)\n            .attr(\"fill\", d => sectorColors[d.sector])\n            .attr(\"stroke\", \"#333\")\n            .attr(\"stroke-width\", 1)\n            .attr(\"class\", d => `bubble-${d.ticker}`)\n            .attr(\"data-ticker\", d => d.ticker)\n            .on(\"click\", function(event, d) {\n                highlightStock(d.ticker);\n            })\n            .on(\"mouseover\", function(event, d) {\n                showTooltip(event, d);\n            })\n            .on(\"mouseout\", hideTooltip);",
+            "new": "        // Draw bubbles (only circles for stocks)\n        const bubbles = svg.selectAll(\"circle\")\n            .data(nodes)\n            .join(\"circle\")\n            .attr(\"cx\", d => d.x)\n            .attr(\"cy\", d => d.y)\n            .attr(\"r\", d => d.radius)\n            .attr(\"fill\", d => sectorColors[d.sector])\n            .attr(\"stroke\", \"#333\")\n            .attr(\"stroke-width\", 1)\n            .attr(\"class\", d => `bubble-${d.ticker}`)\n            .attr(\"data-ticker\", d => d.ticker)\n            .on(\"click\", function(event, d) {\n                highlightStock(d.ticker);\n            })\n            .on(\"mouseover\", function(event, d) {\n                if (!d.isETF) showTooltip(event, d);\n            })\n            .on(\"mouseout\", hideTooltip);"
+          },
+          {
+            "file": "js/visualization.js",
+            "old": "        // Add labels inside bubbles\n        svg.selectAll(\"text\")\n            .data(nodes)\n            .join(\"text\")\n            .attr(\"x\", d => d.x)\n            .attr(\"y\", d => d.y)\n            .attr(\"class\", \"bubble-label\")\n            .text(d => d.ticker);",
+            "new": "        // Add labels inside bubbles\n        svg.selectAll(\"text\")\n            .data(nodes)\n            .join(\"text\")\n            .attr(\"x\", d => d.x)\n            .attr(\"y\", d => d.y)\n            .attr(\"class\", \"bubble-label\")\n            .text(d => d.ticker)\n            .on(\"mouseover\", function(event, d) {\n                if (!d.isETF) showTooltip(event, d);\n            })\n            .on(\"mouseout\", hideTooltip);"
+          },
+          {
+            "file": "js/visualization.js",
+            "old": "    function showTooltip(event, d) {\n        const [x, y] = d3.pointer(event);\n        tooltip.style(\"opacity\", 1)\n            .html(`\n                <strong>${d.ticker}</strong><br/>\n                ${d.name}<br/>\n                Sector: ${d.sector}<br/>\n                Market Cap: ${formatMarketCap(d.marketCap)}\n            `)\n            .style(\"left\", (x + 10) + \"px\")\n            .style(\"top\", (y - 10) + \"px\");\n    }",
+            "new": "    function showTooltip(event, d) {\n        const [x, y] = d3.pointer(event);\n        tooltip.classed(\"visible\", true)\n            .html(`\n                <strong>${d.ticker}</strong><br/>\n                ${d.name}<br/>\n                Sector: ${d.sector}<br/>\n                Market Cap: ${formatMarketCap(d.marketCap)}\n            `)\n            .style(\"left\", (x + 10) + \"px\")\n            .style(\"top\", (y - 10) + \"px\");\n    }"
+          },
+          {
+            "file": "js/visualization.js",
+            "old": "    function showTableTooltip(element, ticker, name, sector) {\n        const rect = element.getBoundingClientRect();\n        tooltip.style(\"opacity\", 1)\n            .html(`\n                <strong>${ticker}</strong><br/>\n                ${name}<br/>\n                Sector: ${sector}\n            `)\n            .style(\"left\", (rect.left + 10) + \"px\")\n            .style(\"top\", (rect.top - 10) + \"px\");\n    }",
+            "new": "    function showTableTooltip(element, ticker, name, sector) {\n        const rect = element.getBoundingClientRect();\n        tooltip.classed(\"visible\", true)\n            .html(`\n                <strong>${ticker}</strong><br/>\n                ${name}<br/>\n                Sector: ${sector}\n            `)\n            .style(\"left\", (rect.left + 10) + \"px\")\n            .style(\"top\", (rect.top - 10) + \"px\");\n    }"
+          },
+          {
+            "file": "js/visualization.js",
+            "old": "    function hideTooltip() {\n        tooltip.style(\"opacity\", 0);\n    }",
+            "new": "    function hideTooltip() {\n        tooltip.classed(\"visible\", false);\n    }"
+          }
+        ]
+      }
+    }
+  ],
+  "verifier_exit": 0,
+  "reward": "1",
+  "checks": 15,
+  "passed": true
+}

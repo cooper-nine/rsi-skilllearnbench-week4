@@ -1,0 +1,18 @@
+{
+  "task": "earthquake-plate-calculation-5",
+  "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+  "qwen_draft_run": "20261124-215351-cde393",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [
+    {
+      "stage": "prepare",
+      "attempt": 1,
+      "output": {
+        "ready": true,
+        "observation": "The draft evidence successfully completes the 'prepare' stage by inventorying the three required datasets (earthquakes, plates, boundaries) with correct schema details (feature counts, coordinate systems, property fields). It explicitly documents the resolution of the ambiguous term 'plate edge' by defining it as the boundary lines involving the Pacific Plate (PA) from PB2002_boundaries.json, and outlines the three-step main objective. The output matches the node's expected deliverable of a field list and measurement scope."
+      }
+    }
+  ],
+  "passed": false,
+  "error": "The draft evidence contains execution results from the 'filter' stage (e.g., 107 earthquakes filtered, specific magnitude 6.8, distance calculation), but the current node is defined as the 'prepare' stage with expected outputs of input/output schema details and measurement scope. The evidence skips the required preparation step of documenting dataset schemas and resolving the 'plate edge' definition before filtering, creating a mismatch between the node's definition and the provided data."
+}

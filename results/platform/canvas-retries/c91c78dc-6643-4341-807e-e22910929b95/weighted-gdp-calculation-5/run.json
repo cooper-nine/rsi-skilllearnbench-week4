@@ -1,0 +1,18 @@
+{
+  "task": "weighted-gdp-calculation-5",
+  "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+  "qwen_draft_run": "20261125-002513-f38f87",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [
+    {
+      "stage": "requirements",
+      "attempt": 1,
+      "output": {
+        "ready": true,
+        "observation": "The draft evidence provides a complete 'Target Cell and Formula Contract' for the 'requirements' stage, explicitly defining input ranges (D12:D17, H10:M10), output ranges (H12:M17, H19:M24, H28:M33), specific formula logic (INDEX/MATCH, Trade Balance Coefficient, SUMPRODUCT weighted mean), and constraints (no VBA, rounding rules). This fully satisfies the node's expected output of transforming the problem statement and raw workbook into an executable specification."
+      }
+    }
+  ],
+  "passed": false,
+  "error": "The draft evidence contains the placeholder text 'actual observation' instead of concrete data. It fails to document the specific data regions located, the years identified, or the sequence mapping derived from the 'Data' sheet as required by the 'read' node's output definition."
+}

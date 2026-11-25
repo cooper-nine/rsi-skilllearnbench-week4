@@ -1,0 +1,23 @@
+{
+  "task": "earthquake-plate-calculation-5",
+  "platform_run_id": "a00f219f-53b1-4c3a-9826-3b4b829e56b9",
+  "model": "qwen3.5-plus",
+  "checkpoints": [
+    {
+      "stage": "prepare",
+      "attempt": 1,
+      "retry_feedback": "'python'"
+    },
+    {
+      "stage": "prepare",
+      "attempt": 2,
+      "retry_feedback": "'python'"
+    },
+    {
+      "stage": "prepare",
+      "attempt": 3,
+      "retry_feedback": "'python'"
+    }
+  ],
+  "error": "Node prepare did not finish: 'python'"
+}

@@ -6,10 +6,11 @@ from run_rsi_retests import OUTPUT, baseline_image
 import urllib.request, urllib.error
 
 def docker(*a,**kw): return subprocess.run(['docker',*map(str,a)],timeout=900,**kw)
-def api(server,key,rule,instruction,state,source,layout):
+def api(server,key,rule,instruction,state,source,layout,*,python_source=False):
  prompt=json.dumps({'task':instruction,'previous_checkpoint':state,'files':layout,'sources':source},ensure_ascii=False)
  payload={'model':'qwen3.5-plus','temperature':0,'max_tokens':4096,'enable_thinking':False,
-          'messages':[{'role':'system','content':rule+' Return only one JSON object, no markdown.'},{'role':'user','content':prompt}]}
+          'messages':[{'role':'system','content':rule+(' Return only runnable Python source, no JSON wrapper.'
+                      if python_source else ' Return only one JSON object, no markdown.')},{'role':'user','content':prompt}]}
  req=urllib.request.Request(f'http://127.0.0.1:{server.server_port}/chat/completions',json.dumps(payload).encode(),
                             {'Authorization':'Bearer '+key,'Content-Type':'application/json'})
  for attempt in range(2):
@@ -21,7 +22,7 @@ def api(server,key,rule,instruction,state,source,layout):
    time.sleep(3)
  content=res['choices'][0]['message']['content'].strip()
  if content.startswith('```'): content=content.split('\n',1)[1].rsplit('```',1)[0]
- return json.loads(content),res['usage']
+ return ({'python':content} if python_source else json.loads(content)),res['usage']
 GUIDES={
  'financial-analysis':{
   'identify':'Generate Python that reads each COVERPAGE.tsv and INFOTABLE.tsv from the original data, finds the named fund accession by case-insensitive fuzzy matching among rows with actual holdings, excludes explicit amendments but allows blank flags, and prints a JSON object mapping each requested fund to the actual quarter-specific accession. No answer values yet.',
@@ -56,7 +57,8 @@ def run(family,i,server,key,platform):
   with (agent/'qwen.txt').open('w',encoding='utf8') as log:
    for node in spec['nodes']:
     stage=node['id']
-    for attempt in range(3):
+    attempt_limit=1+spec['retry']['limitPerNode']
+    for attempt in range(attempt_limit):
      try:
       rule='Current Skill\n'+node['text']+'\n'+node.get('guidance','')+'\nCurrent stage task\n'+GUIDES[family][stage]
       if family=='financial-analysis':
@@ -79,6 +81,8 @@ def run(family,i,server,key,platform):
       if stage=='calculate':
        source['original_holding_skill']=next(Path('skills/human_authored/financial-analysis').rglob('holding_analysis.py')).read_text(encoding='utf8')
        rule+='\nUse the exact accession keys provided in the checkpoint. Follow original holding_skill for the manager ranking; do not aggregate FILINGMANAGER_NAME in an INFOTABLE dataframe. Read the original input files at the documented paths. Keep source under 90 lines and omit long commentary.'
+      if stage=='calculate' and i==1:
+       rule+='\nFor Berkshire purchases, first build filtered Q2 and Q3 stock dataframes using the imported title_class_of_stocks exactly as in the original one_fund_analysis.py. Use those two filtered frames for both accession selections and CUSIP sums. Do not calculate the Berkshire ranking from the raw, unfiltered holdings.'
       if stage=='calculate' and i==3:
        rule+='\nCorrect the narrow NVIDIA search in the earlier draft. Search NAMEOFISSUER across the entire Q2 stock-classified dataframe for NVIDIA, independently of Pershing and uc. Pick the most common CUSIP among matching issuer rows of this common stock; do not restrict to a single fund portfolio. Preserve the working Soros AUM and Pershing outer alignment.'
       response,usage=api(server,key,rule,stage_input,previous,source, {'input_files':['/root/2025-q2','/root/2025-q3','/tmp/one_fund_analysis.py']})
@@ -111,7 +115,7 @@ def run(family,i,server,key,platform):
      except (ValueError,KeyError,TypeError,SyntaxError,subprocess.SubprocessError) as exc:
       previous={**previous,'retry_feedback':str(exc)[-1000:],'prior_stage_code':response.get('python','') if 'response' in locals() else ''}
       print(json.dumps({'type':'flow','event':'retry','node':stage,'reason':str(exc)[-1000:]}),file=log,flush=True)
-      if attempt==2:raise
+      if attempt+1==attempt_limit:raise
   preload_verifier_uv(container,Path('qwen/uv-cache'))
   docker('cp',tests,f'{container}:/tests',check=True)
   with (root/'verifier.stdout.log').open('wb') as out:

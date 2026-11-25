@@ -1,0 +1,26 @@
+[
+  {
+    "family": "earthquake-plate-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-122708-583ff7",
+    "flow_sha256": "0264e399812729456223957299e3fec5289d9d4cdae33ddfbdbea3e9f40ca8e8",
+    "treatment_run": "earthquake-plate-calculation-5",
+    "treatment_origin": "platform",
+    "platform_run_id": "a00f219f-53b1-4c3a-9826-3b4b829e56b9",
+    "treatment_passed": null,
+    "status": "infrastructure_error"
+  },
+  {
+    "family": "financial-analysis",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-114709-707627",
+    "flow_sha256": "396ad81fb16ff348414f957e4c23a34fb3691396a3eb64334ace5899d18f069d",
+    "treatment_run": "20261125-130817-a747f5",
+    "treatment_origin": "platform",
+    "platform_run_id": "a00f219f-53b1-4c3a-9826-3b4b829e56b9",
+    "treatment_passed": false,
+    "status": "valid"
+  }
+]

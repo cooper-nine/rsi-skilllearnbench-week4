@@ -108,8 +108,8 @@ const links=elements.slice(1).map((next,i)=>({
  </select>
  <button type="button" disabled={busy} onClick={()=>run('fresh')}>从原始输入运行</button>
  <button type="button" disabled={busy} onClick={()=>run('recheck')}>复核已有产物</button>
- {target==='stock-data-visualization-4' &&
- <button type="button" disabled={busy} onClick={()=>run('repair-stock-4')}>续修股票第 4 题</button>}
+ {target.startsWith('stock-data-visualization-') &&
+ <button type="button" disabled={busy} onClick={()=>run('repair-stock-'+target.at(-1))}>续修选中的股票题</button>}
  <output aria-live="polite">{message}</output>
  </div>
  <section aria-label="可拖动编排画布" style={{height:390,position:'relative',border:'1px solid #c8d6e3',borderRadius:12,overflow:'hidden',background:'#eaf0f6'}}>

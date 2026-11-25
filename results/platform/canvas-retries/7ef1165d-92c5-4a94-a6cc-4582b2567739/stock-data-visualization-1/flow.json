@@ -1,0 +1,56 @@
+{
+  "id": "stock-data-visualization",
+  "entry": "prepare",
+  "nodes": [
+    {
+      "id": "prepare",
+      "skill": "d3-visualization",
+      "sourceSha256": "c048128070fb3f8a988729c72fc958d7560c721a768740217fa2dade43f75a8f",
+      "text": "---\r\nname: d3js-visualization\r\ndescription: Build deterministic, verifiable data visualizations with D3.js (v6). Generate standalone HTML/SVG (and optional PNG) from local data files without external network dependencies. Use when tasks require charts, plots, axes/scales, legends, tooltips, or data-driven SVG output.\r\n---\r\n\r\n# D3.js Visualization Skill\r\n\r\nUse this skill to turn structured data (CSV/TSV/JSON) into **clean, reproducible** visualizations using **D3.js**. The goal is to produce **stable outputs** that can be verified by diffing files or hashing.\r\n\r\n## When to use\r\n\r\nActivate this skill when the user asks for any of the following:\r\n\r\n- “Make a chart/plot/graph/visualization”\r\n- bar/line/scatter/area/histogram/box/violin/heatmap\r\n- timelines, small multiples, faceting\r\n- axis ticks, scales, legends, tooltips\r\n- data-driven SVG output for a report or web page\r\n- converting data to a static SVG or HTML visualization\r\n\r\nIf the user only needs a quick table or summary, **don’t** use D3—use a spreadsheet or plain markdown instead.\r\n\r\n---\r\n\r\n## Inputs you should expect\r\n\r\n- One or more local data files: `*.csv`, `*.tsv`, `*.json`\r\n- A chart intent:\r\n  - chart type (or you infer the best type)\r\n  - x/y fields and aggregation rules\r\n  - sorting/filtering rules\r\n  - dimensions (width/height) and margins\r\n  - color rules (categorical / sequential)\r\n  - any labeling requirements (title, axis labels, units)\r\n- Output constraints:\r\n  - “static only”, “no animation”, “must be deterministic”, “offline”, etc.\r\n\r\nIf details are missing, **make reasonable defaults** and document them in comments near the top of the output file.\r\n\r\n---\r\n\r\n## Outputs you should produce\r\n\r\nPrefer producing **all of** the following when feasible:\r\n\r\n1. `dist/chart.html` — standalone HTML that renders the visualization\r\n2. `dist/chart.svg` — exported SVG (stable and diff-friendly)\r\n3. (Optional) `dist/chart.png` — if the task explicitly needs a raster image\r\n\r\nAlways keep outputs in a predictable folder (default: `dist/`), unless the task specifies paths.\r\n\r\n---\r\n\r\n",
+      "guidance": "Identify how to read the one original stock description file listed in files.description_files. Return {\"loader\":\"csv|json|tsv\",\"checkpoint\":\"what was identified\"}. No edits yet.\nCanvas input: 题面、原始股票数据\nCanvas output: 文件格式、字段、输出契约"
+    },
+    {
+      "id": "render",
+      "skill": "d3-visualization",
+      "sourceSha256": "c048128070fb3f8a988729c72fc958d7560c721a768740217fa2dade43f75a8f",
+      "text": "## Determinism rules (non-negotiable)\r\n\r\nTo keep results stable across runs and machines:\r\n\r\n### Data determinism\r\n- **Sort** input rows deterministically before binding to marks (e.g., by x then by category).\r\n- Use stable grouping order (explicit `Array.from(grouped.keys()).sort()`).\r\n- Avoid locale-dependent formatting unless fixed (use `d3.format`, `d3.timeFormat` with explicit formats).\r\n\r\n### Rendering determinism\r\n- **No randomness**: do not use `Math.random()` or `d3-random`.\r\n- **No transitions/animations** by default (transitions can introduce timing variance).\r\n- **Fixed** `width`, `height`, `margin`, `viewBox`.\r\n- Use **explicit tick counts** only when needed; otherwise rely on D3 defaults but keep domains fixed.\r\n- Avoid layout algorithms with non-deterministic iteration unless you control seeds/iterations (e.g., force simulation). If a force layout is required:\r\n  - fix the tick count,\r\n  - fix initial positions deterministically (e.g., sorted nodes placed on a grid),\r\n  - run exactly N ticks and stop.\r\n\r\n### Offline + dependency determinism\r\n- Do **not** load D3 from a CDN.\r\n- Pin D3 to a specific version (default: **d3@7.9.0**).\r\n- Prefer vendoring a minified D3 bundle (e.g., `vendor/d3.v7.9.0.min.js`) or bundling with a lockfile.\r\n\r\n### File determinism\r\n- Stable SVG output:\r\n  - Avoid auto-generated IDs that may change.\r\n  - If you must use IDs (clipPath, gradients), derive them from stable strings (e.g., `\"clip-plot\"`).\r\n- Use LF line endings.\r\n- Keep numeric precision consistent (e.g., round to 2–4 decimals if needed).\r\n\r\n---\r\n\r\n## Recommended project layout\r\n\r\nIf the task doesn't specify an existing structure, use:\r\n\r\n```\r\ndist/\r\n  chart.html        # standalone HTML with inline or linked JS/CSS\r\n  chart.svg         # exported SVG (optional but nice)\r\n  chart.png         # rasterized (optional)\r\nvendor/\r\n  d3.v7.9.0.min.js  # pinned D3 library\r\n```\r\n\r\n---\r\n\r\n",
+      "guidance": "Reuse the working HTML, CSS and JavaScript. If the existing description loader or filename mismatches the original input, propose exactly one literal JavaScript replacement for the loader line. Return {\"edits\":[{\"file\":\"js/visualization.js\",\"old\":\"literal substring\",\"new\":\"replacement\"}],\"checkpoint\":\"what was checked\"}. If correct, return an empty edits array and explain why.\nCanvas input: 原始数据、输出契约\nCanvas output: 本地网页、气泡图与表格"
+    },
+    {
+      "id": "interact",
+      "skill": "d3-visualization",
+      "sourceSha256": "c048128070fb3f8a988729c72fc958d7560c721a768740217fa2dade43f75a8f",
+      "text": "## Interactive features (tooltips, click handlers, hover effects)\r\n\r\nWhen the task requires interactivity (e.g., tooltips on hover, click to highlight):\r\n\r\n### Tooltip pattern (recommended)\r\n\r\n1. **Create a tooltip element** in HTML:\r\n```html\r\n<div id=\"tooltip\" class=\"tooltip\"></div>\r\n```\r\n\r\n2. **Style with CSS** using `.visible` class for show/hide:\r\n```css\r\n.tooltip {\r\n    position: absolute;\r\n    padding: 10px;\r\n    background: rgba(0, 0, 0, 0.8);\r\n    color: white;\r\n    border-radius: 4px;\r\n    pointer-events: none;  /* Prevent mouse interference */\r\n    opacity: 0;\r\n    transition: opacity 0.2s;\r\n    z-index: 1000;\r\n}\r\n\r\n.tooltip.visible {\r\n    opacity: 1;  /* Show when .visible class is added */\r\n}\r\n```\r\n\r\n3. **Add event handlers** to SVG elements:\r\n```javascript\r\nsvg.selectAll('circle')\r\n    .on('mouseover', function(event, d) {\r\n        d3.select('#tooltip')\r\n            .classed('visible', true)  // Add .visible class\r\n            .html(`<strong>${d.name}</strong><br/>${d.value}`)\r\n            .style('left', (event.pageX + 10) + 'px')\r\n            .style('top', (event.pageY - 10) + 'px');\r\n    })\r\n    .on('mouseout', function() {\r\n        d3.select('#tooltip').classed('visible', false);  // Remove .visible class\r\n    });\r\n```\r\n\r\n**Key points:**\r\n- Use `opacity: 0` by default (not `display: none`) for smooth transitions\r\n- Use `.classed('visible', true/false)` to toggle visibility\r\n- `pointer-events: none` prevents tooltip from blocking mouse events\r\n- Position tooltip relative to mouse with `event.pageX/pageY`\r\n\r\n### Click handlers for selection/highlighting\r\n\r\n```javascript\r\n// Add 'selected' class on click\r\nsvg.selectAll('.bar')\r\n    .on('click', function(event, d) {\r\n        // Remove previous selection\r\n        d3.selectAll('.bar').classed('selected', false);\r\n        // Add to clicked element\r\n        d3.select(this).classed('selected', true);\r\n    });\r\n```\r\n\r\nCSS for highlighting:\r\n```css\r\n.bar.selected {\r\n    stroke: #000;\r\n    stroke-width: 3px;\r\n}\r\n```\r\n\r\n### Conditional interactivity\r\n\r\nSometimes only certain elements should be interactive:\r\n```javascript\r\n.on('mouseover', function(event, d) {\r\n    // Example: Don't show tooltip for certain categories\r\n    if (d.category === 'excluded') {\r\n        return;  // Exit early, no tooltip\r\n    }\r\n    // Show tooltip for others\r\n    showTooltip(event, d);\r\n})\r\n```\r\n\r\n---\r\n",
+      "guidance": "Repair the existing tooltip events without rewriting the app. On non-ETF hover set the visible class and aria-hidden=false as well as showing ticker/name/sector. Clear visible and set aria-hidden=true when leaving; no visible tooltip for ETF. Preserve chart/table linking. Return exact literal substring replacements in {\"edits\":[{\"file\":\"js/visualization.js\",\"old\":\"unique literal substring\",\"new\":\"replacement\"}],\"checkpoint\":\"what changed\"}. Patch only necessary lines.\nCanvas input: 渲染产物、交互要求\nCanvas output: 提示框、行与气泡联动"
+    },
+    {
+      "id": "verify",
+      "skill": "d3-visualization",
+      "sourceSha256": "c048128070fb3f8a988729c72fc958d7560c721a768740217fa2dade43f75a8f",
+      "text": "",
+      "guidance": "Review the actual final sources and verify that loader matches the file, required data aliases are present, charts and table link, visible class is set and reset for the tooltip, and ETFs do not show it. Return {\"ready\":true,\"artifact\":\"output/index.html\",\"checks\":[\"concrete check\"]} if the implementation meets the contract, otherwise {\"ready\":false,\"checks\":[\"the exact blocker\"]}.\nCanvas input: 网页、数据和交互结果\nCanvas output: 通过本地检查的 output/"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prepare",
+      "to": "render",
+      "on": "complete"
+    },
+    {
+      "from": "render",
+      "to": "interact",
+      "on": "complete"
+    },
+    {
+      "from": "interact",
+      "to": "verify",
+      "on": "complete"
+    }
+  ],
+  "retry": {
+    "on": "shell_failure",
+    "limitPerNode": 1
+  },
+  "platform_run_id": "7ef1165d-92c5-4a94-a6cc-4582b2567739"
+}

@@ -3,6 +3,7 @@
 同一批十题的人工 Skill 基线全部未通过。采用人工确认的四类节点、输入输出契约和定向回退后，**Qwen API 复测由 0/10 提升至 10/10 整题通过**。其中两题来自同轮试点，后续八题全部通过。整题通过要求原版 Docker `test.sh` 正常退出、CTRF 报告全部通过、`reward.txt` 为 `1`。
 
 - [十题清单：输入、期望、基线失败与 Qwen 结果](results/CASE-EVIDENCE.md)
+- [原平台逐题验收](results/platform/ACCEPTANCE.md)
 - [同输入逐题对照 CSV](results/comparison.csv) · [原始配对证据](results/paired-evidence/)
 - [实验报告、失败分析和下一阶段指标](results/QWEN-PILOT.md)
 - [四类浏览器编排截图](results/qwen-canvas/) · [平台运行证据](results/PLATFORM.md)

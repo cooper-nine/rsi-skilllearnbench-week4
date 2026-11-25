@@ -1,0 +1,155 @@
+[
+  {
+    "task": "earthquake-plate-calculation-5",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261124-215351-cde393",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence successfully completes the 'prepare' stage by inventorying the three required datasets (earthquakes, plates, boundaries) with correct schema details (feature counts, coordinate systems, property fields). It explicitly documents the resolution of the ambiguous term 'plate edge' by defining it as the boundary lines involving the Pacific Plate (PA) from PB2002_boundaries.json, and outlines the three-step main objective. The output matches the node's expected deliverable of a field list and measurement scope."
+        }
+      }
+    ],
+    "passed": false,
+    "error": "The draft evidence contains execution results from the 'filter' stage (e.g., 107 earthquakes filtered, specific magnitude 6.8, distance calculation), but the current node is defined as the 'prepare' stage with expected outputs of input/output schema details and measurement scope. The evidence skips the required preparation step of documenting dataset schemas and resolving the 'plate edge' definition before filtering, creating a mismatch between the node's definition and the provided data."
+  },
+  {
+    "task": "financial-analysis-1",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261125-004055-e951df",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "identify",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "Draft evidence provides three specific accession numbers (renai_2025_q3, berkshire_2025_q2, berkshire_2025_q3) which directly satisfy the node's expected output of 'fund and quarterly declaration numbers'. The data structure aligns with the defined input/output requirements for the 'identify' stage."
+        }
+      }
+    ],
+    "passed": false,
+    "error": "The draft evidence provides calculated numeric and list outputs (q1_answer through q4_answer) but completely lacks the required input field '申报编号' (accession numbers) explicitly defined in the node's input specification. Furthermore, the previous handoff observation incorrectly referenced an 'identify' stage and claimed the presence of accession numbers that are not present in the provided data structure."
+  },
+  {
+    "task": "financial-analysis-3",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261125-004524-6b896b",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "identify",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence provides a complete set of accession numbers for the required entities (Soros Fund Management LLC and Pershing Square Capital Management L.P.) across both Q2 and Q3 2025, fully satisfying the node's output requirement for 'fund and quarterly declaration numbers'."
+        }
+      }
+    ],
+    "passed": false,
+    "error": "The draft evidence fails to meet the 'calculate' node's output requirements. The node explicitly requires 'scale, position count, and change ranking', but the draft provides a Q1 monetary value (which is not requested for this stage based on the Q2/Q3 context of the handoff) and raw lists of accession numbers or company names for Q2 and Q3 instead of the calculated metrics. Furthermore, there is a data inconsistency where Q2 contains accession numbers while Q3 contains company names, preventing any valid calculation of position counts or change rankings."
+  },
+  {
+    "task": "weighted-gdp-calculation-1",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261125-005144-c6b49e",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [],
+    "passed": false,
+    "error": "The draft evidence identifies sheet names and the formula for cell H46 but fails to satisfy the node's output definition of a 'Target Cell and Formula Contract' because the 'H46_cached_value' is null and no other target cells or their formulas are enumerated."
+  },
+  {
+    "task": "weighted-gdp-calculation-5",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261125-002513-f38f87",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "requirements",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence provides a complete 'Target Cell and Formula Contract' for the 'requirements' stage, explicitly defining input ranges (D12:D17, H10:M10), output ranges (H12:M17, H19:M24, H28:M33), specific formula logic (INDEX/MATCH, Trade Balance Coefficient, SUMPRODUCT weighted mean), and constraints (no VBA, rounding rules). This fully satisfies the node's expected output of transforming the problem statement and raw workbook into an executable specification."
+        }
+      }
+    ],
+    "passed": false,
+    "error": "The draft evidence contains the placeholder text 'actual observation' instead of concrete data. It fails to document the specific data regions located, the years identified, or the sequence mapping derived from the 'Data' sheet as required by the 'read' node's output definition."
+  },
+  {
+    "task": "weighted-gdp-calculation-4",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261124-202303-42cdb5",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [],
+    "passed": false,
+    "error": "The draft evidence logs a 'complete' event for the 'requirements' node after one retry, but the associated handoff object is empty. This indicates that while the node execution finished, it failed to produce or pass the required output (target cells and formula contracts) to the next stage, rendering the completion ineffective for workflow progression."
+  },
+  {
+    "task": "stock-data-visualization-1",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261124-235639-135ea2",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence confirms the identification of 'stock-descriptions.csv' as the primary data source and specifies 'csv' as the loader, which directly satisfies the node's output requirement for defining file format and fields. However, the explicit 'output contract' (schema definition) mentioned in the node description is implied by the field list but not formally structured in the draft text."
+        }
+      }
+    ],
+    "passed": false,
+    "error": "The draft evidence confirms implementation details (D3 v6, file path, chart mechanics, table synchronization, and determinism) but fails to explicitly verify the 'output contract' (schema definition with field names and types) required by the node's input specification ('原始数据、输出契约'). The checkpoint mentions the data source but does not document the concrete schema structure necessary to satisfy the full node requirement."
+  },
+  {
+    "task": "stock-data-visualization-2",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261125-004434-2ad657",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence confirms the 'prepare' stage has identified 'stock-descriptions.json' as the primary data source for company details (ticker, name, sector, marketCap) and specified 'd3.json' as the loading mechanism, satisfying the node's requirement to define file format and output contract."
+        }
+      }
+    ],
+    "passed": false,
+    "error": "The draft evidence only provides a code checkpoint for data normalization logic within `js/visualization.js` (the 'render' stage), but it lacks the concrete output artifacts explicitly required by the node's contract: a generated local webpage, an SVG bubble chart, or an HTML table. The evidence confirms preparation steps but not the actual execution of the rendering process."
+  },
+  {
+    "task": "stock-data-visualization-3",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261124-235733-c595ab",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [
+      {
+        "stage": "prepare",
+        "attempt": 1,
+        "output": {
+          "ready": true,
+          "observation": "The draft evidence confirms the identification of 'stock-descriptions.tsv' as the primary data source for company details (ticker, name, sector, market cap), which directly satisfies the 'prepare' node's requirement to define file formats and fields based on the input raw stock data."
+        }
+      }
+    ],
+    "passed": false,
+    "error": "The draft evidence confirms a code correction in 'js/visualization.js' to align the data loader with the TSV file format, but it lacks execution logs or output artifacts (local webpage, bubble chart, table) required to verify that the 'render' node has successfully generated its specific deliverables."
+  },
+  {
+    "task": "stock-data-visualization-4",
+    "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+    "qwen_draft_run": "20261124-235811-ec73fc",
+    "mode": "qwen-draft-recheck",
+    "checkpoints": [],
+    "passed": false,
+    "error": "The draft evidence confirms the data source ('stock-descriptions.csv') and loader ('csv'), but it lacks the specific output contract details required by the node definition: file format validation results, a list of specific fields, and the defined output schema."
+  }
+]

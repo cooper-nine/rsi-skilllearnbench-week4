@@ -1,0 +1,10 @@
+{
+  "model": "qwen3.5-plus",
+  "verifier_exit": 0,
+  "reward": 0,
+  "passed": false,
+  "error": null,
+  "token_usage": {
+    "total_tokens": 6575
+  }
+}

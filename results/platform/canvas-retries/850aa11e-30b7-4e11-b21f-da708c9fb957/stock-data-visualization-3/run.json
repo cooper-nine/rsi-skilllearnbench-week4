@@ -1,0 +1,14 @@
+{
+  "task": "stock-data-visualization-3",
+  "platform_run_id": "850aa11e-30b7-4e11-b21f-da708c9fb957",
+  "source_run": "9c352f36-3d73-47d8-9d78-8424e2057413",
+  "mode": "repair-fresh-artifact",
+  "checkpoints": [
+    {
+      "error": "Insert only a guard after either tooltip function signature"
+    },
+    {
+      "error": "Insert only a guard after either tooltip function signature"
+    }
+  ]
+}

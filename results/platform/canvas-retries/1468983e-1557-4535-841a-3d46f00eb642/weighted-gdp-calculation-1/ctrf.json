@@ -1,0 +1,299 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 27,
+            "passed": 15,
+            "failed": 12,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1795587453.138541,
+            "stop": 1795587458.3268986
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::TestFileExists::test_excel_file_exists",
+                "status": "passed",
+                "duration": 0.0003305369973531924,
+                "start": 1795587453.3290393,
+                "stop": 1795587453.3296397,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFileExists::test_excel_file_readable",
+                "status": "passed",
+                "duration": 0.1658643010086962,
+                "start": 1795587453.3298118,
+                "stop": 1795587453.4959862,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFileExists::test_sheet_structure",
+                "status": "passed",
+                "duration": 0.6113749680007459,
+                "start": 1795587453.4962018,
+                "stop": 1795587454.1080077,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1LookupFormulas::test_exports_have_data",
+                "status": "passed",
+                "duration": 0.2562262390056276,
+                "start": 1795587454.1082325,
+                "stop": 1795587454.364818,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1LookupFormulas::test_imports_have_data",
+                "status": "passed",
+                "duration": 0.18777306700940244,
+                "start": 1795587454.3650732,
+                "stop": 1795587454.5532956,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1LookupFormulas::test_gdp_have_data",
+                "status": "passed",
+                "duration": 0.16976422800507862,
+                "start": 1795587454.5535777,
+                "stop": 1795587454.7236595,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1DataValues::test_exports_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.17567527999199228,
+                "start": 1795587454.7238743,
+                "stop": 1795587454.913806,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep1DataValues object at 0x762009dd0470>\n\n    def test_exports_values(self):\n        \"\"\"Verify exports data values match expected.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        for row, expected in EXPECTED_EXPORTS.items():\n            for col_idx, col in enumerate(COLUMNS):\n                cell = f\"{col}{row}\"\n                actual = cell_value(ws, cell)\n                exp = expected[col_idx]\n                if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                    errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"Exports value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: Exports value mismatches:\nE         H12: expected 404.0, got 27.048670212766\nE         I12: expected 350.3, got 25.2077127659575\nE         J12: expected 425.1, got 23.2968085106383\nE         K12: expected 515.3, got 27.5773936170213\nE         L12: expected 540.8, got 33.0688829787234\nE         H13: expected 29.6, got 63.05627007871411\nE         I13: expected 25.2, got 55.8175535287385\nE         J13: expected 35.2, got 42.5308188423545\nE         L13: expected 39.7, got 55.92309744002871\nE         H14: expected 73.3, got 65.8109890109891\nE         I14: expected 48.5, got 66.7697802197803\nE         J14: expected 76.7, got 59.0645604395604\nE         K14: expected 111.0, got 61.2043956043956\nE         L14: expected 95.7, got 74.5200549450549\nE         H15: expected 92.0, got 35.60041226267411\nE         I15: expected 70.9, got 32.5685552505517\nE         J15: expected 105.5, got 33.8270953409951\nE         K15: expected 161.7, got 37.2157374510285\nE         L15: expected 139.7, got 46.3258913295439\nE         H16: expected 43.5, got 209.0688\nE         I16: expected 35.7, got 218.9747\nE         J16: expected 46.6, got 182.1837\nE         K16: expected 69.7, got 213.5156\nE         L16: expected 62.7, got 258.2128\nE         H17: expected 285.9, got 0\nE         I17: expected 182.8, got 0\nE         J17: expected 286.5, got 0\nE         K17: expected 445.9, got 0\nE         L17: expected 367.0, got 0\nE       assert 29 == 0\nE        +  where 29 = len(['H12: expected 404.0, got 27.048670212766', 'I12: expected 350.3, got 25.2077127659575', 'J12: expected 425.1, got 23.2968085106383', 'K12: expected 515.3, got 27.5773936170213', 'L12: expected 540.8, got 33.0688829787234', 'H13: expected 29.6, got 63.05627007871411', ...])\n\n/tests/test_outputs.py:323: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep1DataValues::test_imports_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.1809643060041708,
+                "start": 1795587454.9140122,
+                "stop": 1795587455.1027162,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep1DataValues object at 0x762009ae6ea0>\n\n    def test_imports_values(self):\n        \"\"\"Verify imports data values match expected.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        for row, expected in EXPECTED_IMPORTS.items():\n            for col_idx, col in enumerate(COLUMNS):\n                cell = f\"{col}{row}\"\n                actual = cell_value(ws, cell)\n                exp = expected[col_idx]\n                if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                    errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"Imports value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: Imports value mismatches:\nE         H19: expected 321.5, got 37.8019414893617\nE         I19: expected 273.7, got 38.65377659574468\nE         J19: expected 320.4, got 34.62172872340426\nE         K19: expected 389.7, got 39.28869680851064\nE         L19: expected 424.0, got 44.38329787234042\nE         H20: expected 25.2, got 138.2114350691645\nE         I20: expected 23.3, got 138.6947798329567\nE         J20: expected 27.6, got 107.5157155686178\nE         K20: expected 33.1, got 141.773126840561\nE         L20: expected 32.0, got 182.8462874156975\nE         H21: expected 55.8, got 183.3349538132091\nE         I21: expected 42.5, got 176.3712676890816\nE         J21: expected 44.9, got 144.41136334527\nE         K21: expected 55.9, got 179.7321428571429\nE         L21: expected 61.9, got 236.2582417582418\nE         H22: expected 66.8, got 91.5053979279602\nE         I22: expected 59.1, got 88.06068499803068\nE         J22: expected 61.2, got 75.90871261378413\nE         K22: expected 74.5, got 88.19193758127439\nE         L22: expected 75.3, got 114.6668400520156\nE         H23: expected 32.6, got 846.5842666666666\nE         I23: expected 33.8, got 838.5637333333334\nE         J23: expected 37.2, got 734.2712\nE         K23: expected 46.3, got 874.156\nE         L23: expected 46.6, got 1108.572\nE         H24: expected 219.0, got 0\nE         I24: expected 182.2, got 0\nE         J24: expected 213.5, got 0\nE         K24: expected 258.2, got 0\nE         L24: expected 290.5, got 0\nE       assert 30 == 0\nE        +  where 30 = len(['H19: expected 321.5, got 37.8019414893617', 'I19: expected 273.7, got 38.65377659574468', 'J19: expected 320.4, got 34.62172872340426', 'K19: expected 389.7, got 39.28869680851064', 'L19: expected 424.0, got 44.38329787234042', 'H20: expected 25.2, got 138.2114350691645', ...])\n\n/tests/test_outputs.py:340: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep1DataValues::test_gdp_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.1683984569972381,
+                "start": 1795587455.1029224,
+                "stop": 1795587455.2773554,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep1DataValues object at 0x762009ddfc80>\n\n    def test_gdp_values(self):\n        \"\"\"Verify GDP data values match expected.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        for row, expected in EXPECTED_GDP.items():\n            for col_idx, col in enumerate(COLUMNS):\n                cell = f\"{col}{row}\"\n                actual = cell_value(ws, cell)\n                exp = expected[col_idx]\n                if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                    errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"GDP value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: GDP value mismatches:\nE         H26: expected 418.0, got 2019.0\nE         I26: expected 349.5, got 2020.0\nE         J26: expected 415.2, got 2021.0\nE         K26: expected 507.1, got 2022.0\nE         L26: expected 504.2, got 2023.0\nE         H27: expected 38.7, got 20.1\nE         I27: expected 34.6, got 19.7\nE         J27: expected 39.3, got 21.9\nE         K27: expected 44.4, got 25.2\nE         L27: expected 44.7, got 24.8\nE         H28: expected 138.7, got 7.7\nE         I28: expected 107.5, got 11.3\nE         J28: expected 141.8, got 5.6\nE         K28: expected 182.8, got 19.5\nE         L28: expected 161.8, got 25.9\nE         H29: expected 176.4, got 11.9\nE         I29: expected 144.4, got 12.6\nE         J29: expected 179.7, got 5.6\nE         K29: expected 236.3, got 22.4\nE         L29: expected 234.2, got 30.1\nE         H30: expected 88.1, got 20.0\nE         I30: expected 75.9, got 14.3\nE         J30: expected 88.2, got 8.2\nE         K30: expected 114.7, got 24.7\nE         L30: expected 109.1, got 36.9\nE         H31: expected 838.6, got 11.7\nE         I31: expected 734.3, got 12.5\nE         J31: expected 874.2, got 2.5\nE         K31: expected 1108.6, got 10.6\nE         L31: expected 1067.6, got 20.4\nE       assert 30 == 0\nE        +  where 30 = len(['H26: expected 418.0, got 2019.0', 'I26: expected 349.5, got 2020.0', 'J26: expected 415.2, got 2021.0', 'K26: expected 507.1, got 2022.0', 'L26: expected 504.2, got 2023.0', 'H27: expected 38.7, got 20.1', ...])\n\n/tests/test_outputs.py:357: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_have_data",
+                "status": "passed",
+                "duration": 0.1927808719992754,
+                "start": 1795587455.2775698,
+                "stop": 1795587455.470674,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.16775987000437453,
+                "start": 1795587455.4708953,
+                "stop": 1795587455.6437466,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep2NetExportsCalculation object at 0x762009806090>\n\n    def test_net_exports_pct_values(self):\n        \"\"\"Verify net exports % values are calculated correctly.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        for row, expected in EXPECTED_NET_EXPORTS_PCT.items():\n            for col_idx, col in enumerate(COLUMNS):\n                cell = f\"{col}{row}\"\n                actual = cell_value(ws, cell)\n                exp = expected[col_idx]\n                if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                    errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"Net exports % mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: Net exports % mismatches:\nE         I35: expected 21.9, got 19.7\nE         J35: expected 25.2, got 21.9\nE         L35: expected 23.2, got 36.9\nE         H36: expected 11.3, got 12.2\nE         I36: expected 5.6, got 12.6\nE         J36: expected 19.5, got 5.6\nE         K36: expected 25.9, got 21.0\nE         L36: expected 17.3, got 25.4\nE         H37: expected 12.6, got 14.0\nE         I37: expected 5.6, got 13.1\nE         J37: expected 22.4, got 7.3\nE         K37: expected 30.1, got 18.5\nE         L37: expected 20.9, got 25.8\nE         H38: expected 14.3, got #NAME?\nE         I38: expected 8.2, got #NAME?\nE         J38: expected 24.7, got #NAME?\nE         K38: expected 36.9, got #NAME?\nE         L38: expected 27.5, got #NAME?\nE         H39: expected 12.5, got #NAME?\nE         I39: expected 2.5, got #NAME?\nE         J39: expected 10.6, got #NAME?\nE         K39: expected 20.4, got #NAME?\nE         L39: expected 14.8, got #NAME?\nE         H40: expected 8.0, got 0\nE         J40: expected 8.3, got 0\nE         K40: expected 16.9, got 0\nE         L40: expected 7.2, got 0\nE       assert 27 == 0\nE        +  where 27 = len(['I35: expected 21.9, got 19.7', 'J35: expected 25.2, got 21.9', 'L35: expected 23.2, got 36.9', 'H36: expected 11.3, got 12.2', 'I36: expected 5.6, got 12.6', 'J36: expected 19.5, got 5.6', ...])\n\n/tests/test_outputs.py:394: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_statistics_have_data",
+                "status": "passed",
+                "duration": 0.16071788599947467,
+                "start": 1795587455.643949,
+                "stop": 1795587455.8049738,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_min_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.14910238899756223,
+                "start": 1795587455.8051836,
+                "stop": 1795587455.959766,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep2Statistics object at 0x762009805a30>\n\n    def test_min_values(self):\n        \"\"\"Verify MIN calculation values.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        expected = EXPECTED_STATS[42]\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}42\"\n            actual = cell_value(ws, cell)\n            exp = expected[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"MIN value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: MIN value mismatches:\nE         H42: expected 8.0, got 15.0\nE         I42: expected 0.1, got 12.2\nE         J42: expected 8.3, got 6.8\nE         K42: expected 16.9, got 15.6\nE         L42: expected 7.2, got 22.3\nE       assert 5 == 0\nE        +  where 5 = len(['H42: expected 8.0, got 15.0', 'I42: expected 0.1, got 12.2', 'J42: expected 8.3, got 6.8', 'K42: expected 16.9, got 15.6', 'L42: expected 7.2, got 22.3'])\n\n/tests/test_outputs.py:431: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_max_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.15697544800059404,
+                "start": 1795587455.9599838,
+                "stop": 1795587456.122614,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep2Statistics object at 0x762009da63c0>\n\n    def test_max_values(self):\n        \"\"\"Verify MAX calculation values.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        expected = EXPECTED_STATS[43]\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}43\"\n            actual = cell_value(ws, cell)\n            exp = expected[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"MAX value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: MAX value mismatches:\nE         H43: expected 19.7, got 0\nE         I43: expected 21.9, got 0\nE         J43: expected 25.2, got 0\nE         K43: expected 36.9, got 0\nE         L43: expected 27.5, got 0\nE       assert 5 == 0\nE        +  where 5 = len(['H43: expected 19.7, got 0', 'I43: expected 21.9, got 0', 'J43: expected 25.2, got 0', 'K43: expected 36.9, got 0', 'L43: expected 27.5, got 0'])\n\n/tests/test_outputs.py:448: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_median_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.18656823800120037,
+                "start": 1795587456.1229224,
+                "stop": 1795587456.3162956,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep2Statistics object at 0x7620090188c0>\n\n    def test_median_values(self):\n        \"\"\"Verify MEDIAN calculation values.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        expected = EXPECTED_STATS[44]\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}44\"\n            actual = cell_value(ws, cell)\n            exp = expected[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"MEDIAN value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: MEDIAN value mismatches:\nE         H44: expected 12.5, got 0\nE         I44: expected 5.6, got 0\nE         J44: expected 21.0, got 0\nE         K44: expected 25.4, got 0\nE         L44: expected 19.1, got 0\nE       assert 5 == 0\nE        +  where 5 = len(['H44: expected 12.5, got 0', 'I44: expected 5.6, got 0', 'J44: expected 21.0, got 0', 'K44: expected 25.4, got 0', 'L44: expected 19.1, got 0'])\n\n/tests/test_outputs.py:465: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_mean_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.1640337520002504,
+                "start": 1795587456.316521,
+                "stop": 1795587456.4876444,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep2Statistics object at 0x762009018e30>\n\n    def test_mean_values(self):\n        \"\"\"Verify AVERAGE calculation values.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        expected = EXPECTED_STATS[45]\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}45\"\n            actual = cell_value(ws, cell)\n            exp = expected[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"MEAN value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: MEAN value mismatches:\nE         H45: expected 13.1, got 0\nE         I45: expected 7.3, got 0\nE         J45: expected 18.5, got 0\nE         K45: expected 25.8, got 0\nE         L45: expected 18.5, got 0\nE       assert 5 == 0\nE        +  where 5 = len(['H45: expected 13.1, got 0', 'I45: expected 7.3, got 0', 'J45: expected 18.5, got 0', 'K45: expected 25.8, got 0', 'L45: expected 18.5, got 0'])\n\n/tests/test_outputs.py:482: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_percentile_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.20137648400122998,
+                "start": 1795587456.4879444,
+                "stop": 1795587456.6969538,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep2Statistics object at 0x762009018fe0>\n\n    def test_percentile_values(self):\n        \"\"\"Verify PERCENTILE calculation values (25th and 75th).\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        expected_25 = EXPECTED_STATS[46]\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}46\"\n            actual = cell_value(ws, cell)\n            exp = expected_25[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell} (25th): expected {exp}, got {actual}\")\n    \n        expected_75 = EXPECTED_STATS[47]\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}47\"\n            actual = cell_value(ws, cell)\n            exp = expected_75[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell} (75th): expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"PERCENTILE value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: PERCENTILE value mismatches:\nE         H46 (25th): expected 11.6, got 0\nE         I46 (25th): expected 3.2, got 0\nE         J46 (25th): expected 12.8, got 0\nE         K46 (25th): expected 21.5, got 0\nE         L46 (25th): expected 15.4, got 0\nE         H47 (75th): expected 13.9, got 0\nE         I47 (75th): expected 7.6, got 0\nE         J47 (75th): expected 24.1, got 0\nE         K47 (75th): expected 29.1, got 0\nE         L47 (75th): expected 22.6, got 0\nE       assert 10 == 0\nE        +  where 10 = len(['H46 (25th): expected 11.6, got 0', 'I46 (25th): expected 3.2, got 0', 'J46 (25th): expected 12.8, got 0', 'K46 (25th): expected 21.5, got 0', 'L46 (25th): expected 15.4, got 0', 'H47 (75th): expected 13.9, got 0', ...])\n\n/tests/test_outputs.py:507: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_has_data",
+                "status": "passed",
+                "duration": 0.21891246900486294,
+                "start": 1795587456.6972253,
+                "stop": 1795587456.9164848,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.20520018900424475,
+                "start": 1795587456.916963,
+                "stop": 1795587457.1283696,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep3WeightedMean object at 0x762009dd58b0>\n\n    def test_weighted_mean_values_reasonable(self):\n        \"\"\"Verify weighted mean values are numeric and in expected range.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        for _col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}50\"\n            actual = cell_value(ws, cell)\n    \n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)):\n                errors.append(f\"{cell}: expected numeric value, got {actual}\")\n            elif actual == 0:\n                errors.append(f\"{cell}: value should not be zero\")\n            # Weighted mean should be in range 0-50 (weighted average of percentages)\n            elif actual < 0 or actual > 50:\n                errors.append(f\"{cell}: value {actual} outside expected range (0-50)\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"Weighted mean issues:\\n\" + \"\\n\".join(errors)\nE       AssertionError: Weighted mean issues:\nE         H50: value should not be zero\nE         I50: value should not be zero\nE         J50: value should not be zero\nE         K50: value should not be zero\nE         L50: value should not be zero\nE       assert 5 == 0\nE        +  where 5 = len(['H50: value should not be zero', 'I50: value should not be zero', 'J50: value should not be zero', 'K50: value should not be zero', 'L50: value should not be zero'])\n\n/tests/test_outputs.py:547: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.17344147701078327,
+                "start": 1795587457.1285827,
+                "stop": 1795587457.3086207,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep3WeightedMean object at 0x7620097f4a70>\n\n    def test_weighted_mean_values(self):\n        \"\"\"Verify weighted mean values match expected.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}50\"\n            actual = cell_value(ws, cell)\n            exp = EXPECTED_WEIGHTED_MEAN[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"Weighted mean value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: Weighted mean value mismatches:\nE         H50: expected 12.2, got 0\nE         I50: expected 6.8, got 0\nE         J50: expected 15.6, got 0\nE         K50: expected 22.3, got 0\nE         L50: expected 14.9, got 0\nE       assert 5 == 0\nE        +  where 5 = len(['H50: expected 12.2, got 0', 'I50: expected 6.8, got 0', 'J50: expected 15.6, got 0', 'K50: expected 22.3, got 0', 'L50: expected 14.9, got 0'])\n\n/tests/test_outputs.py:563: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestNoExcelErrors::test_no_formula_errors",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.2078279859997565,
+                "start": 1795587457.3088386,
+                "stop": 1795587457.5232358,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestNoExcelErrors object at 0x762009ed7050>\n\n    def test_no_formula_errors(self):\n        \"\"\"Verify no #VALUE!, #REF!, #NAME?, etc. errors in calculated cells.\"\"\"\n        csv_data = load_csv_data()\n    \n        excel_errors = [\"#VALUE!\", \"#DIV/0!\", \"#REF!\", \"#NAME?\", \"#NULL!\", \"#NUM!\", \"#N/A\"]\n        error_cells = []\n    \n        # Check all relevant ranges\n        ranges_to_check = [\n            (12, 18),  # Exports\n            (19, 25),  # Imports\n            (26, 32),  # GDP\n            (35, 41),  # Net exports %\n            (42, 48),  # Statistics\n            (50, 51),  # Weighted mean\n        ]\n    \n        for start_row, end_row in ranges_to_check:\n            for row in range(start_row, end_row):\n                for col in COLUMNS:\n                    cell = f\"{col}{row}\"\n                    val = csv_data.get(cell)\n                    if val is not None and isinstance(val, str):\n                        for err in excel_errors:\n                            if err in str(val):\n                                error_cells.append(f\"{cell}: {val}\")\n                                break\n    \n        # Also check xlsx\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n        for start_row, end_row in ranges_to_check:\n            for row in range(start_row, end_row):\n                for col in COLUMNS:\n                    cell = f\"{col}{row}\"\n                    val = ws[cell].value\n                    if val is not None and isinstance(val, str):\n                        for err in excel_errors:\n                            if err in str(val):\n                                if f\"{cell}:\" not in str(error_cells):\n                                    error_cells.append(f\"{cell}: {val}\")\n                                break\n        wb.close()\n    \n>       assert len(error_cells) == 0, \"Excel errors found:\\n\" + \"\\n\".join(error_cells)\nE       AssertionError: Excel errors found:\nE         H38: #NAME?\nE         I38: #NAME?\nE         J38: #NAME?\nE         K38: #NAME?\nE         L38: #NAME?\nE         H39: #NAME?\nE         I39: #NAME?\nE         J39: #NAME?\nE         K39: #NAME?\nE         L39: #NAME?\nE       assert 10 == 0\nE        +  where 10 = len(['H38: #NAME?', 'I38: #NAME?', 'J38: #NAME?', 'K38: #NAME?', 'L38: #NAME?', 'H39: #NAME?', ...])\n\n/tests/test_outputs.py:613: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestSheetStructure::test_no_extra_sheets_added",
+                "status": "passed",
+                "duration": 0.20043787300528493,
+                "start": 1795587457.5238106,
+                "stop": 1795587457.7246752,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestSheetStructure::test_required_sheets_exist",
+                "status": "passed",
+                "duration": 0.21011902399914106,
+                "start": 1795587457.7249038,
+                "stop": 1795587457.9353583,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFormattingPreserved::test_task_sheet_column_widths",
+                "status": "passed",
+                "duration": 0.1903100479976274,
+                "start": 1795587457.9355993,
+                "stop": 1795587458.1262271,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFormattingPreserved::test_data_sheet_column_widths",
+                "status": "passed",
+                "duration": 0.1988321739991079,
+                "start": 1795587458.126442,
+                "stop": 1795587458.3256047,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestNoMacros::test_no_vba_macros",
+                "status": "passed",
+                "duration": 0.00035676400148076937,
+                "start": 1795587458.3258426,
+                "stop": 1795587458.3263617,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestNoMacros::test_file_extension_xlsx",
+                "status": "passed",
+                "duration": 0.0001642459974391386,
+                "start": 1795587458.326534,
+                "stop": 1795587458.326829,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            }
+        ]
+    }
+}

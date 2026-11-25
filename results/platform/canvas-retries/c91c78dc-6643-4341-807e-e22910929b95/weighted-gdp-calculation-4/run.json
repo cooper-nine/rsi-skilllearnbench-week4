@@ -1,0 +1,9 @@
+{
+  "task": "weighted-gdp-calculation-4",
+  "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+  "qwen_draft_run": "20261124-202303-42cdb5",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [],
+  "passed": false,
+  "error": "The draft evidence logs a 'complete' event for the 'requirements' node after one retry, but the associated handoff object is empty. This indicates that while the node execution finished, it failed to produce or pass the required output (target cells and formula contracts) to the next stage, rendering the completion ineffective for workflow progression."
+}

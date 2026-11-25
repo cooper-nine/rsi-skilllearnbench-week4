@@ -1,0 +1,14 @@
+[
+  {
+    "family": "earthquake-plate-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-122708-583ff7",
+    "flow_sha256": "e64cdf374bc996a22e87a31d92a1a5982b6452f794e13242dd45ca14f74f40df",
+    "treatment_run": "earthquake-plate-calculation-5",
+    "treatment_origin": "platform",
+    "platform_run_id": "597ab256-8c8d-4b52-81f0-d1c531e8ef15",
+    "treatment_passed": false,
+    "status": "valid"
+  }
+]

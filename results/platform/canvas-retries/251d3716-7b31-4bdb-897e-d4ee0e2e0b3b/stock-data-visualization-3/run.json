@@ -1,0 +1,34 @@
+{
+  "task": "stock-data-visualization-3",
+  "platform_run_id": "251d3716-7b31-4bdb-897e-d4ee0e2e0b3b",
+  "source_run": "9c352f36-3d73-47d8-9d78-8424e2057413",
+  "mode": "repair-fresh-artifact",
+  "checkpoints": [
+    {
+      "stage": "interact",
+      "output": {
+        "ready": true,
+        "observation": "The diagnosis explicitly requires modifying `js/visualization.js` to prevent tooltips from appearing for ETFs. The fix involves adding a check at the beginning of `showTooltip` and `showTooltipForNode` functions to detect if the sector is 'ETF' (case-insensitive) and immediately hide the tooltip and return if so. This addresses the test failures related to tooltips showing for ETFs and ensures correct interaction behavior.",
+        "edits": [
+          {
+            "file": "js/visualization.js",
+            "old": "        function showTooltip(event, d) {\n            tooltip.classed('visible', true)\n                .html(`<strong>${d.ticker}</strong><br/>${d['full name']}<br/>${d.sector}<br/>Market Cap: ${formatMarketCap(d.marketCap)}`)\n                .style('left', (event.pageX + 10) + 'px')\n                .style('top', (event.pageY - 10) + 'px');\n        }",
+            "new": "        function showTooltip(event, d) {\n            if (String(d.sector).trim().toUpperCase() === 'ETF') {\n                hideTooltip();\n                return;\n            }\n            tooltip.classed('visible', true)\n                .html(`<strong>${d.ticker}</strong><br/>${d['full name']}<br/>${d.sector}<br/>Market Cap: ${formatMarketCap(d.marketCap)}`)\n                .style('left', (event.pageX + 10) + 'px')\n                .style('top', (event.pageY - 10) + 'px');\n        }"
+          },
+          {
+            "file": "js/visualization.js",
+            "old": "        function showTooltipForNode(d) {\n            // Show tooltip at a default position since we don't have mouse event from table hover\n            tooltip.classed('visible', true)\n                .html(`<strong>${d.ticker}</strong><br/>${d['full name']}<br/>${d.sector}<br/>Market Cap: ${formatMarketCap(d.marketCap)}`)\n                .style('left', '100px')\n                .style('top', '100px');\n        }",
+            "new": "        function showTooltipForNode(d) {\n            if (String(d.sector).trim().toUpperCase() === 'ETF') {\n                hideTooltip();\n                return;\n            }\n            // Show tooltip at a default position since we don't have mouse event from table hover\n            tooltip.classed('visible', true)\n                .html(`<strong>${d.ticker}</strong><br/>${d['full name']}<br/>${d.sector}<br/>Market Cap: ${formatMarketCap(d.marketCap)}`)\n                .style('left', '100px')\n                .style('top', '100px');\n        }"
+          }
+        ]
+      }
+    },
+    {
+      "error": "Unterminated string starting at: line 3 column 18 (char 36)"
+    }
+  ],
+  "verifier_exit": 0,
+  "reward": "0",
+  "checks": 15,
+  "passed": false
+}

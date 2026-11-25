@@ -1,0 +1,36 @@
+{
+  "task": "stock-data-visualization-2",
+  "platform_run_id": "025b47f6-e47d-49f4-b5d2-0d49a077225a",
+  "source_run": "9c352f36-3d73-47d8-9d78-8424e2057413",
+  "mode": "repair-fresh-artifact",
+  "checkpoints": [
+    {
+      "stage": "render",
+      "output": {
+        "ready": true,
+        "observation": "The test failures indicate three main issues: 1) `formatMarketCap` throws an error when called on null/undefined values before the chart renders because the table renders first. 2) The logic for identifying ETFs relies on `marketCap` being null, but the tooltip test expects to find non-ETF tickers to hover, implying the data filtering or classification might be too aggressive or incorrect if valid stocks have missing caps. However, the diagnosis specifically says 'Classify ETF using source sector', suggesting the current `isETF` logic based on `marketCap` is flawed if sectors like 'ETF' exist in the data. 3) The bubble chart renders 0 bubbles, likely due to the crash in `renderTable` preventing `renderBubbleChart` from running. The fix requires guarding `formatMarketCap`, ensuring the table doesn't crash, and verifying the ETF classification aligns with the sector name if applicable, though the primary crash is the `toFixed` on null.",
+        "edits": [
+          {
+            "file": "js/visualization.js",
+            "old": "        // Filter and clean data\n        const stocks = rawData.filter(d => d.ticker && d.sector).map(d => ({\n            ticker: d.ticker,\n            name: d['full name'] || d.name || d.ticker,\n            sector: d.sector,\n            marketCap: d.marketCap ? parseFloat(d.marketCap) : null,\n            isETF: d.marketCap === null || d.marketCap === undefined\n        }));",
+            "new": "        // Filter and clean data\n        const stocks = rawData.filter(d => d.ticker && d.sector).map(d => {\n            const cap = d.marketCap !== null && d.marketCap !== undefined ? parseFloat(d.marketCap) : null;\n            // Classify ETF using source sector name if available, otherwise fallback to missing cap\n            const isETF = (d.sector && d.sector.toUpperCase() === 'ETF') || (cap === null);\n            return {\n                ticker: d.ticker,\n                name: d['full name'] || d.name || d.ticker,\n                sector: d.sector,\n                marketCap: cap,\n                isETF: isETF\n            };\n        });"
+          },
+          {
+            "file": "js/visualization.js",
+            "old": "    function formatMarketCap(value) {\n        if (value >= 1e12) return (value / 1e12).toFixed(2) + 'T';\n        if (value >= 1e9) return (value / 1e9).toFixed(2) + 'B';\n        if (value >= 1e6) return (value / 1e6).toFixed(2) + 'M';\n        return value.toFixed(2);\n    }",
+            "new": "    function formatMarketCap(value) {\n        if (value === null || value === undefined || !isFinite(value)) return 'N/A';\n        if (value >= 1e12) return (value / 1e12).toFixed(2) + 'T';\n        if (value >= 1e9) return (value / 1e9).toFixed(2) + 'B';\n        if (value >= 1e6) return (value / 1e6).toFixed(2) + 'M';\n        return value.toFixed(2);\n    }"
+          },
+          {
+            "file": "css/style.css",
+            "old": ".tooltip.visible {\n    opacity: 1 !important;\n    display: block !important;\n}",
+            "new": ".tooltip.visible {\n    opacity: 1 !important;\n    display: block !important;\n    pointer-events: none;\n}"
+          }
+        ]
+      }
+    }
+  ],
+  "verifier_exit": 0,
+  "reward": "1",
+  "checks": 15,
+  "passed": true
+}

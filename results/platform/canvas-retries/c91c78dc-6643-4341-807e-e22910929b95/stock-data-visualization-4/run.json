@@ -1,0 +1,9 @@
+{
+  "task": "stock-data-visualization-4",
+  "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+  "qwen_draft_run": "20261124-235811-ec73fc",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [],
+  "passed": false,
+  "error": "The draft evidence confirms the data source ('stock-descriptions.csv') and loader ('csv'), but it lacks the specific output contract details required by the node definition: file format validation results, a list of specific fields, and the defined output schema."
+}

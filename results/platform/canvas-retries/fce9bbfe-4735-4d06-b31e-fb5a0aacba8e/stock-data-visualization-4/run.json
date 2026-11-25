@@ -1,0 +1,28 @@
+{
+  "task": "stock-data-visualization-4",
+  "platform_run_id": "fce9bbfe-4735-4d06-b31e-fb5a0aacba8e",
+  "source_run": "stock-data-visualization-4",
+  "mode": "repair-fresh-artifact",
+  "checkpoints": [
+    {
+      "ready": true,
+      "observation": "The test failure indicates that clicking a bubble does not highlight the corresponding table row. The diagnosis confirms that while rows have `data-ticker` attributes, they are not bound to D3 data (`d`), causing `d.ticker` to be undefined in the `highlightSelection` function's `.each()` callback. Additionally, the tooltip visibility logic relies on class toggling which must be synchronized with CSS `display` and `visibility` properties to ensure it appears correctly during tests. The legend logic is already correct (using actual data sectors), but I will ensure the code structure remains clean.",
+      "edits": [
+        {
+          "file": "js/visualization.js",
+          "old": "        window.highlightSelection = function(ticker) {\n            selectedTicker = ticker;\n            circles.attr('stroke', d => d.ticker === ticker ? '#000' : '#333')\n                   .attr('stroke-width', d => d.ticker === ticker ? 3 : 1);\n            \n            // Explicitly iterate rows to ensure class toggling works reliably for Playwright\n            d3.selectAll('#stock-table tbody tr').each(function(d) {\n                d3.select(this).classed('highlighted', d.ticker === ticker);\n            });\n        };",
+          "new": "        window.highlightSelection = function(ticker) {\n            selectedTicker = ticker;\n            circles.attr('stroke', d => d.ticker === ticker ? '#000' : '#333')\n                   .attr('stroke-width', d => d.ticker === ticker ? 3 : 1);\n            \n            // Match against data-ticker attribute since rows are not bound to D3 data\n            d3.selectAll('#stock-table tbody tr').each(function() {\n                const rowTicker = d3.select(this).attr('data-ticker');\n                d3.select(this).classed('highlighted', rowTicker === ticker);\n            });\n        };"
+        },
+        {
+          "file": "css/style.css",
+          "old": "#tooltip {\n    position: absolute;\n    background: rgba(0,0,0,0.8);\n    color: white;\n    padding: 10px;\n    border-radius: 4px;\n    font-size: 12px;\n    display: none;\n    pointer-events: none;\n    z-index: 1000;\n    visibility: hidden;\n}\n\n#tooltip.visible {\n    display: block;\n    visibility: visible;\n}",
+          "new": "#tooltip {\n    position: absolute;\n    background: rgba(0,0,0,0.8);\n    color: white;\n    padding: 10px;\n    border-radius: 4px;\n    font-size: 12px;\n    display: none;\n    pointer-events: none;\n    z-index: 1000;\n    visibility: hidden;\n    opacity: 0;\n    transition: opacity 0.2s;\n}\n\n#tooltip.visible {\n    display: block;\n    visibility: visible;\n    opacity: 1;\n}"
+        }
+      ]
+    }
+  ],
+  "verifier_exit": 0,
+  "reward": "1",
+  "checks": 16,
+  "passed": true
+}

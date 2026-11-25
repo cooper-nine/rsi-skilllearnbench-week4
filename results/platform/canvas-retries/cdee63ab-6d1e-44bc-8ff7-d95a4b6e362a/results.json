@@ -1,0 +1,74 @@
+[
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-124901-2690d3",
+    "flow_sha256": "9f46e771069a84c047cb1517b63789d8e6f6bab53ebf10415243e98d5babbb41",
+    "treatment_run": "weighted-gdp-calculation-1",
+    "treatment_origin": "platform",
+    "platform_run_id": "cdee63ab-6d1e-44bc-8ff7-d95a4b6e362a",
+    "treatment_passed": null,
+    "status": "infrastructure_error"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-150937-21cedf",
+    "flow_sha256": "aa8287a65941db097993c27bbb0458a0cf4d553c7c064d661022edecddfb8be6",
+    "treatment_run": "weighted-gdp-calculation-5",
+    "treatment_origin": "platform",
+    "platform_run_id": "cdee63ab-6d1e-44bc-8ff7-d95a4b6e362a",
+    "treatment_passed": false,
+    "status": "valid"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 4,
+    "baseline_passed": false,
+    "baseline_run": "20261118-140525-7fb55f",
+    "flow_sha256": "85512d4d06a430d7cbe570d93a9607b41238cff5fb1dabaaa49f6b23cac32824",
+    "treatment_run": "weighted-gdp-calculation-4",
+    "treatment_origin": "platform",
+    "platform_run_id": "cdee63ab-6d1e-44bc-8ff7-d95a4b6e362a",
+    "treatment_passed": false,
+    "status": "valid"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-134937-19d1a4",
+    "flow_sha256": "562fa7e0fccc546c0a2a0f9bc0e368677007aff4ea85f535e4712fd51402da92",
+    "treatment_run": "stock-data-visualization-1",
+    "treatment_origin": "platform",
+    "platform_run_id": "cdee63ab-6d1e-44bc-8ff7-d95a4b6e362a",
+    "treatment_passed": false,
+    "status": "valid"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 2,
+    "baseline_passed": false,
+    "baseline_run": "20261118-141811-3aa771",
+    "flow_sha256": "47a49f12735cf983bfb9e7ba0b3d647112a00bbd5f1f7ea00572ebec00d7fbd3",
+    "treatment_run": "stock-data-visualization-2",
+    "treatment_origin": "platform",
+    "platform_run_id": "cdee63ab-6d1e-44bc-8ff7-d95a4b6e362a",
+    "treatment_passed": null,
+    "status": "infrastructure_error"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 3,
+    "baseline_passed": false,
+    "baseline_run": "20261118-145831-ff084f",
+    "flow_sha256": "562fa7e0fccc546c0a2a0f9bc0e368677007aff4ea85f535e4712fd51402da92",
+    "treatment_run": "stock-data-visualization-3",
+    "treatment_origin": "platform",
+    "platform_run_id": "cdee63ab-6d1e-44bc-8ff7-d95a4b6e362a",
+    "treatment_passed": false,
+    "status": "valid"
+  }
+]

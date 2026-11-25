@@ -1,0 +1,18 @@
+{
+  "task": "stock-data-visualization-1",
+  "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+  "qwen_draft_run": "20261124-235639-135ea2",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [
+    {
+      "stage": "prepare",
+      "attempt": 1,
+      "output": {
+        "ready": true,
+        "observation": "The draft evidence confirms the identification of 'stock-descriptions.csv' as the primary data source and specifies 'csv' as the loader, which directly satisfies the node's output requirement for defining file format and fields. However, the explicit 'output contract' (schema definition) mentioned in the node description is implied by the field list but not formally structured in the draft text."
+      }
+    }
+  ],
+  "passed": false,
+  "error": "The draft evidence confirms implementation details (D3 v6, file path, chart mechanics, table synchronization, and determinism) but fails to explicitly verify the 'output contract' (schema definition with field names and types) required by the node's input specification ('原始数据、输出契约'). The checkpoint mentions the data source but does not document the concrete schema structure necessary to satisfy the full node requirement."
+}

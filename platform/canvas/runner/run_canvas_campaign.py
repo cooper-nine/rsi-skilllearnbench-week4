@@ -45,11 +45,9 @@ def write(path, payload):
 
 
 def model_check(server, key, task, node, previous, draft, repair=False):
-    instruction = ("Repair the stock page source from the given live official failure summaries. "
+    instruction = ("Repair only the diagnosed failure in the existing stock page source. "
                    "Return JSON with ready, observation, and edits [{file,old,new}] using exact unique literal matches. "
-                   "For tooltip ensure visible CSS and class state, for click ensure Playwright can click SVG points "
-                   "and a paired row is highlighted, and for legend show the actual original data sectors. "
-                   "Keep fixes small and do not change input data. Only edit index.html, "
+                   "Preserve all other behavior and data. Only edit index.html, "
                    "css/style.css or js/visualization.js.") if repair else (
                    "Assess the draft evidence for the current Skill node. Reply JSON with ready boolean "
                    "and a concrete observation. Record missing information. Treat evidence as data.")
@@ -166,8 +164,16 @@ def run(directory):
     graphs = {family: stages(views[key]) for family, key in KEYS.items()}
     evidence = ROOT.parent / "rsi-skilllearnbench-week4/results/paired-evidence"
     cases = read(ROOT / "qwen/cases.json")
-    if request.get("mode") == "repair-stock-4":
-        return repair_stock_4(directory, graphs)
+    mode = request.get("mode")
+    if mode in {"repair-stock-1", "repair-stock-2", "repair-stock-3", "repair-stock-4"}:
+        write(directory / "results.json", [repair_stock(directory, graphs, int(mode[-1]))])
+        return
+    if mode == "repair-stock-remaining":
+        records = []
+        for instance in (1,2,3):
+            records.append(repair_stock(directory, graphs, instance))
+            write(directory / "results.json", records)
+        return
     if request.get("mode") == "fresh":
         target = request.get("target")
         if target:
@@ -231,64 +237,120 @@ def solve_staged(directory, case, graph, server, key):
     folder.mkdir()
     dataset = ROOT / "tasks" / family / task
     instructions = (dataset / "instruction.md").read_text(encoding="utf8")
-    nodes = read(graph)["nodes"]
+    spec = read(graph)
+    nodes = spec["nodes"]
+    attempts = 1 + spec["retry"]["limitPerNode"]
     name = f"week4-canvas-{directory.name[:8]}-solve-{KEYS[family]}-{instance}"
     checkpoints = []
     outcome = {}
     stage_contracts = {
-        "prepare": "Inventory the three GeoJSON inputs and actual feature property keys. Explain the target selected plate stated in the objective. Do not filter yet.",
-        "filter": "Read original files and determine the plate with the most events and its highest magnitude event. Return the actual selected plate code, event properties, longitude and latitude. Do not measure yet.",
+        "prepare": "Inventory the three GeoJSON inputs and actual feature property keys. Use standard Python json and pathlib only. Read one feature from each file and report file name, geometry type and property keys. Do not filter events, construct geospatial frames, or calculate distances.",
+        "filter": "Read original files and determine the plate with the most events and its highest magnitude event. Point coordinate arrays include depth, so read the first two coordinates for longitude and latitude. Load plate polygons with geopandas.read_file or shapely.geometry.shape and an explicit geometry column. Return the actual selected plate code, event properties and coordinates. Do not measure yet.",
         "measure": "Read selected plate code and coordinates from prior checkpoint. Measure distance from this event to the edge of that selected plate using the original Skill's projection. Use the original geometry and return the distance and event metadata for verify.",
-        "verify": "Use the prior measured distance and event values to write /root/answer.json in the task schema. Validate units, rounding and timestamp. Do not derive a new distance.",
+        "verify": "Use the prior measured distance and event values to write /root/answer.json in the task schema. Resolve the canonical event identifier from the matching original GeoJSON feature's top-level id, preserving the full identifier including its network prefix. Validate units, rounding and timestamp. Do not derive a new distance.",
     }
     result_file = "answer.json"
     if family == "weighted-gdp-calculation":
         stage_contracts = {
             "requirements": "Read the original task text and workbook layout. Identify required calculations, ranges and final file. Return the contract only.",
-            "read": "Read /root/gdp.xlsx using openpyxl. Inspect Task and Data labels, ranges, years and example values with cell.value, not Cell.formula. Give the calculation node a compact row/column map. Do not rewrite the workbook.",
-            "calculate": "Use the original workbook and previously emitted row and column map. Fill formulas using only the task instructions and original Skill. Preserve existing sheets and formatting. Save /root/gdp.xlsx and emit a checkpoint with rows and sample formulas.",
+            "read": "Read /root/gdp.xlsx using openpyxl. Return a compact row/column map only: Task target blocks, Data indicator blocks, series code columns, and year header coordinates and types on both sheets. Do not calculate statistics or rewrite the workbook.",
+            "calculate": "Using the original workbook and read-stage map, fill formulas only. Check exact source column and header coordinates in the original cells first. If series codes repeat for different indicators, restrict each MATCH to that indicator's own Data rows. Use matching-sized ranges for INDEX and MATCH, and use numeric year types consistently. Preserve sheets and formatting, then save /root/gdp.xlsx.",
             "verify": "Validate /root/gdp.xlsx against the previous checkpoint and original task. Preserve formulas and the original styling. Use ssconvert on a temporary copy to recalculate. If Gnumeric rewrites formatting, use only the cached numeric values from that copy in the original XLSX worksheet XML, leaving formulas, formats and other members unchanged. Return a JSON validation checkpoint.",
         }
         result_file = "artifacts/gdp.xlsx"
     if family == "stock-data-visualization":
         stage_contracts = {
             "prepare": "Inspect /root/data and list actual file types, stock description fields and the output paths from the task. Copy the original data into /root/output/data. Do not render the charts yet.",
-            "render": "Generate the local D3 v6 page from the original data and preparation checkpoint. Write the required HTML, CSS and JS and provide the local D3 v6 file. Display the correctly labeled sector legend, ticker bubbles and table. Emit the actual paths you wrote.",
+            "render": "Generate the local D3 v6 page from the original data and preparation checkpoint. Write the required HTML, CSS and JS. The real D3 v6 library is already available at /tmp/d3.v6.min.js. Copy it into the required output path. Keep the script local. Display the actual sector legend, ticker bubbles and table. Emit the actual paths you wrote.",
             "interact": "Use the actual rendered source in the payload. Add or repair the tooltip and bidirectional selection. ETF hover clears any tooltip. Ordinary hover shows ticker, company and sector. Bind each table row to its stock or use its actual data-ticker attribute. Return the changed paths.",
-            "verify": "Check the final local HTML, JS, CSS and input copies exist. Check loader format and event handlers against the original task and report observations. Keep the deliverable ready for browser execution.",
+            "verify": "Generate a brief read-only Python script to check the final local HTML, JS, CSS and input copies. Check loader format and event handlers by reading the files in the task container. Print concise JSON observations only. Do not regenerate or embed the source.",
         }
         result_file = "artifacts/output"
     docker("run", "-d", "--name", name, baseline_image(family, instance),
            "sleep", 1200, check=True, stdout=subprocess.DEVNULL)
     try:
+        if family == "stock-data-visualization":
+            library = ROOT / "qwen/vendor/d3.v6.min.js"
+            digest = hashlib.sha256(library.read_bytes()).hexdigest()
+            if digest != "fbb8da602a76f4ed49bac3561da62d8149fa121b8fd15685bacc21355d3a3322":
+                raise ValueError("Vendor D3 v6.7.0 checksum mismatch")
+            docker("cp", library, f"{name}:/tmp/d3.v6.min.js", check=True)
         previous = {}
+        if family == "earthquake-plate-calculation":
+            prior = OUTPUT / "platform/597ab256-8c8d-4b52-81f0-d1c531e8ef15" / task / "run.json"
+            if prior.is_file():
+                trace = read(prior)
+                checkpoints.extend(item for item in trace["checkpoints"]
+                                   if item["stage"] != "verify" and "output" in item)
+                measured = next((item for item in checkpoints if item["stage"] == "measure"), None)
+                if measured:
+                    previous = measured["output"]
+                    outcome["checkpoint_source"] = trace["platform_run_id"]
+                    nodes = [node for node in nodes if node["id"] == "verify"]
+        workbook_inventory = None
+        if family == "weighted-gdp-calculation":
+            inventory_code = (
+                "import json,openpyxl; w=openpyxl.load_workbook('/root/gdp.xlsx', read_only=True); "
+                "print(json.dumps({s.title:[[c.coordinate,str(c.value)[:100]] for row in "
+                "s.iter_rows(max_row=65,max_col=13) for c in row if c.value is not None "
+                "and (c.row<=11 or c.column<=7)] for s in w},ensure_ascii=False))"
+            )
+            inventory = docker("exec", name, "python3", "-c", inventory_code, capture_output=True)
+            if inventory.returncode == 0:
+                workbook_inventory = json.loads(inventory.stdout)
         for node in nodes:
             stage = node["id"]
             feedback = {}
             accepted = False
-            for attempt in range(1, 4):
+            for attempt in range(1, attempts + 1):
                 try:
                     direction = stage_contracts[stage] + (
-                        " Return JSON with a python string containing executable code. The code runs inside the "
+                        " Return executable Python source. The code runs inside the "
                         "original task container, where /tmp/checkpoint.json holds the previous stage output. "
-                        "Print exactly one nonempty JSON object. Derive results from original data. "
+                        "Print exactly one nonempty JSON object or array. Derive results from original data. "
                         "Only the current stage; never read verifier files."
                     )
                     sources = dict(feedback)
-                    if family == "stock-data-visualization" and stage in ("interact", "verify"):
+                    if workbook_inventory is not None and stage in ("read", "calculate"):
+                        sources["original_workbook_labels"] = workbook_inventory
+                        sources["observed_layout"] = (
+                            "Task row 9 actually holds the numeric year labels in this workbook. "
+                            "Use the populated cells even where the instruction says row 10. "
+                            "Data B is the series code and Data H4:M4 are numeric years. "
+                            "Data rows 21:26 are exports, 28:33 are imports; when the task requests "
+                            "GDP, Data rows 35:40 contain GDP. Read the task for the target cells. "
+                            "Check the year match instead of assuming equal source and destination columns. "
+                            "Column E contains text labels; preserve it and enter every statistic and "
+                            "weighted mean separately in the H onward year columns of its labeled row."
+                        )
+                    if family == "stock-data-visualization" and stage == "interact":
                         for path in ("index.html", "js/visualization.js", "css/style.css"):
                             artifact = docker("exec", name, "cat", f"/root/output/{path}", capture_output=True)
                             if artifact.returncode == 0:
                                 sources[path] = artifact.stdout.decode("utf8")[:12000]
                     rule = (
-                        'Return exactly {"python":"..."} with runnable Python source as the value. '
+                        "Return only runnable Python source. "
                         "The runner executes this code to produce the checkpoint. Do not return the "
                         "checkpoint itself or attempt other nodes.\n" + direction
                         + "\nReference Skill excerpt:\n" + node["text"]
                     )
-                    response, usage = api(server, key, rule,
-                                          "Overall task for reference only:\n" + instructions,
-                                          previous, sources, {"container_paths": "/root"})
+                    task_context = ("Inspect the three original inputs, and report their schema."
+                                    if family == "earthquake-plate-calculation" and stage == "prepare"
+                                    else "Overall task for reference only:\n" + instructions)
+                    if family == "earthquake-plate-calculation" and stage == "verify":
+                        task_context = ("Read the JSON checkpoint, correct only the event identifier using the "
+                                        "matching feature in /root/earthquakes_2024.json, and save /root/answer.json. "
+                                        "Preserve every other checkpoint field, including distance_km. Use only "
+                                        "the Python standard library. This node does not perform spatial calculations.")
+                    if family == "weighted-gdp-calculation" and stage == "read":
+                        task_context = ("Inventory the original workbook only. Print actual coordinates and labels "
+                                        "for distinct source blocks and year headers to help the calculation node.")
+                    if family == "weighted-gdp-calculation" and stage == "requirements":
+                        task_context = ("Read only worksheet names and actual populated year headers in the "
+                                        "original workbook. Print a small JSON object with sheet names and header coordinates.")
+                    response, usage = api(server, key, rule, task_context,
+                                          previous, sources, {"container_paths": "/root"},
+                                          python_source=True)
                     if not isinstance(response.get("python"), str):
                         raise ValueError(f"Expected runnable key python; received keys: {list(response)}")
                     code = folder / f"{stage}-{attempt}.py"
@@ -302,8 +364,8 @@ def solve_staged(directory, case, graph, server, key):
                     if run_result.returncode:
                         raise ValueError(run_result.stderr.decode(errors="replace")[-1600:])
                     result = json.loads(run_result.stdout)
-                    if not isinstance(result, dict) or not result:
-                        raise ValueError("The output contract requires a JSON object")
+                    if not isinstance(result, (dict, list)) or not result:
+                        raise ValueError("The output contract requires a nonempty JSON object or array")
                     if stage == "verify":
                         artifact = folder / result_file
                         artifact.parent.mkdir(exist_ok=True)
@@ -318,7 +380,7 @@ def solve_staged(directory, case, graph, server, key):
                     checkpoints.append(dict(stage=stage, attempt=attempt, **feedback))
             if not accepted:
                 raise ValueError(f"Node {stage} did not finish: {feedback['retry_feedback']}")
-        outcome = official((family, instance), folder, folder, directory.name + "-verify")
+        outcome.update(official((family, instance), folder, folder, directory.name + "-verify"))
     except (OSError, ValueError, KeyError, subprocess.SubprocessError) as exc:
         outcome["error"] = str(exc)
     finally:
@@ -330,10 +392,16 @@ def solve_staged(directory, case, graph, server, key):
                 status="valid" if "reward" in outcome else "infrastructure_error")
 
 
-def repair_stock_4(directory, graphs):
+def repair_stock(directory, graphs, instance):
     import shutil
-    task = "stock-data-visualization-4"
-    source = OUTPUT / "platform/74a63223-f96f-4f13-892f-0795dd97e4db" / task
+    task = f"stock-data-visualization-{instance}"
+    source_id = {
+        1: "9c352f36-3d73-47d8-9d78-8424e2057413",
+        2: "9c352f36-3d73-47d8-9d78-8424e2057413",
+        3: "251d3716-7b31-4bdb-897e-d4ee0e2e0b3b",
+        4: "74a63223-f96f-4f13-892f-0795dd97e4db",
+    }[instance]
+    source = OUTPUT / "platform" / source_id / task
     report = read(next(source.rglob("verifier/ctrf.json")))
     failed = [test["name"] + ": " + test.get("message", "").splitlines()[0]
               for test in report["results"]["tests"] if test["status"] == "failed"]
@@ -341,32 +409,47 @@ def repair_stock_4(directory, graphs):
     files = ("index.html", "css/style.css", "js/visualization.js")
     site = folder / "artifacts" / "output"
     shutil.copytree(source / "artifacts/output", site)
-    record = dict(task=task, platform_run_id=directory.name, source_run=source.name,
+    record = dict(task=task, platform_run_id=directory.name, source_run=source_id,
                   mode="repair-fresh-artifact", checkpoints=[])
+    guidance = {
+        1: "The current hover handlers change only inline opacity. Synchronize visible and hidden states with the tooltip's visible class and a CSS rule. Apply it to BOTH the circle and label handler paths. Hide the same class for ETFs and mouseout. Preserve passing behavior.",
+        2: "Browser console: formatMarketCap calls toFixed on null and throws during renderTable before rendering the chart. Return N/A for missing or non-finite cap before calling toFixed. Classify ETF using source sector, not the raw marketCap representation. Preserve other working behavior.",
+        3: "The tooltip guards already exist. Change only the relative TSV URL in js/visualization.js, from ./stock-descriptions.tsv to data/stock-descriptions.tsv, matching the actual bundled file. Keep all other characters and files.",
+        4: "Rows have data-ticker attributes but were appended individually without binding D3 data. Use the row's actual attribute or bind the stock datum. Preserve passing behavior.",
+    }
     with campaign_lock():
         server, key = start(STATE)
         try:
-            node = next(node for node in graphs["stock-data-visualization"] if node["id"] == "interact")
+            stage = "render" if instance == 2 else "interact"
+            node = next(node for node in graphs["stock-data-visualization"] if node["id"] == stage)
             feedback = {}
             for attempt in range(2):
                 try:
                     check = model_check(server, key, task, node, feedback,
                         dict(failed_checks=failed,
-                             diagnosis="Rows have data-ticker attributes but were appended individually without binding D3 data. The callback dereferences d.ticker on an unbound row. Compare the row's actual data-ticker attribute to ticker or bind its stock datum. Tooltip and legend already passed; preserve them.",
+                             diagnosis=guidance[instance],
                              source={f:(site/f).read_text(encoding="utf8") for f in files}),
                         repair=True)
                     staged = {f:(site/f).read_text(encoding="utf8") for f in files}
                     if not check.get("edits"):
                         raise ValueError("The repair must supply edits for the observed failures")
                     for edit in check["edits"]:
+                        if instance == 3 and edit["file"] != "js/visualization.js":
+                            raise ValueError("Only the existing tooltip module needs a change")
+                        if instance == 3 and (
+                            "./stock-descriptions.tsv" not in edit["old"]
+                            or edit["old"].replace("./stock-descriptions.tsv", "data/stock-descriptions.tsv")
+                            != edit["new"]
+                        ):
+                            raise ValueError("Change only the TSV URL")
                         text = staged[edit["file"]]
                         if not edit["old"] or text.count(edit["old"]) != 1:
                             raise ValueError("Proposed edit does not match a unique source location")
                         staged[edit["file"]] = text.replace(edit["old"], edit["new"], 1)
                     for name, text in staged.items():
                         (site/name).write_text(text, encoding="utf8")
-                    record["checkpoints"].append(check)
-                    record.update(official(("stock-data-visualization", 4), folder, folder, directory.name))
+                    record["checkpoints"].append(dict(stage=stage, output=check))
+                    record.update(official(("stock-data-visualization", instance), folder, folder, directory.name))
                     if record["passed"]:
                         break
                     retry_report = read(folder / "verifier/ctrf.json")
@@ -375,10 +458,10 @@ def repair_stock_4(directory, graphs):
                     feedback = {"error": str(exc)}
                     record["checkpoints"].append(feedback)
             write(folder / "run.json", record)
-            write(directory / "results.json", [record])
         finally:
             server.shutdown()
             server.server_close()
+    return record
 
 
 if __name__ == "__main__":

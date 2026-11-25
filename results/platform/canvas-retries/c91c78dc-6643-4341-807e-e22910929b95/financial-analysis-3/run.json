@@ -1,0 +1,18 @@
+{
+  "task": "financial-analysis-3",
+  "platform_run_id": "c91c78dc-6643-4341-807e-e22910929b95",
+  "qwen_draft_run": "20261125-004524-6b896b",
+  "mode": "qwen-draft-recheck",
+  "checkpoints": [
+    {
+      "stage": "identify",
+      "attempt": 1,
+      "output": {
+        "ready": true,
+        "observation": "The draft evidence provides a complete set of accession numbers for the required entities (Soros Fund Management LLC and Pershing Square Capital Management L.P.) across both Q2 and Q3 2025, fully satisfying the node's output requirement for 'fund and quarterly declaration numbers'."
+      }
+    }
+  ],
+  "passed": false,
+  "error": "The draft evidence fails to meet the 'calculate' node's output requirements. The node explicitly requires 'scale, position count, and change ranking', but the draft provides a Q1 monetary value (which is not requested for this stage based on the Q2/Q3 context of the handoff) and raw lists of accession numbers or company names for Q2 and Q3 instead of the calculated metrics. Furthermore, there is a data inconsistency where Q2 contains accession numbers while Q3 contains company names, preventing any valid calculation of position counts or change rankings."
+}

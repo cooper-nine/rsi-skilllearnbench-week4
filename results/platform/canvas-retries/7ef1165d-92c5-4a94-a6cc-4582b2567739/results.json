@@ -1,0 +1,50 @@
+[
+  {
+    "family": "earthquake-plate-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-122708-583ff7",
+    "flow_sha256": "e02ce2476ad16e54e95a5afb37bcd87d092cc8b17bb4391282876a4dadb0681b",
+    "treatment_run": "earthquake-plate-calculation-5",
+    "treatment_origin": "platform",
+    "platform_run_id": "7ef1165d-92c5-4a94-a6cc-4582b2567739",
+    "treatment_passed": null,
+    "status": "infrastructure_error"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-134937-19d1a4",
+    "flow_sha256": "e27f4d32a513b02d5809fd1cde8510f2455f7a2e625db1a383a426612a6ed675",
+    "treatment_run": "stock-data-visualization-1",
+    "treatment_origin": "platform",
+    "platform_run_id": "7ef1165d-92c5-4a94-a6cc-4582b2567739",
+    "treatment_passed": false,
+    "status": "valid"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 2,
+    "baseline_passed": false,
+    "baseline_run": "20261118-141811-3aa771",
+    "flow_sha256": "3a8fe74e6674b9f88b0d0f5c147dfbb839f829622ad0846395d9cd2fd3d938e0",
+    "treatment_run": "stock-data-visualization-2",
+    "treatment_origin": "platform",
+    "platform_run_id": "7ef1165d-92c5-4a94-a6cc-4582b2567739",
+    "treatment_passed": false,
+    "status": "valid"
+  },
+  {
+    "family": "stock-data-visualization",
+    "instance": 3,
+    "baseline_passed": false,
+    "baseline_run": "20261118-145831-ff084f",
+    "flow_sha256": "e27f4d32a513b02d5809fd1cde8510f2455f7a2e625db1a383a426612a6ed675",
+    "treatment_run": "stock-data-visualization-3",
+    "treatment_origin": "platform",
+    "platform_run_id": "7ef1165d-92c5-4a94-a6cc-4582b2567739",
+    "treatment_passed": false,
+    "status": "valid"
+  }
+]
