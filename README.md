@@ -1,6 +1,6 @@
 # SkillLearnBench 第四周｜人工编排与 Qwen 3.5 Plus
 
-同一批十题的人工 Skill 基线全部未通过。四类流程在原 `rsi-flow-platform` 画布配置，由原前端和 Spring Boot 发起，业务节点调用 Qwen 3.5 Plus。最新整题结果见原平台验收表。整题结果以 Docker 容器内原版 `test.sh` 产生的官方记录为准。
+同一批十题的人工 Skill 基线 **0/10**，原平台编排与补跑后 **10/10 官方整题通过**。四类流程在原 `rsi-flow-platform` 画布配置，由原前端和 Spring Boot 发起，业务节点调用 Qwen 3.5 Plus。整题结果以 Docker 容器内原版 `test.sh` 产生的官方记录为准。
 
 - [原平台逐题验收与基线对照](results/platform/ACCEPTANCE.md) · [CSV](results/platform/comparison.csv)
 - [十题清单与早期试点](results/CASE-EVIDENCE.md)

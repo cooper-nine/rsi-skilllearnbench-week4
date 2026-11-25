@@ -89,11 +89,14 @@ def official(case, seed, folder, run_id):
         raise ValueError(f"Missing original benchmark image for {task}")
     name = f"week4-canvas-{run_id[:8]}-{KEYS[family]}-{instance}"
     def docker(*args, **kw):
-        return subprocess.run(["docker", *map(str, args)], timeout=900, **kw)
-    docker("run", "-d", "--name", name, "--mount", f"type=bind,source={folder},target=/logs", image, "sleep", 1200, check=True)
+        return subprocess.run(["docker", *map(str, args)], timeout=1500, **kw)
+    docker("run", "-d", "--name", name, "--mount", f"type=bind,source={folder},target=/logs", image, "sleep", 1800, check=True)
     try:
         docker("cp", artifact, f"{name}:{destination}", check=True)
         docker("cp", tests, f"{name}:/tests", check=True)
+        apt_indexes = OUTPUT / "platform-apt-indexes"
+        if KEYS[family] == "gdp" and any(apt_indexes.rglob("*_InRelease")):
+            docker("cp", f"{apt_indexes}/.", f"{name}:/var/lib/apt/lists", capture_output=True)
         if KEYS[family] != "stock":
             preload_verifier_uv(name, ROOT / "qwen/uv-cache")
         with (folder / "verifier.log").open("wb") as log:
@@ -300,11 +303,14 @@ def solve_staged(directory, case, graph, server, key):
                 workbook_inventory = json.loads(inventory.stdout)
             if instance in (1, 4, 5):
                 prior = OUTPUT / "platform/cc54c237-f68e-4024-a4eb-8573f9346620" / task
+                corrected = OUTPUT / "platform/e5a14c7d-2c36-4d59-b48e-2a0cee2650f8" / task
+                if instance == 5 and (corrected / "run.json").is_file() and (corrected / "calculate-1.py").is_file():
+                    prior = corrected
                 if (prior / "run.json").is_file():
                     trace = read(prior / "run.json")
                     calculation = next((item for item in trace["checkpoints"]
                                         if item["stage"] == "calculate" and "output" in item), None)
-                    if calculation and instance == 5:
+                    if calculation and instance == 5 and prior != corrected:
                         checkpoints.extend(item for item in trace["checkpoints"]
                                            if item["stage"] in ("requirements", "read") and "output" in item)
                         previous = next(item["output"] for item in checkpoints if item["stage"] == "read")
@@ -392,15 +398,37 @@ def solve_staged(directory, case, graph, server, key):
                                         "original workbook. Print a small JSON object with sheet names and header coordinates.")
                     if family == "weighted-gdp-calculation" and stage == "verify":
                         task_context = (
-                            "Check the saved /root/gdp.xlsx workbook. Spreadsheet CSV export trims empty "
+                            "Open /root/gdp.xlsx and explicitly select wb['Task']; the active worksheet "
+                            "can be Data. Apply every edit to Task only. Spreadsheet CSV export trims empty "
                             "leading rows and columns, losing original Excel coordinates. Preserve the "
                             "Task sheet coordinate origin in CSV by setting a single whitespace character "
                             "in A1 only if it is empty; preserve all task data, formulas and styling. "
                             "Recalculate with ssconvert to a temporary CSV and check for spreadsheet errors. "
-                            "If any existing quartile formula uses QUARTILE.INC and returns #NAME?, use "
-                            "the equivalent legacy QUARTILE function while preserving all arguments. "
+                            "Replace incompatible QUARTILE.INC and PERCENTILE.INC calls with their "
+                            "equivalent legacy QUARTILE and PERCENTILE functions, preserving arguments. "
                             "Return the inspected cell and workbook path as JSON."
                         )
+                        if instance == 5:
+                            task_context = (
+                                "Edit explicit wb['Task'], never wb.active. Fix the saved formulas for "
+                                "the original Trade Balance Coefficient task before inspecting the result. "
+                                "The weighted formulas in H43:M43 currently produce #VALUE! because they "
+                                "pass a sum of two cell ranges to SUMPRODUCT and SUM. Inspect the current "
+                                "formula to reuse its three original, same-column six-country ranges: "
+                                "rows 28:33 are already-percent coefficients, 12:17 exports and 19:24 imports. "
+                                "The numerator is the export SUMPRODUCT PLUS the import SUMPRODUCT, "
+                                "because the weights are total trade volume, exports PLUS imports. The "
+                                "denominator is SUM(exports) PLUS SUM(imports). Never subtract imports here "
+                                "or multiply by 100; the earlier coefficient formulas already did both. "
+                                "Round the quotient to one decimal. Keep other working formulas and styles. "
+                                "Replace PERCENTILE.INC with legacy PERCENTILE in H39:M40 and preserve its "
+                                "arguments. Set Task A1 to a space only if blank so CSV retains sheet "
+                                "coordinates. Save gdp.xlsx and print a compact JSON object with the "
+                                "Task sheet name and the saved formulas as formula_H43 and formula_H39. "
+                                "Both must begin with '=' so openpyxl stores formulas, not plain text. "
+                                "Read original task:\n"
+                                + instructions
+                            )
                     response, usage = api(server, key, rule, task_context,
                                           previous, sources, {"container_paths": "/root"},
                                           python_source=True)
@@ -419,6 +447,12 @@ def solve_staged(directory, case, graph, server, key):
                     result = json.loads(run_result.stdout)
                     if not isinstance(result, (dict, list)) or not result:
                         raise ValueError("The output contract requires a nonempty JSON object or array")
+                    if family == "weighted-gdp-calculation" and instance == 5 and stage == "verify":
+                        if not isinstance(result, dict) or any(
+                            not str(result.get(cell, "")).startswith("=")
+                            for cell in ("formula_H43", "formula_H39")
+                        ):
+                            raise ValueError("Return formula_H43 and formula_H39 as Excel formulas beginning with '='.")
                     if stage == "verify":
                         artifact = folder / result_file
                         artifact.parent.mkdir(exist_ok=True)

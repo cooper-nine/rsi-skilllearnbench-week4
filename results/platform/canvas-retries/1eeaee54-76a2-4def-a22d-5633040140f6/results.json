@@ -1,0 +1,26 @@
+[
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 1,
+    "baseline_passed": false,
+    "baseline_run": "20261118-124901-2690d3",
+    "flow_sha256": "d8276a8f6cbc7016988d110c6ec7a027d2507179182bac05c912681f3480d6cf",
+    "treatment_run": "weighted-gdp-calculation-1",
+    "treatment_origin": "platform",
+    "platform_run_id": "1eeaee54-76a2-4def-a22d-5633040140f6",
+    "treatment_passed": true,
+    "status": "valid"
+  },
+  {
+    "family": "weighted-gdp-calculation",
+    "instance": 5,
+    "baseline_passed": false,
+    "baseline_run": "20261118-150937-21cedf",
+    "flow_sha256": "96f1178fda83ae1ae798b4fce023f212345eaf0e807e7a2431d7be928ea077be",
+    "treatment_run": "weighted-gdp-calculation-5",
+    "treatment_origin": "platform",
+    "platform_run_id": "1eeaee54-76a2-4def-a22d-5633040140f6",
+    "treatment_passed": false,
+    "status": "valid"
+  }
+]

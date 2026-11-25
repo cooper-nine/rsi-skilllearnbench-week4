@@ -2,8 +2,8 @@ task,baseline_checks,official_checks,result,baseline_evidence,platform_evidence
 earthquake-plate-calculation-5,6/8,8/8,通过,results/paired-evidence/earthquake-plate-calculation-5/baseline,results/platform/canvas-retries/b8003ff6-204f-4008-8d6c-72aad006bbbd/earthquake-plate-calculation-5
 financial-analysis-1,1/2,2/2,通过,results/paired-evidence/financial-analysis-1/baseline,results/platform/finance-1
 financial-analysis-3,0/2,2/2,通过,results/paired-evidence/financial-analysis-3/baseline,results/platform/finance-3
-weighted-gdp-calculation-1,11/27,25/27,未通过,results/paired-evidence/weighted-gdp-calculation-1/baseline,results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-1
-weighted-gdp-calculation-5,21/25,14/25,未通过,results/paired-evidence/weighted-gdp-calculation-5/baseline,results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-5
+weighted-gdp-calculation-1,11/27,27/27,通过,results/paired-evidence/weighted-gdp-calculation-1/baseline,results/platform/canvas-retries/1eeaee54-76a2-4def-a22d-5633040140f6/weighted-gdp-calculation-1
+weighted-gdp-calculation-5,21/25,25/25,通过,results/paired-evidence/weighted-gdp-calculation-5/baseline,results/platform/canvas-retries/e61d8f69-f61d-4346-aee8-6efd67b2fc84/weighted-gdp-calculation-5
 weighted-gdp-calculation-4,10/27,27/27,通过,results/paired-evidence/weighted-gdp-calculation-4/baseline,results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-4
 stock-data-visualization-1,14/15,15/15,通过,results/paired-evidence/stock-data-visualization-1/baseline,results/platform/canvas-retries/025b47f6-e47d-49f4-b5d2-0d49a077225a/stock-data-visualization-1
 stock-data-visualization-2,11/15,15/15,通过,results/paired-evidence/stock-data-visualization-2/baseline,results/platform/canvas-retries/025b47f6-e47d-49f4-b5d2-0d49a077225a/stock-data-visualization-2

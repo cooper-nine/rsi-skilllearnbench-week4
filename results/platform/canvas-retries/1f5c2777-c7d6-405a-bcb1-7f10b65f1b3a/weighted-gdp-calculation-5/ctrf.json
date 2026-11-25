@@ -1,0 +1,248 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 25,
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1795591246.3731878,
+            "stop": 1795591250.6794806
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::TestFileExists::test_excel_file_exists",
+                "status": "passed",
+                "duration": 0.0005473419951158576,
+                "start": 1795591246.549452,
+                "stop": 1795591246.5502987,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFileExists::test_excel_file_readable",
+                "status": "passed",
+                "duration": 0.19659649400273338,
+                "start": 1795591246.5508375,
+                "stop": 1795591246.7478416,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFileExists::test_sheet_structure",
+                "status": "passed",
+                "duration": 0.6475541600011638,
+                "start": 1795591246.748136,
+                "stop": 1795591247.3960326,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1LookupFormulas::test_exports_have_data",
+                "status": "passed",
+                "duration": 0.2250518560031196,
+                "start": 1795591247.3962557,
+                "stop": 1795591247.621728,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1LookupFormulas::test_imports_have_data",
+                "status": "passed",
+                "duration": 0.1888052600043011,
+                "start": 1795591247.6220233,
+                "stop": 1795591247.8111806,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1DataValues::test_exports_values",
+                "status": "passed",
+                "duration": 0.16428950599220116,
+                "start": 1795591247.811431,
+                "stop": 1795591247.976036,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep1DataValues::test_imports_values",
+                "status": "passed",
+                "duration": 0.1498351430054754,
+                "start": 1795591247.9762568,
+                "stop": 1795591248.1263847,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_have_data",
+                "status": "passed",
+                "duration": 0.14933576899784384,
+                "start": 1795591248.126593,
+                "stop": 1795591248.2761862,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_values",
+                "status": "passed",
+                "duration": 0.13339723201352172,
+                "start": 1795591248.2763777,
+                "stop": 1795591248.410061,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_statistics_have_data",
+                "status": "passed",
+                "duration": 0.15737424700637348,
+                "start": 1795591248.41028,
+                "stop": 1795591248.5680692,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_min_values",
+                "status": "passed",
+                "duration": 0.15226393100601854,
+                "start": 1795591248.5683017,
+                "stop": 1795591248.7208784,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_max_values",
+                "status": "passed",
+                "duration": 0.15080581499205437,
+                "start": 1795591248.7210822,
+                "stop": 1795591248.8721745,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_median_values",
+                "status": "passed",
+                "duration": 0.14544297999964328,
+                "start": 1795591248.8723855,
+                "stop": 1795591249.0181272,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_mean_values",
+                "status": "passed",
+                "duration": 0.15453503600292606,
+                "start": 1795591249.0183609,
+                "stop": 1795591249.173206,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep2Statistics::test_percentile_values",
+                "status": "passed",
+                "duration": 0.15098542098712642,
+                "start": 1795591249.1734164,
+                "stop": 1795591249.3247051,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_has_data",
+                "status": "passed",
+                "duration": 0.13735843800532166,
+                "start": 1795591249.3249145,
+                "stop": 1795591249.4625928,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable",
+                "status": "passed",
+                "duration": 0.15012887999910163,
+                "start": 1795591249.4628081,
+                "stop": 1795591249.6132553,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.17195473599713296,
+                "start": 1795591249.6134782,
+                "stop": 1795591249.8015337,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "self = <test_outputs.TestStep3WeightedMean object at 0x78fe90899160>\n\n    def test_weighted_mean_values(self):\n        \"\"\"Verify weighted mean values match expected.\"\"\"\n        wb = get_workbook()\n        ws = get_task_sheet(wb)\n    \n        errors = []\n        for col_idx, col in enumerate(COLUMNS):\n            cell = f\"{col}43\"\n            actual = cell_value(ws, cell)\n            exp = EXPECTED_WEIGHTED_MEAN[col_idx]\n            if actual is None or actual == \"\" or not isinstance(actual, (int, float)) or abs(actual - exp) > TOLERANCE:\n                errors.append(f\"{cell}: expected {exp}, got {actual}\")\n    \n        wb.close()\n>       assert len(errors) == 0, \"Weighted mean value mismatches:\\n\" + \"\\n\".join(errors)\nE       AssertionError: Weighted mean value mismatches:\nE         H43: expected 15.2, got 252.4\nE         I43: expected 12.6, got 160.7\nE         J43: expected 7.4, got 82.6\nE         K43: expected 16.1, got 280.4\nE         L43: expected 22.4, got 567.5\nE         M43: expected 14.2, got 231.2\nE       assert 6 == 0\nE        +  where 6 = len(['H43: expected 15.2, got 252.4', 'I43: expected 12.6, got 160.7', 'J43: expected 7.4, got 82.6', 'K43: expected 16.1, got 280.4', 'L43: expected 22.4, got 567.5', 'M43: expected 14.2, got 231.2'])\n\n/tests/test_outputs.py:517: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::TestNoExcelErrors::test_no_formula_errors",
+                "status": "passed",
+                "duration": 0.162505380998482,
+                "start": 1795591249.801803,
+                "stop": 1795591249.9646935,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestSheetStructure::test_no_extra_sheets_added",
+                "status": "passed",
+                "duration": 0.17284578300314024,
+                "start": 1795591249.9650683,
+                "stop": 1795591250.138291,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestSheetStructure::test_required_sheets_exist",
+                "status": "passed",
+                "duration": 0.18270102199312532,
+                "start": 1795591250.1385534,
+                "stop": 1795591250.321637,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFormattingPreserved::test_task_sheet_column_widths",
+                "status": "passed",
+                "duration": 0.19760457699885592,
+                "start": 1795591250.3218834,
+                "stop": 1795591250.519872,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestFormattingPreserved::test_data_sheet_column_widths",
+                "status": "passed",
+                "duration": 0.15762456400261726,
+                "start": 1795591250.5200868,
+                "stop": 1795591250.6782417,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestNoMacros::test_no_vba_macros",
+                "status": "passed",
+                "duration": 0.0003247130080126226,
+                "start": 1795591250.6785128,
+                "stop": 1795591250.6789901,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::TestNoMacros::test_file_extension_xlsx",
+                "status": "passed",
+                "duration": 0.0001538559954497032,
+                "start": 1795591250.6791272,
+                "stop": 1795591250.6794095,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            }
+        ]
+    }
+}

@@ -57,7 +57,7 @@ test_outputs.py::test_answer_quality
 
 ## weighted-gdp-calculation/1
 
-- 原平台复测　**未通过，25/27**。 [逐题执行及官判](platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-1/)
+- 原平台复测　**通过，27/27**。 [逐题执行及官判](platform/canvas-retries/1eeaee54-76a2-4def-a22d-5633040140f6/weighted-gdp-calculation-1/)
 - 输入　gdp.xlsx 的 Data 表及原始 Task 模板。 [原题](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-1/instruction.md)
 - 期望　在原模板中按题面填写查找公式、净出口及描述统计、SUMPRODUCT 加权值；通过单元格检查。 [官方检查](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-1/tests/test_outputs.py)
 - 人工 Skill 基线 **11/27，整题失败**。试次 `20261118-124901-2690d3`。 [官方报告](paired-evidence/weighted-gdp-calculation-1/baseline/ctrf.json)
@@ -89,7 +89,7 @@ test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values
 
 ## weighted-gdp-calculation/5
 
-- 原平台复测　**未通过，14/25**。 [逐题执行及官判](platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-5/)
+- 原平台复测　**通过，25/25**。 [逐题执行及官判](platform/canvas-retries/e61d8f69-f61d-4346-aee8-6efd67b2fc84/weighted-gdp-calculation-5/)
 - 输入　gdp.xlsx 的 Data 表及原始 Task 模板。 [原题](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-5/instruction.md)
 - 期望　在原模板中按题面填写查找公式、贸易余额系数及描述统计、按贸易总额进行 SUMPRODUCT 加权；通过单元格检查。 [官方检查](../upstream-reference/tasks/weighted-gdp-calculation/weighted-gdp-calculation-5/tests/test_outputs.py)
 - 人工 Skill 基线 **21/25，整题失败**。试次 `20261118-150937-21cedf`。 [官方报告](paired-evidence/weighted-gdp-calculation-5/baseline/ctrf.json)
