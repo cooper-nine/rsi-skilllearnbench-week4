@@ -24,4 +24,12 @@ python .\rsi-skilllearnbench-week4\prepare.py --workspace .\upstream-sparse --in
 
 构建首次下载十题数据和 Docker 依赖。以同级 `upstream-sparse` 的绝对路径和自己的百炼 Key 配置后端，再按两个仓库的 `WEEK4.md` 启动。默认运行预算上限为 20 元，账本位于基准工作区的 `output/qwen_budget_campaign`。历史检查点续跑需要保留原机器的运行目录。
 
+若 GitHub 大文件下载中断，可用 `--source <已有基准仓库路径>` 从含固定提交的本地仓库准备另一个空目录。若只有 Docker 镜像构建中断，在已准备好的目录上运行 `python .\rsi-skilllearnbench-week4\prepare.py --workspace .\upstream-sparse --images-only`。
+
 打开 `http://127.0.0.1:3020/test/week4`，保存四类画布，选一道题从原始输入运行。拿到运行 ID 后查看该目录的 `runner.log` 和 `results.json`。页面上的「复核已有产物」和历史股票补跑使用既有产物或历史检查点，首次复现请使用原始输入入口。历史实际结果见[逐题验收](results/platform/ACCEPTANCE.md)。
+
+## 发布验证
+
+- 从公开仓库重新克隆前端与 Visual，通过 `pnpm install --frozen-lockfile` 和 `pnpm build`。
+- 从公开仓库重新克隆后端，使用已配置的课程 Maven 依赖通过 12 个模块编译并启动。通过前端路由提交画布取得 FlowEngine 运行 ID，后端写入运行目录。这次启动检查未提供模型 API Key。
+- 使用归档的 Qwen 产物，重新执行股票第 4 题的原版 Docker 判分，16 项全部通过，奖励为 1。独立循环框架测试通过 5 项。十题正式验收为先前逐题完成的 10/10。
