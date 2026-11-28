@@ -24,6 +24,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\review.ps1 -Live
 
 评审实跑由本机 Next.js 启动同一个 Python 流程运行器，再逐节点调用 Qwen 并运行原版 Docker 验收。下文另有历史正式实验使用的 Spring Boot 启动方法，适合验证 FlowEngine 接入。
 
+评审实跑验证中，股票第 4 题重新调用 Qwen 完成四类节点，原版脚本判为 13/16，奖励为 0。未通过项为原始数据子目录、ETF 与普通股票提示框和市值格式。归档回放中该题保留先前正式验收的 16/16。 [本次四节点记录](results/reviewer-smoke/stock-4/run.json) · [本次官方报告](results/reviewer-smoke/stock-4/ctrf.json)
+
 ## 正式实验架构
 
 1. Next.js 的 `/test/week4` 使用 Visual 画布呈现四类人工流程。页面把已保存的画布和所选题目提交给本机 Next.js 路由。
