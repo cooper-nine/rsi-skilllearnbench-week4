@@ -1,12 +1,30 @@
-# SkillLearnBench 第四周｜人工编排与 Qwen 3.5 Plus
+# SkillLearnBench 第四周｜人工拆分 Skill 与平台编排
 
-十个典型案例按 case01–case10 对齐，每条都有前端画布请求、后端执行图、正式运行结果及逐题解释。仓库保留选中实例的题目与判分文件，基准输入按固定版本准备。 [十案例交付索引](results/cases/)
+**同一批十个实例 · 完整人工 Skill 基线 0/10 → 平台编排与定向补跑 10/10 官方整题通过。**
 
-正式复测从指定前端进入 Spring Boot，再执行 Qwen 节点和原版 Docker 官判。逐题复测脚本与配置见[指定前后端逐题复测](RUN.md#指定前后端逐题复测)。
+[十案例交付索引](results/cases/) · [原平台官判](results/platform/ACCEPTANCE.md) · [指定前后端复测](RUN.md#指定前后端逐题复测)
 
-## 评审快速启动
+## 从画布到官方判分
 
-从本仓库根目录运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\review.ps1`。用 Node.js、Python 和 Git 启动原画布页面，点击「回放节点归档」即可检查拆分 Skill、节点顺序、真实 Qwen 产物与历史官判。需要重新调用 Qwen 时，使用同一脚本的 `-Live` 模式。 [评审与实跑步骤](RUN.md#评审快速启动)
+```mermaid
+flowchart TD
+    A["人工设计｜拆分参考 Skill，确认节点、契约与回退<br/>拖拽编排并保存 canvas.json"]
+    B["前端提交 → Spring Boot FlowEngine<br/>RSI_WEEK4_CANVAS 接收 structure 和 token，返回 platformRunId"]
+    C["Python 运行器合成逐题执行图<br/>归档 treatment/flow.json 的 Skill 片段和 guidance<br/>按画布排序，把节点 input/output 加入 guidance"]
+    D["保存逐题执行图 &lt;task&gt;.json<br/>计算 SHA-256，在运行结果中记录 flow_sha256"]
+    E["Qwen 3.5 Plus 逐节点执行<br/>交接上游检查点，节点失败反馈后最多重试一次"]
+    F["任务容器内生成答案、工作簿或网页"]
+    G["Docker 运行原版 test.sh<br/>输出 CTRF 和 reward.txt"]
+    H["results/cases/caseNN.json<br/>对应前后端配置、官判、基线和逐题解释"]
+    A --> B --> C --> D --> E --> F --> G --> H
+```
+
+正式结果按十个选中的失败基线实例统计，包含定向补跑。评审回放读取归档数据。新的实跑按当次官判计分，已保存股票第 4 题独立实跑的 13/16 负结果。 [同输入配对 CSV](results/platform/comparison.csv) · [独立实跑报告](results/reviewer-smoke/stock-4/ctrf.json)
+
+## 学长如何复测
+
+- **正式复测** · 按说明启动指定前端和 Spring Boot，配置百炼 Key 和 Docker，使用 `run-platform-cases.ps1` 逐题提交 case01–case10。脚本核对 Spring Boot 运行 ID、保存的画布和本次判分。 [正式复测步骤](RUN.md#指定前后端逐题复测)
+- **查看归档** · 在总仓库运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\review.ps1`，打开 `/test/week4` 并点「回放节点归档」。可展开子 Skill 和节点产物。 [回放步骤](RUN.md#评审快速启动)
 
 ## 仓库提交
 
@@ -14,8 +32,6 @@
 - 我的前端项目 [rsi-data-platform](https://github.com/cooper-nine/rsi-data-platform)
 - 我的前端编排框架 [rsi-data-visual](https://github.com/cooper-nine/rsi-data-visual) 增加了可直接安装的构建产物和构建说明，供评审脚本装载原画布组件。
 - 我的后端 RSI 编排框架 [rsi-flow](https://github.com/cooper-nine/rsi-flow) 增加了独立的 Java 有界 Skill 循环节点、测试和示例。十题正式实验由 Spring Boot 的 FlowEngine 调度 Python 运行器，逐节点执行由 Python 负责。
-
-安装和架构见[完整启动说明](RUN.md)。
 
 ## 数据集与实验边界
 
@@ -41,23 +57,6 @@
 
 节点失败时，把错误反馈给负责该产物的节点，并保留可复用的上游检查点。四类流程的最后一步都是运行相应实例的官方判分。 [节点配置](qwen/flows/) · [平台画布截图](results/qwen-canvas/) · [逐题运行和回退证据](results/PLATFORM.md)
 
-### 结果口径
+## 实验记录
 
-正式结果来自同一批十题的逐题对照，包括定向补跑。这个样本按已有失败基线选取，结果适用于这十个实例。分阶段提示、产物校验和补跑共同参与了改善，现有记录支持同题对照。评审回放读取历史产物，新的 `-Live` 运行单独报告当次真实结果。 [十题验收](results/platform/ACCEPTANCE.md) · [评审实跑样例](results/reviewer-smoke/stock-4/ctrf.json)
-
-同一批十题的人工 Skill 基线 **0/10**，原平台编排与补跑后 **10/10 官方整题通过**。四类流程在原 `rsi-flow-platform` 画布配置，由原前端和 Spring Boot 发起，业务节点调用 Qwen 3.5 Plus。整题结果以 Docker 容器内原版 `test.sh` 产生的官方记录为准。
-
-- [原平台逐题验收与基线对照](results/platform/ACCEPTANCE.md) · [CSV](results/platform/comparison.csv)
-- [十题清单与早期试点](results/CASE-EVIDENCE.md)
-- [早期 Qwen 试点对照 CSV](results/comparison.csv) · [原始配对证据](results/paired-evidence/)
-- [实验报告、失败分析和下一阶段指标](results/QWEN-PILOT.md)
-- [四类浏览器编排截图](results/qwen-canvas/) · [平台运行证据](results/PLATFORM.md)
-- [节点配置](qwen/flows/) · [运行清单](qwen/cases.json) · [基准固定版本](upstream-reference/source.json)
-
-## 运行与核验
-
-原平台测试页为 `/test/week4`。选择任务类型并保存画布，可从原始输入运行。后端为每次执行返回运行 ID，可用该 ID 对照画布、节点记录和官方报告。 [原平台联调记录](results/PLATFORM.md)
-
-在仓库根目录执行 `python qwen/export_paired_evidence.py`，从已发布的原始报告、奖励文件和运行配置重新核验十份配对并生成 CSV。这一步可离线运行。
-
-`qwen/run_rsi_retests.py` 是准备好的基准工作区使用的 Qwen 运行入口。它需要固定版本的 SkillLearnBench、Docker、已准备的基线和预算状态，以及本地配置的 DashScope API 凭证。已发布的逐题证据保留实际采用的配置、试次与模型检查点，包含从先前 Qwen 产物继续的运行。
+[逐题输入与基线失败项](results/CASE-EVIDENCE.md) · [失败分析与下一阶段指标](results/QWEN-PILOT.md) · [运行清单](qwen/cases.json)
