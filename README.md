@@ -2,6 +2,8 @@
 
 十个典型案例按 case01–case10 对齐，每条都有前端画布请求、后端执行图、正式运行结果及逐题解释。仓库保留选中实例的题目与判分文件，基准输入按固定版本准备。 [十案例交付索引](results/cases/)
 
+正式复测从指定前端进入 Spring Boot，再执行 Qwen 节点和原版 Docker 官判。逐题复测脚本与配置见[指定前后端逐题复测](RUN.md#指定前后端逐题复测)。
+
 ## 评审快速启动
 
 从本仓库根目录运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\review.ps1`。用 Node.js、Python 和 Git 启动原画布页面，点击「回放节点归档」即可检查拆分 Skill、节点顺序、真实 Qwen 产物与历史官判。需要重新调用 Qwen 时，使用同一脚本的 `-Live` 模式。 [评审与实跑步骤](RUN.md#评审快速启动)

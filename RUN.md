@@ -1,5 +1,15 @@
 # 架构与启动
 
+## 指定前后端逐题复测
+
+按下文启动 Spring Boot 和前端，前端设置 `RSI_WEEK4_TOKEN` 与 `RSI_FLOW_BACKEND_URL`。后端配置同一令牌、可用的百炼 Key 和已准备的 `RSI_WEEK4_BENCHMARK_HOME`。开启 Docker Linux 引擎。然后从总交付仓库运行：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run-platform-cases.ps1 -FrontendCases ..\rsi-data-platform\examples\week4 -BenchmarkHome ..\upstream-sparse
+```
+
+脚本按 case01–case10 逐题向指定前端提交 `fresh` 请求，核对 Spring Boot 返回的运行 ID 与落盘画布，等待本次运行结果。所有选中题均取得官方通过时返回退出码 0。可加 `-CaseNumber 1` 单题检查。运行阶段调用 Qwen 并执行 Docker 原版判分。归档回放及 Next.js 本地实跑入口供讲解与排查使用，正式复测使用本节的 Spring Boot 路径。
+
 ## 评审快速启动
 
 Windows 机器安装 Git、Node.js 24 和 Python 3.11 或更新版本。在有空间的磁盘目录执行：
