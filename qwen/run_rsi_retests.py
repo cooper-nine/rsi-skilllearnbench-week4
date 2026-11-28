@@ -96,6 +96,10 @@ def matching_runs(case):
 
 
 def baseline_image(family, instance):
+    image = f"week4-{family}-{instance}:upstream"
+    prepared = subprocess.run(["docker", "image", "inspect", image], capture_output=True, timeout=15)
+    if prepared.returncode == 0:
+        return image
     baseline_log = STATE / f"formal-{family}-{instance}-human_authored.log"
     if not baseline_log.is_file():
         return None

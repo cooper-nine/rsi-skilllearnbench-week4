@@ -1,9 +1,22 @@
 """Prepare a fresh, pinned upstream workspace and overlay the submitted adapter."""
-import argparse,hashlib,json,shutil,subprocess,sys,urllib.request
+import argparse,hashlib,json,shutil,subprocess,sys,tempfile,urllib.request
 from pathlib import Path
 COMMIT="726e1f79b96b0cb3d729d0e55a1c847e0b5353ae"
+
+def build_images(target):
+    cases = json.loads((target / "qwen/cases.json").read_text(encoding="utf8"))
+    for case in cases:
+        family, instance = case["family"], case["instance"]
+        task = f"{family}-{instance}"
+        environment = target / "tasks" / family / task / "environment"
+        with tempfile.TemporaryDirectory(prefix="week4-image-", dir=target) as staging:
+            context = Path(staging) / "environment"
+            shutil.copytree(environment, context, ignore=shutil.ignore_patterns("skills"))
+            (context / "skills").mkdir()
+            subprocess.run(["docker", "build", "--tag", f"week4-{task}:upstream", str(context)], check=True)
+
 def main():
-    p=argparse.ArgumentParser();p.add_argument("--workspace",type=Path,required=True);p.add_argument("--install",action="store_true");a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument("--workspace",type=Path,required=True);p.add_argument("--install",action="store_true");p.add_argument("--build-images",action="store_true");a=p.parse_args()
     target=a.workspace.resolve();source=Path(__file__).resolve().parent
     if target.exists() and any(target.iterdir()):raise SystemExit("Use an empty new workspace; existing files will not be overwritten.")
     target.parent.mkdir(parents=True,exist_ok=True)
@@ -18,6 +31,15 @@ def main():
     git("sparse-checkout","set","--no-cone",*patterns)
     git("fetch","--depth","1","origin",COMMIT);git("checkout","--detach",COMMIT)
     shutil.copytree(source/"qwen",target/"qwen",ignore=shutil.ignore_patterns("__pycache__","*.pyc","HANDOFF.md"),dirs_exist_ok=True)
+    for entry in (source / "platform/canvas/runner").glob("*.py"):
+        shutil.copy2(entry, target / "qwen" / entry.name)
+    vendor = target / "qwen/vendor"
+    vendor.mkdir(exist_ok=True)
+    with urllib.request.urlopen("https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js", timeout=60) as response:
+        library = response.read()
+    if hashlib.sha256(library).hexdigest() != "fbb8da602a76f4ed49bac3561da62d8149fa121b8fd15685bacc21355d3a3322":
+        raise RuntimeError("D3 checksum mismatch")
+    (vendor / "d3.v6.min.js").write_bytes(library)
     state=target/"output/qwen_budget_campaign"
     state.mkdir(parents=True,exist_ok=True)
     protocol=json.loads((source/"protocol.json").read_text(encoding="utf-8"))
@@ -37,6 +59,8 @@ def main():
         run(sys.executable,"-m","venv",str(target/".venv"))
         python=target/".venv"/("Scripts/python.exe" if sys.platform=="win32" else "bin/python")
         run(str(python),"-m","pip","install","--index-url","https://mirrors.aliyun.com/pypi/simple/","-r",str(target/"qwen/requirements-lock.txt"))
+    if a.build_images:
+        build_images(target)
     print("Prepared:",target)
     print("Set DASHSCOPE_API_KEY, start Docker, then run .venv python qwen/run_all.py")
 if __name__=="__main__":main()

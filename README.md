@@ -1,5 +1,14 @@
 # SkillLearnBench 第四周｜人工编排与 Qwen 3.5 Plus
 
+## 仓库提交
+
+- 我的后端项目 [rsi-data-spring-boot](https://github.com/cooper-nine/rsi-data-spring-boot)
+- 我的前端项目 [rsi-data-platform](https://github.com/cooper-nine/rsi-data-platform)
+- 我的前端编排框架 [rsi-data-visual](https://github.com/cooper-nine/rsi-data-visual) 提供原画布组件及前端可直接安装的构建文件
+- 我的后端 RSI 编排框架 [rsi-flow](https://github.com/cooper-nine/rsi-flow) 含有独立的有界循环节点实验
+
+安装和架构见[完整启动说明](RUN.md)。
+
 同一批十题的人工 Skill 基线 **0/10**，原平台编排与补跑后 **10/10 官方整题通过**。四类流程在原 `rsi-flow-platform` 画布配置，由原前端和 Spring Boot 发起，业务节点调用 Qwen 3.5 Plus。整题结果以 Docker 容器内原版 `test.sh` 产生的官方记录为准。
 
 - [原平台逐题验收与基线对照](results/platform/ACCEPTANCE.md) · [CSV](results/platform/comparison.csv)
