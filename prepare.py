@@ -43,8 +43,13 @@ def main():
     git("config","core.autocrlf","false")
     git("sparse-checkout","init","--no-cone")
     patterns=["/*.py","/README.md","/BASELINES.md","/LICENSE","/agents/","/core/","/evaluation/","/eval_keypoints/","/baselines/b1-one-shot/"]
-    for task in ["earthquake-plate-calculation","financial-analysis","weighted-gdp-calculation","stock-data-visualization"]:
-        patterns+=["/tasks/"+task+"/","/skills/human_authored/"+task+"/"]
+    cases = json.loads((source / "qwen/cases.json").read_text(encoding="utf8"))
+    patterns.extend(
+        f"/tasks/{case['family']}/{case['family']}-{case['instance']}/" for case in cases
+    )
+    patterns.extend(
+        f"/skills/human_authored/{family}/" for family in sorted({case["family"] for case in cases})
+    )
     git("sparse-checkout","set","--no-cone",*patterns)
     if a.source:
         git("cat-file","-e",COMMIT + "^{commit}")

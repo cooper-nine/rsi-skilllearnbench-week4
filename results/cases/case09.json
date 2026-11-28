@@ -1,0 +1,34 @@
+{
+  "case": "case09",
+  "task": "stock-data-visualization-3",
+  "baseline": {
+    "checks": "6/15",
+    "reward": 0,
+    "failed_checks": [
+      "test_outputs.py::test_output_structure_and_files[/root/output/index.html-index.html]",
+      "test_outputs.py::test_output_structure_and_files[/root/output/js/visualization.js-custom visualization.js]",
+      "test_outputs.py::test_bubble_chart_rendering",
+      "test_outputs.py::test_data_table",
+      "test_outputs.py::test_tooltips_non_etf_and_etf",
+      "test_outputs.py::test_interactive_linking",
+      "test_outputs.py::test_market_cap_formatting",
+      "test_outputs.py::test_sector_clustering",
+      "test_outputs.py::test_legend_completeness"
+    ],
+    "official_report": "results/paired-evidence/stock-data-visualization-3/baseline/ctrf.json"
+  },
+  "official": {
+    "checks_passed": 15,
+    "checks_total": 15,
+    "reward": 1,
+    "passed": true,
+    "report": "results/platform/canvas-retries/c9eab40c-6e7c-408d-9f7c-7bbf5d29e100/stock-data-visualization-3/ctrf.json",
+    "reward_file": "results/platform/canvas-retries/c9eab40c-6e7c-408d-9f7c-7bbf5d29e100/stock-data-visualization-3/reward.txt"
+  },
+  "platform_run_id": "c9eab40c-6e7c-408d-9f7c-7bbf5d29e100",
+  "historical_mode": "repair-stock-3",
+  "historical_canvas": "results/platform/canvas-retries/c9eab40c-6e7c-408d-9f7c-7bbf5d29e100/canvas.json",
+  "backend_flow_source": "results/platform/canvas-retries/7ef1165d-92c5-4a94-a6cc-4582b2567739/stock-data-visualization-3/flow.json",
+  "run_record": "results/platform/canvas-retries/c9eab40c-6e7c-408d-9f7c-7bbf5d29e100/stock-data-visualization-3/run.json",
+  "why": "基线缺少页面或脚本产物，多数页面检查因此失败。编排先生成页面和数据文件，续修把 TSV 地址指向实际的 data 目录。数据能加载后，气泡、表格、图例和交互才可被浏览器验证。"
+}

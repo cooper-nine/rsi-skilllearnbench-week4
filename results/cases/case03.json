@@ -1,0 +1,27 @@
+{
+  "case": "case03",
+  "task": "financial-analysis-3",
+  "baseline": {
+    "checks": "0/2",
+    "reward": 0,
+    "failed_checks": [
+      "test_outputs.py::test_file_exists",
+      "test_outputs.py::test_answer_quality"
+    ],
+    "official_report": "results/paired-evidence/financial-analysis-3/baseline/ctrf.json"
+  },
+  "official": {
+    "checks_passed": 2,
+    "checks_total": 2,
+    "reward": 1,
+    "passed": true,
+    "report": "results/platform/finance-3/ctrf.json",
+    "reward_file": "results/platform/finance-3/reward.txt"
+  },
+  "platform_run_id": "163a5035-6444-40fc-847a-8544edbe4fb1",
+  "historical_mode": "fresh",
+  "historical_canvas": "results/platform/finance-3/canvas.json",
+  "backend_flow_source": "results/platform/finance-3/flow.json",
+  "run_record": "results/platform/finance-3/qwen.txt",
+  "why": "基线缺少有效答案文件，质量检查也未通过。先识别 Soros 与 Pershing Square 的季度申报，再查询 NVIDIA 持仓并按经理聚合。核对节点检查三问的格式后将结果保存到 answers.json。"
+}

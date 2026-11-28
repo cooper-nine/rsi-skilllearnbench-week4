@@ -1,0 +1,26 @@
+{
+  "case": "case02",
+  "task": "financial-analysis-1",
+  "baseline": {
+    "checks": "1/2",
+    "reward": 0,
+    "failed_checks": [
+      "test_outputs.py::test_answer_quality"
+    ],
+    "official_report": "results/paired-evidence/financial-analysis-1/baseline/ctrf.json"
+  },
+  "official": {
+    "checks_passed": 2,
+    "checks_total": 2,
+    "reward": 1,
+    "passed": true,
+    "report": "results/platform/finance-1/ctrf.json",
+    "reward_file": "results/platform/finance-1/reward.txt"
+  },
+  "platform_run_id": "26e05b4f-2dd5-4542-8c72-1db8013d2e5d",
+  "historical_mode": "fresh",
+  "historical_canvas": "results/platform/finance-1/canvas.json",
+  "backend_flow_source": "results/platform/finance-1/flow.json",
+  "run_record": "results/platform/finance-1/qwen.txt",
+  "why": "基线答案质量未通过。先固定 Renaissance 和 Berkshire 的季度申报编号，再对 13F 数据分别计算规模、股票数量和增持排名，最后核对输出字段与列表。这样下游各问使用同一组已确认的申报记录。"
+}

@@ -1,0 +1,27 @@
+{
+  "case": "case01",
+  "task": "earthquake-plate-calculation-5",
+  "baseline": {
+    "checks": "6/8",
+    "reward": 0,
+    "failed_checks": [
+      "test_outputs.py::TestEarthquakeTask::test_distance_within_tolerance",
+      "test_outputs.py::TestEarthquakeTask::test_earthquake_id_correct"
+    ],
+    "official_report": "results/paired-evidence/earthquake-plate-calculation-5/baseline/ctrf.json"
+  },
+  "official": {
+    "checks_passed": 8,
+    "checks_total": 8,
+    "reward": 1,
+    "passed": true,
+    "report": "results/platform/canvas-retries/b8003ff6-204f-4008-8d6c-72aad006bbbd/earthquake-plate-calculation-5/ctrf.json",
+    "reward_file": "results/platform/canvas-retries/b8003ff6-204f-4008-8d6c-72aad006bbbd/earthquake-plate-calculation-5/reward.txt"
+  },
+  "platform_run_id": "b8003ff6-204f-4008-8d6c-72aad006bbbd",
+  "historical_mode": "fresh",
+  "historical_canvas": "results/platform/canvas-retries/b8003ff6-204f-4008-8d6c-72aad006bbbd/canvas.json",
+  "backend_flow_source": "results/platform/canvas-retries/b8003ff6-204f-4008-8d6c-72aad006bbbd/earthquake-plate-calculation-5/flow.json",
+  "run_record": "results/platform/canvas-retries/b8003ff6-204f-4008-8d6c-72aad006bbbd/earthquake-plate-calculation-5/run.json",
+  "why": "基线事件 ID 和距离未通过。筛选先交接事件与 SU 板块，测距节点独立计算边界距离，最后校验保留事件 ID 的 us 前缀。正式产物的事件是 us7000myfa，距离 419.32 km。"
+}

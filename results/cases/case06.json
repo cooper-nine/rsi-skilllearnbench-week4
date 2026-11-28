@@ -1,0 +1,42 @@
+{
+  "case": "case06",
+  "task": "weighted-gdp-calculation-4",
+  "baseline": {
+    "checks": "10/27",
+    "reward": 0,
+    "failed_checks": [
+      "test_outputs.py::TestStep1LookupFormulas::test_exports_have_data",
+      "test_outputs.py::TestStep1LookupFormulas::test_imports_have_data",
+      "test_outputs.py::TestStep1LookupFormulas::test_gdp_have_data",
+      "test_outputs.py::TestStep1DataValues::test_exports_values",
+      "test_outputs.py::TestStep1DataValues::test_imports_values",
+      "test_outputs.py::TestStep1DataValues::test_gdp_values",
+      "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_have_data",
+      "test_outputs.py::TestStep2NetExportsCalculation::test_net_exports_pct_values",
+      "test_outputs.py::TestStep2Statistics::test_statistics_have_data",
+      "test_outputs.py::TestStep2Statistics::test_min_values",
+      "test_outputs.py::TestStep2Statistics::test_max_values",
+      "test_outputs.py::TestStep2Statistics::test_median_values",
+      "test_outputs.py::TestStep2Statistics::test_mean_values",
+      "test_outputs.py::TestStep2Statistics::test_percentile_values",
+      "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_has_data",
+      "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values_reasonable",
+      "test_outputs.py::TestStep3WeightedMean::test_weighted_mean_values"
+    ],
+    "official_report": "results/paired-evidence/weighted-gdp-calculation-4/baseline/ctrf.json"
+  },
+  "official": {
+    "checks_passed": 27,
+    "checks_total": 27,
+    "reward": 1,
+    "passed": true,
+    "report": "results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-4/ctrf.json",
+    "reward_file": "results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-4/reward.txt"
+  },
+  "platform_run_id": "b49640e9-305b-4b1b-a0ba-fc00ce2c4008",
+  "historical_mode": "fresh",
+  "historical_canvas": "results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/canvas.json",
+  "backend_flow_source": "results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-4/flow.json",
+  "run_record": "results/platform/canvas-retries/b49640e9-305b-4b1b-a0ba-fc00ce2c4008/weighted-gdp-calculation-4/run.json",
+  "why": "基线的贸易、GDP、统计与加权检查失败。把数据块定位与计算分开，先确认目标行和年份，再填写公式。最后处理工作簿空白起始行造成的 CSV 导出坐标偏移，使官方检查读取正确的行。"
+}

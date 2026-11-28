@@ -1,0 +1,29 @@
+{
+  "case": "case08",
+  "task": "stock-data-visualization-2",
+  "baseline": {
+    "checks": "11/15",
+    "reward": 0,
+    "failed_checks": [
+      "test_outputs.py::test_data_table",
+      "test_outputs.py::test_tooltips_non_etf_and_etf",
+      "test_outputs.py::test_interactive_linking",
+      "test_outputs.py::test_market_cap_formatting"
+    ],
+    "official_report": "results/paired-evidence/stock-data-visualization-2/baseline/ctrf.json"
+  },
+  "official": {
+    "checks_passed": 15,
+    "checks_total": 15,
+    "reward": 1,
+    "passed": true,
+    "report": "results/platform/canvas-retries/025b47f6-e47d-49f4-b5d2-0d49a077225a/stock-data-visualization-2/ctrf.json",
+    "reward_file": "results/platform/canvas-retries/025b47f6-e47d-49f4-b5d2-0d49a077225a/stock-data-visualization-2/reward.txt"
+  },
+  "platform_run_id": "025b47f6-e47d-49f4-b5d2-0d49a077225a",
+  "historical_mode": "repair-stock-remaining",
+  "historical_canvas": "results/platform/canvas-retries/025b47f6-e47d-49f4-b5d2-0d49a077225a/canvas.json",
+  "backend_flow_source": "results/platform/canvas-retries/7ef1165d-92c5-4a94-a6cc-4582b2567739/stock-data-visualization-2/flow.json",
+  "run_record": "results/platform/canvas-retries/025b47f6-e47d-49f4-b5d2-0d49a077225a/stock-data-visualization-2/run.json",
+  "why": "基线的表格、悬停、联动和市值格式未过。渲染续修增加市值空值保护，避免格式化调用中断整个页面，并根据数据里的 sector 识别 ETF。修复后图表和表格能同时渲染，后续交互可被验收。"
+}
