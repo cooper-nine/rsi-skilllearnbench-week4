@@ -1,5 +1,9 @@
 # SkillLearnBench 第四周｜人工编排与 Qwen 3.5 Plus
 
+## 评审快速启动
+
+从本仓库根目录运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\review.ps1`。用 Node.js、Python 和 Git 启动原画布页面，点击「回放节点归档」即可检查拆分 Skill、节点顺序、真实 Qwen 产物与历史官判。需要重新调用 Qwen 时，使用同一脚本的 `-Live` 模式。 [评审与实跑步骤](RUN.md#评审快速启动)
+
 ## 仓库提交
 
 - 我的后端项目 [rsi-data-spring-boot](https://github.com/cooper-nine/rsi-data-spring-boot)

@@ -1,5 +1,31 @@
 # 架构与启动
 
+## 评审快速启动
+
+Windows 机器安装 Git、Node.js 24 和 Python 3.11 或更新版本。在有空间的磁盘目录执行：
+
+```powershell
+git clone https://github.com/cooper-nine/rsi-skilllearnbench-week4
+Set-Location rsi-skilllearnbench-week4
+powershell -NoProfile -ExecutionPolicy Bypass -File .\review.ps1
+```
+
+脚本会在同一磁盘的 `.review` 下获取前端和 Visual，安装锁定的前端依赖并启动本机页面。打开 `http://127.0.0.1:3020/test/week4`，默认地震画布可直接点「回放节点归档」。页面按真实画布的连线校验顺序。展开每个节点可看子 Skill、输入输出契约和该节点的历史 Qwen 产物，并核对归档官方报告。切换任务类型可以验证其他画布。
+
+### 重新从原始输入执行
+
+启动 Docker Desktop，先在当前终端通过自己的脚本或凭证配置设置 `DASHSCOPE_API_KEY`，然后执行：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\review.ps1 -Live
+```
+
+初次运行会准备原始基准数据、Python 环境和十题 Docker 镜像。已有准备好的环境可加 `-BenchmarkHome <基准目录>`。打开同一画布页面，保存四类画布，选择一道题并点「从原始输入运行」。页面显示运行 ID，结束后显示本次官判。逐节点产物和失败诊断写在运行 ID 对应的目录。
+
+评审实跑由本机 Next.js 启动同一个 Python 流程运行器，再逐节点调用 Qwen 并运行原版 Docker 验收。下文另有历史正式实验使用的 Spring Boot 启动方法，适合验证 FlowEngine 接入。
+
+## 正式实验架构
+
 1. Next.js 的 `/test/week4` 使用 Visual 画布呈现四类人工流程。页面把已保存的画布和所选题目提交给本机 Next.js 路由。
 2. Next.js 把请求转给 Spring Boot 的 `/api/engine/flow`。FlowEngine 调用 `RSI_WEEK4_CANVAS`，校验本地令牌，写下画布并启动 Python 运行器，返回运行 ID。
 3. Python 决定节点顺序并组装 Skill 提示词和上游产物。业务节点调用 Qwen 3.5 Plus，将模型提供的操作在题目 Docker 容器中执行。节点失败反馈给模型继续修正，运行记录按次保存。

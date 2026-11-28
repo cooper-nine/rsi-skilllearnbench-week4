@@ -1,6 +1,7 @@
 """Run a platform-submitted canvas over retained Qwen drafts and regrade in Docker."""
 import json
 import hashlib
+import os
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import subprocess
@@ -113,7 +114,7 @@ def official(case, seed, folder, run_id):
 
 
 def solve(directory, graphs, cases):
-    evidence = ROOT.parent / "rsi-skilllearnbench-week4/results/paired-evidence"
+    evidence = Path(os.environ.get("RSI_WEEK4_EVIDENCE_HOME", ROOT.parent / "rsi-skilllearnbench-week4")) / "results/paired-evidence"
     for case in cases:
         family = case["family"]
         task = f"{family}-{case['instance']}"
@@ -165,7 +166,7 @@ def run(directory):
     request = read(directory / "canvas.json")
     views = request.get("graphs", request)
     graphs = {family: stages(views[key]) for family, key in KEYS.items()}
-    evidence = ROOT.parent / "rsi-skilllearnbench-week4/results/paired-evidence"
+    evidence = Path(os.environ.get("RSI_WEEK4_EVIDENCE_HOME", ROOT.parent / "rsi-skilllearnbench-week4")) / "results/paired-evidence"
     cases = read(ROOT / "qwen/cases.json")
     mode = request.get("mode")
     if mode in {"repair-stock-1", "repair-stock-2", "repair-stock-3", "repair-stock-4"}:
