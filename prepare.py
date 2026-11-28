@@ -94,5 +94,5 @@ def main():
     if a.build_images:
         build_images(target)
     print("Prepared:",target)
-    print("Set DASHSCOPE_API_KEY, start Docker, then run .venv python qwen/run_all.py")
+    print("Set DASHSCOPE_API_KEY on the backend, start Docker, then follow RUN.md to launch the canvas.")
 if __name__=="__main__":main()

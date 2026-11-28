@@ -33,3 +33,4 @@ python .\rsi-skilllearnbench-week4\prepare.py --workspace .\upstream-sparse --in
 - 从公开仓库重新克隆前端与 Visual，通过 `pnpm install --frozen-lockfile` 和 `pnpm build`。
 - 从公开仓库重新克隆后端，使用已配置的课程 Maven 依赖通过 12 个模块编译并启动。通过前端路由提交画布取得 FlowEngine 运行 ID，后端写入运行目录。这次启动检查未提供模型 API Key。
 - 使用归档的 Qwen 产物，重新执行股票第 4 题的原版 Docker 判分，16 项全部通过，奖励为 1。独立循环框架测试通过 5 项。十题正式验收为先前逐题完成的 10/10。
+- 从本机缓存的固定基准提交准备了独立工作区，安装了锁定的 Python 依赖并核对原题文件。直接从 GitHub 下载原始大文件的首次验证遇到连接中断。
