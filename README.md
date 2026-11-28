@@ -8,6 +8,8 @@
 
 - 我的后端项目 [rsi-data-spring-boot](https://github.com/cooper-nine/rsi-data-spring-boot)
 - 我的前端项目 [rsi-data-platform](https://github.com/cooper-nine/rsi-data-platform)
+- 我的前端编排框架 [rsi-data-visual](https://github.com/cooper-nine/rsi-data-visual) 增加了可直接安装的构建产物和构建说明，供评审脚本装载原画布组件。
+- 我的后端 RSI 编排框架 [rsi-flow](https://github.com/cooper-nine/rsi-flow) 增加了独立的 Java 有界 Skill 循环节点、测试和示例。十题正式实验由 Spring Boot 的 FlowEngine 调度 Python 运行器，逐节点执行由 Python 负责。
 
 安装和架构见[完整启动说明](RUN.md)。
 
